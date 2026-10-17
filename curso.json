@@ -1,0 +1,510 @@
+[
+  {
+    "id": "01-documento",
+    "title": "Documento HTML e idioma",
+    "chapter": "1",
+    "minutes": 30,
+    "task": "Consultar una ficha de curso e identificar su idioma y su título antes de inscribirse.",
+    "barrier": "La ficha declara inglés, usa un título genérico y bloquea la ampliación en el viewport.",
+    "theory": [
+      "El idioma principal se declara en html. Un lector de pantalla puede utilizarlo para elegir pronunciación. Una frase en otro idioma puede necesitar su propio lang. No confundas el idioma del contenido con el lenguaje de programación.",
+      "El title identifica la página en pestañas, historial y navegación. Debe reflejar el propósito de esa vista. En una aplicación dinámica también hay que actualizarlo al cambiar de ruta.",
+      "El viewport debe permitir ampliar. No restringir el zoom es una decisión de implementación que ayuda a cumplir redimensión y reflow; no sustituye probar que al ampliar no se pierde contenido. La estructura global se completará en la práctica 02."
+    ],
+    "criteria": ["3.1.1", "3.1.2", "2.4.2", "1.4.4"],
+    "steps": [
+      "Abre inicio e identifica el valor de lang, title y viewport.",
+      "Cambia el idioma principal a es y marca la frase inglesa como en.",
+      "Escribe un título que identifique curso y portal.",
+      "Elimina restricciones de escala y compara con la solución."
+    ],
+    "checks": [
+      "La pestaña identifica el curso.",
+      "El árbol de accesibilidad declara español y conserva el cambio de idioma.",
+      "El navegador permite ampliar al 200 % sin perder texto ni controles."
+    ],
+    "hints": [
+      "La declaración de idioma pertenece al elemento html, no al body.",
+      "No hace falta añadir ARIA para indicar el idioma."
+    ],
+    "extension": "Añade un título para el paso 2 de una inscripción y otro para una búsqueda con resultados.",
+    "solution": "Se modifican metadatos y el lang de una frase. No se añade JavaScript: el navegador y la tecnología de apoyo reciben esa información desde HTML."
+  },
+  {
+    "id": "02-estructura",
+    "title": "Regiones, encabezados y orden",
+    "chapter": "2",
+    "minutes": 45,
+    "task": "Encontrar requisitos y temario sin recorrer toda la página.",
+    "barrier": "Todo parece un bloque de texto y los títulos solo cambian de tamaño visual.",
+    "theory": [
+      "La semántica permite recorrer el documento por regiones, encabezados y listas. Una apariencia de título no crea un encabezado. Elige h1 a h6 según la jerarquía y utiliza CSS para su presentación.",
+      "header, nav, main y footer comunican la estructura cuando se usan en su contexto. En esta ficha adoptamos un h1 principal y un main como convención clara. No hace falta añadir role=main a main ni poner aria-label en cada elemento.",
+      "La secuencia del DOM debe conservar las relaciones y el sentido al leer sin presentación. Reordenar con CSS puede producir una lectura o tabulación distinta de la que ve la persona. Una auditoría revisa el efecto sobre significado y uso, no solo la numeración de los encabezados."
+    ],
+    "criteria": ["1.3.1", "1.3.2", "2.4.1", "2.4.6"],
+    "steps": [
+      "Lista las zonas que tiene la ficha y las relaciones entre sus títulos.",
+      "Sustituye los contenedores genéricos por estructura semántica cuando corresponda.",
+      "Añade un enlace de salto al main.",
+      "Revisa encabezados, regiones y listas con el árbol de accesibilidad."
+    ],
+    "checks": [
+      "El enlace de salto lleva al contenido y es visible al enfocarse.",
+      "La navegación por encabezados ofrece una jerarquía comprensible.",
+      "La secuencia conserva su significado al quitar CSS."
+    ],
+    "hints": [
+      "Un texto en negrita no equivale a h2.",
+      "Las listas de requisitos tienen información de agrupación que no aporta una sucesión de br."
+    ],
+    "extension": "Añade una segunda navegación y decide cómo distinguir sus nombres sin duplicar información.",
+    "solution": "Se usan landmarks nativos, h2 para las secciones y una lista para requisitos. El destino del salto admite foco programático con tabindex=-1."
+  },
+  {
+    "id": "03-enlaces",
+    "title": "Enlaces y alternativas de imágenes",
+    "chapter": "3",
+    "minutes": 35,
+    "task": "Elegir entre dos cursos y saber qué ficha se va a abrir.",
+    "barrier": "Dos enlaces dicen Ver más y una imagen usada como enlace carece de alternativa.",
+    "theory": [
+      "Un enlace cambia de ubicación. href proporciona destino y comportamiento nativo, incluido abrir en otra pestaña desde el navegador. Un div con un evento de clic no ofrece ese contrato.",
+      "El propósito debe poder determinarse a partir del enlace o de un contexto asociado programáticamente en 2.4.4. Hacerlo comprensible por sí solo facilita listas de enlaces, pero esa exigencia aislada corresponde a un criterio AAA distinto. En el laboratorio elegimos textos explícitos por claridad.",
+      "Una imagen funcional necesita una alternativa que explique el destino o acción. Una imagen decorativa usa alt vacío. Si la imagen y el texto repiten exactamente el mismo enlace, evita anuncios duplicados. El nombre accesible debe conservar el texto visible cuando exista."
+    ],
+    "criteria": ["1.1.1", "2.4.4", "2.5.3"],
+    "steps": [
+      "Recorre los enlaces y anota qué destino esperas de cada uno.",
+      "Reemplaza los textos genéricos por destinos concretos.",
+      "Decide qué aporta la imagen en su contexto y escribe la alternativa necesaria.",
+      "Comprueba teclado, nombre y destino real."
+    ],
+    "checks": [
+      "Todos los destinos existen dentro de la práctica.",
+      "El enlace de imagen se anuncia con un propósito comprensible.",
+      "Los enlaces se distinguen por algo más que su color."
+    ],
+    "hints": [
+      "No uses aria-label para ocultar un texto visible incorrecto que puedes mejorar.",
+      "El alt de una imagen enlazada explica su función."
+    ],
+    "extension": "Añade una descarga e informa del formato y tamaño como mejora de usabilidad. Debate si abrir otra pestaña ayuda a la tarea.",
+    "solution": "Se conserva el elemento a, se concretan los textos y se proporciona una alternativa funcional a la imagen. La presentación mantiene subrayado."
+  },
+  {
+    "id": "04-acciones",
+    "title": "Botones, nombre y estado",
+    "chapter": "4",
+    "minutes": 35,
+    "task": "Guardar un curso como favorito con teclado.",
+    "barrier": "La acción se implementa con un div que solo responde al clic y no comunica su estado.",
+    "theory": [
+      "Un botón ejecuta una acción. button aporta foco, rol y activación con Enter y Espacio. Dentro de formularios, type=button evita un envío accidental cuando no es esa su función.",
+      "El nombre explica la acción. Si el control alterna un estado, aria-pressed puede comunicar si está activado. Mantén una etiqueta estable y actualiza el estado real junto a una indicación visible.",
+      "ARIA aporta semántica y no implementa interacción. role=button en un div no crea automáticamente teclado. Si un botón está temporalmente inactivo, hay que decidir cómo comunicar el motivo. aria-disabled por sí solo no impide su ejecución."
+    ],
+    "criteria": ["2.1.1", "4.1.2", "2.5.3"],
+    "steps": [
+      "Intenta guardar usando Tab, Enter y Espacio.",
+      "Sustituye el div por button con type explícito.",
+      "Relaciona aria-pressed con el estado de favorito.",
+      "Verifica que cada activación cambia exactamente una vez el estado."
+    ],
+    "checks": [
+      "El control recibe foco y responde a Enter y Espacio.",
+      "aria-pressed alterna entre true y false.",
+      "El estado también aparece escrito en pantalla."
+    ],
+    "hints": [
+      "Un listener de click en un botón nativo ya recibe activación de teclado.",
+      "Añadir un listener extra de keydown puede duplicar acciones."
+    ],
+    "extension": "Añade una operación de guardado simulada y evita envíos duplicados sin ocultar el motivo al usuario.",
+    "solution": "La solución usa button y un listener click. Cambia aria-pressed y el texto de estado. La semántica nativa resuelve la activación."
+  },
+  {
+    "id": "05-estilos",
+    "title": "Contraste, ampliación y preferencias",
+    "chapter": "5",
+    "minutes": 55,
+    "task": "Leer una ficha y reservar plaza con una ventana estrecha o texto ampliado.",
+    "barrier": "El texto tiene poco contraste, la tarjeta un ancho rígido y el estado solo se indica con color.",
+    "theory": [
+      "El contraste del texto normal frente al fondo debe alcanzar 4,5:1 para AA. El umbral de 3:1 se aplica a texto grande: 18 pt normal o 14 pt en negrita. Poner negrita a una etiqueta pequeña no la convierte automáticamente en texto grande.",
+      "Redimensionar texto y reflow responden a pruebas distintas. Se comprueba texto al 200 % sin pérdida de contenido y redistribución a un ancho equivalente a 320 píxeles CSS para contenido vertical, con las excepciones que correspondan. Una tabla puede requerir dos dimensiones sin que toda la página tenga que hacerlo.",
+      "El color necesita otra señal cuando transmite información. Las preferencias de movimiento y colores forzados merecen revisión. No todo consejo visual es un criterio de nivel AA: distingue requisito, técnica elegida y mejora adicional."
+    ],
+    "criteria": ["1.4.1", "1.4.3", "1.4.4", "1.4.10", "1.4.11", "1.4.12"],
+    "steps": [
+      "Mide el contraste del texto tenue y anota colores y ratio.",
+      "Sustituye anchos y alturas rígidos que cortan la tarjeta.",
+      "Añade una etiqueta textual al estado.",
+      "Prueba 320 px, ampliación al 200 % y los valores de espaciado de texto."
+    ],
+    "checks": [
+      "El texto normal alcanza al menos 4,5:1.",
+      "No hay desplazamiento horizontal de la página a 320 px.",
+      "Con interlineado 1,5, espacio entre párrafos 2 veces la fuente, letras 0,12 y palabras 0,16 em no se pierde contenido."
+    ],
+    "hints": [
+      "max-width y un ancho flexible ayudan a conservar el contenido.",
+      "No fijes una altura para que el componente parezca uniforme."
+    ],
+    "extension": "Activa colores forzados y comprueba qué ocurre con iconos, contornos y estados.",
+    "solution": "Se corrigen colores, dimensiones y el estado textual. El CSS común mantiene un foco visible y permite que el contenido determine su altura."
+  },
+  {
+    "id": "06-foco",
+    "title": "Diálogos y ciclo del foco",
+    "chapter": "6",
+    "minutes": 65,
+    "task": "Abrir una inscripción, decidir y volver a la ficha sin perder la posición.",
+    "barrier": "Una superposición visible deja el foco detrás y no lo devuelve al cerrar.",
+    "theory": [
+      "El foco permite operar con teclado y debe verse. El orden debe conservar significado y operabilidad; no depende de seguir una figura geométrica universal. Evita tabindex positivo para reconstruir un orden que el DOM ya puede expresar.",
+      "Un diálogo modal necesita nombre, entrada de foco, contención durante la interacción y una salida disponible. dialog.showModal() ofrece modalidad nativa. El foco inicial depende de la tarea: en una confirmación destructiva puede convenir la acción menos dañina.",
+      "Al cerrar se restituye el punto de trabajo, normalmente el disparador si sigue disponible. En WCAG 2.2 AA, un componente enfocado no puede quedar totalmente oculto por contenido creado por el autor. Apariencia del foco 2.4.13 tiene nivel AAA y no debe confundirse con foco visible o no oculto."
+    ],
+    "criteria": ["2.1.1", "2.1.2", "2.4.3", "2.4.7", "2.4.11", "4.1.2"],
+    "steps": [
+      "Abre la versión inicial y observa dónde queda el foco.",
+      "Usa dialog con un título relacionado y showModal().",
+      "Define una entrada segura y un botón de cierre.",
+      "Prueba Escape, cerrar, Tab y Shift+Tab y comprueba el retorno."
+    ],
+    "checks": [
+      "El diálogo se anuncia con su título.",
+      "Con el modal abierto no se operan los controles del fondo.",
+      "Escape y Cancelar cierran y devuelven el foco a Abrir inscripción.",
+      "El foco se mantiene visible y no queda totalmente tapado."
+    ],
+    "hints": [
+      "Asignar aria-modal no crea modalidad.",
+      "Con un componente nativo o un framework comprueba primero su comportamiento antes de añadir una trampa propia."
+    ],
+    "extension": "Añade una cabecera fija y comprueba que no oculta por completo el control enfocado al desplazarse.",
+    "solution": "Se utiliza dialog.showModal, un título asociado y un cierre nativo mediante form method=dialog. Se define foco en Cancelar y se restaura el disparador al cerrar."
+  },
+  {
+    "id": "07-navegacion",
+    "title": "Navegación desplegable",
+    "chapter": "7",
+    "minutes": 45,
+    "task": "Abrir las secciones del portal, visitar ayuda y reconocer la página actual.",
+    "barrier": "Una navegación solo se abre al pasar el puntero y usa role=menu sin su interacción.",
+    "theory": [
+      "Una navegación de sitio suele ser una lista de enlaces dentro de nav. Un menú de aplicación ARIA tiene otras expectativas de interacción. Elegir role=menu obliga a implementar ese patrón; no mejora por sí solo una lista de enlaces.",
+      "Un disclosure para navegación puede usar un botón nativo que expone aria-expanded y un contenedor que se oculta. El estado programático debe coincidir con lo que se ve. Escape permite cerrar de forma cómoda y debe mantener un punto de foco coherente.",
+      "aria-current=page comunica qué enlace representa la página actual. La indicación visual también debe resultar distinguible sin depender solo del color. Mantener ayuda en un lugar consistente responde a una de las incorporaciones de WCAG 2.2."
+    ],
+    "criteria": ["2.1.1", "1.4.1", "3.2.3", "3.2.6", "4.1.2"],
+    "steps": [
+      "Abre las secciones sin usar el ratón.",
+      "Implementa un botón con aria-expanded y aria-controls.",
+      "Usa enlaces normales y elimina los roles de aplicación innecesarios.",
+      "Marca la página actual y permite cerrar con Escape."
+    ],
+    "checks": [
+      "Enter y Espacio abren y cierran.",
+      "El contenido oculto no recibe Tab.",
+      "Escape cierra y devuelve el foco al disparador.",
+      "La ayuda mantiene su ubicación relativa en las vistas del ejercicio."
+    ],
+    "hints": [
+      "La navegación de enlaces sigue pudiendo recorrerse con Tab.",
+      "No hace falta añadir navegación con flechas a este disclosure sencillo."
+    ],
+    "extension": "Adapta el panel a dos anchuras y comprueba el estado al cambiar de tamaño con el panel abierto.",
+    "solution": "Un botón controla hidden y aria-expanded. El panel contiene una lista de enlaces; aria-current identifica el inicio y Escape vuelve al botón."
+  },
+  {
+    "id": "08-ocultacion",
+    "title": "Contenido oculto y ayudas",
+    "chapter": "8",
+    "minutes": 35,
+    "task": "Mostrar una ayuda que se pueda leer y operar con teclado.",
+    "barrier": "El panel cerrado es transparente, pero su enlace sigue en la tabulación.",
+    "theory": [
+      "Ocultar visualmente, retirar del árbol de accesibilidad y quitar de la interacción son decisiones distintas. opacity:0 no elimina foco ni semántica. aria-hidden retira información del árbol, pero no evita por sí mismo que un enlace reciba foco.",
+      "hidden o display:none sirven cuando el contenido no debe estar disponible en ese estado. Una clase de ocultación visual se reserva para texto que sí debe llegar al lector. No la uses para ocultar un panel interactivo cerrado.",
+      "details y summary permiten una divulgación nativa. En esta práctica se compara una implementación defectuosa con ese patrón. No se añade aria-expanded a summary porque el estado ya lo ofrece el navegador."
+    ],
+    "criteria": ["2.1.1", "2.4.3", "4.1.2"],
+    "steps": [
+      "Recorre con Tab el panel cerrado y localiza el foco invisible.",
+      "Explica por qué opacity y aria-hidden no resuelven esa interacción.",
+      "Sustituye la estructura por details y summary.",
+      "Comprueba apertura, lectura y tabulación en ambos estados."
+    ],
+    "checks": [
+      "El enlace del panel cerrado no entra en Tab.",
+      "Enter y Espacio activan el resumen.",
+      "El contenido abierto puede leerse y su enlace funciona."
+    ],
+    "hints": [
+      "Decide primero quién debe poder acceder al contenido en cada estado.",
+      "Mantén el nombre visible del disparador."
+    ],
+    "extension": "Implementa un disclosure personalizado con button, aria-expanded y hidden y compara su complejidad.",
+    "solution": "details conserva el comportamiento nativo. El navegador retira el contenido cerrado de la interacción y comunica el estado."
+  },
+  {
+    "id": "09-formularios",
+    "title": "Inscripción y recuperación de errores",
+    "chapter": "9",
+    "minutes": 90,
+    "task": "Enviar una solicitud, comprender errores y corregirla sin volver a introducir datos válidos.",
+    "barrier": "Solo hay placeholders, los errores son genéricos y no se relacionan con los campos.",
+    "theory": [
+      "La etiqueta visible explica qué se solicita y label asocia ese texto al control. placeholder desaparece al escribir y no sustituye las instrucciones. required, tipos adecuados y autocomplete ayudan a comunicar propósito y restricciones.",
+      "Un error debe identificar el campo y explicar cómo corregirlo cuando se conoce la solución. aria-invalid comunica el estado y aria-describedby permite asociar ayuda y error sin perder las instrucciones previas. Un resumen con enlaces facilita localizar varios problemas.",
+      "La validación de ejemplo se ejecuta al enviar. Evita una sucesión de alertas en cada pulsación. Tras un envío con errores se enfoca el resumen; tras éxito se anuncia el resultado. El formulario es local y no envía datos a un servidor.",
+      "WCAG 2.2 añade requisitos sobre introducir de nuevo información ya facilitada en el mismo proceso y sobre autenticación que impone pruebas cognitivas. El laboratorio conserva datos durante la corrección y la ampliación propone un acceso que permita pegar y utilizar gestores. No afirma evaluar por completo una autenticación real."
+    ],
+    "criteria": ["1.3.1", "1.3.5", "3.3.1", "3.3.2", "3.3.3", "3.3.7", "4.1.3"],
+    "steps": [
+      "Envía vacío y registra lo que se comunica.",
+      "Añade label visible, ayudas, required, type=email y autocomplete.",
+      "Implementa errores específicos y relaciones estables entre IDs.",
+      "Construye un resumen con enlaces y mueve allí el foco tras un fallo.",
+      "Corrige y envía, manteniendo los datos válidos."
+    ],
+    "checks": [
+      "Al enviar vacío el foco va al resumen y sus enlaces llevan a cada campo.",
+      "Cada campo anuncia etiqueta, ayuda y error cuando corresponda.",
+      "Un segundo envío elimina errores resueltos sin borrar el resto de datos.",
+      "Un envío correcto produce un mensaje de estado y no recarga ni transmite datos."
+    ],
+    "hints": [
+      "Conserva el ID de la ayuda al añadir el del error en aria-describedby.",
+      "No necesitas role=alert si ya enfocas un resumen y eso provoca anuncios duplicados."
+    ],
+    "extension": "Añade un segundo paso que reutilice el correo ya introducido y diseña un acceso que admita pegar la contraseña. Relaciona la decisión con 3.3.7 y 3.3.8.",
+    "solution": "Se validan nombre y correo al enviar con mensajes propios. El resumen se reconstruye, cada error queda asociado y el foco permite recuperarse. role=status comunica éxito sin robar foco."
+  },
+  {
+    "id": "10-filtros",
+    "title": "Filtros y anuncios de resultados",
+    "chapter": "10",
+    "minutes": 40,
+    "task": "Mostrar cursos online y saber cuántos resultados quedan.",
+    "barrier": "La lista cambia sin aviso y el selector no tiene etiqueta.",
+    "theory": [
+      "Un filtro explícito por lotes permite elegir y después aplicar. Una selección que solo cambia resultados no debe provocar una navegación inesperada. Explica cuándo se ejecuta y mantén la coherencia entre filtro activo y resultados.",
+      "Una región de estado ya presente en el DOM puede comunicar la cantidad de resultados sin mover el foco. role=status proporciona un anuncio no urgente. No conviertas todo el listado en una región viva: puede repetir demasiado contenido.",
+      "La persona debe seguir trabajando con el filtro después de aplicarlo. Un estado vacío también necesita una explicación y una manera de recuperar resultados. El patrón se puede aplicar a paginación y ordenación."
+    ],
+    "criteria": ["3.2.2", "3.3.2", "4.1.3"],
+    "steps": [
+      "Aplica el filtro inicial y observa qué información falta.",
+      "Etiqueta el selector y usa un formulario con envío local.",
+      "Actualiza una región status con el recuento.",
+      "Comprueba que el foco permanece en Aplicar y que Todos recupera los resultados."
+    ],
+    "checks": [
+      "Online muestra dos cursos y Todos muestra tres.",
+      "La lista está agrupada y el recuento cambia en un status.",
+      "Aplicar conserva el foco y no recarga la página."
+    ],
+    "hints": [
+      "La región de estado debe existir antes del cambio.",
+      "No hace falta enfocar el listado para comunicar un recuento."
+    ],
+    "extension": "Añade paginación con aria-current=page o un estado sin resultados con botón para restablecer filtros.",
+    "solution": "El formulario conserva el foco y cambia hidden en los elementos que no coinciden. Solo el recuento se anuncia en una región status."
+  },
+  {
+    "id": "11-tablas",
+    "title": "Tablas y ordenación",
+    "chapter": "11",
+    "minutes": 35,
+    "task": "Comparar plazas y ordenar cursos por disponibilidad.",
+    "barrier": "Las celdas de encabezado son td y ordenar depende de pulsar sobre texto sin botón.",
+    "theory": [
+      "Las tablas expresan relaciones de filas y columnas. caption identifica los datos y th con scope ayuda a expresar los encabezados sencillos. Una tabla de datos no se sustituye automáticamente por tarjetas para mejorar accesibilidad.",
+      "Una acción de ordenar pertenece a un botón dentro del encabezado. aria-sort informa del estado en la celda de encabezado correspondiente. La actualización debe coincidir con el orden real y conservar la relación entre cada curso y sus plazas.",
+      "Las tablas complejas pueden requerir asociaciones explícitas y revisión adicional. El ejemplo mantiene dos columnas para centrarse en el contrato. Si necesita desplazamiento horizontal, puede aislarse en un contenedor sin obligar al resto del documento a desplazarse en dos direcciones."
+    ],
+    "criteria": ["1.3.1", "2.1.1", "4.1.2", "4.1.3"],
+    "steps": [
+      "Revisa qué encabezado corresponde a cada dato.",
+      "Añade caption, th y scope.",
+      "Usa button para ordenar por plazas y actualiza aria-sort.",
+      "Ordena dos veces y verifica los datos y el foco."
+    ],
+    "checks": [
+      "El lector puede asociar nombre de curso y plazas.",
+      "La primera ordenación es ascendente y la segunda descendente.",
+      "El botón mantiene el foco y el estado coincide con el orden visible."
+    ],
+    "hints": [
+      "aria-sort pertenece al th, no al button.",
+      "El nombre del curso puede ser un encabezado de fila."
+    ],
+    "extension": "Añade una tercera columna y documenta qué cambiaría si hubiera encabezados agrupados.",
+    "solution": "La tabla expresa encabezados de columna y fila. Se mueven las filas existentes, se actualiza aria-sort y un status comunica la operación."
+  },
+  {
+    "id": "12-componentes",
+    "title": "Componentes y Shadow DOM",
+    "chapter": "12",
+    "minutes": 30,
+    "task": "Activar un componente reutilizable que conserva su nombre y estado.",
+    "barrier": "Un botón dentro de Shadow DOM referencia un título externo mediante un ID que no resuelve en su contexto.",
+    "theory": [
+      "Shadow DOM separa el árbol interno del componente del documento que lo contiene. Las referencias por ID de atributos como aria-labelledby no deben asumirse válidas entre raíces. Empieza por una relación estable dentro del mismo contexto.",
+      "El componente usa un botón nativo interno con texto visible. Cada instancia tiene su propio estado. Encapsular estilos también exige proporcionar un foco perceptible dentro de la raíz, porque el CSS del documento no entra de la misma forma.",
+      "Es una ampliación para el nivel del curso. No se enseña una API experimental como requisito universal. Las técnicas y su soporte cambian: comprobar el componente con el navegador y la tecnología de apoyo objetivo sigue siendo necesario."
+    ],
+    "criteria": ["2.1.1", "2.4.7", "4.1.2"],
+    "steps": [
+      "Inspecciona el botón interno y su nombre calculado.",
+      "Elimina la referencia externa rota y añade texto dentro del botón.",
+      "Mantén aria-pressed y el estado independiente por instancia.",
+      "Prueba teclado y foco dentro de la raíz."
+    ],
+    "checks": [
+      "Las dos instancias tienen nombres específicos.",
+      "Cada botón responde a Enter y Espacio.",
+      "Activar una instancia no altera la otra.",
+      "El foco se ve dentro del componente."
+    ],
+    "hints": [
+      "Inspecciona el árbol de accesibilidad, no solo el HTML del host.",
+      "No añadas aria-label al host esperando que nombre automáticamente el botón interno."
+    ],
+    "extension": "Documenta propiedades, eventos y responsabilidades del consumidor, y traslada el patrón a Lit si el grupo lo utiliza.",
+    "solution": "El nombre y el control residen en la misma raíz. Cada componente gestiona su propio botón nativo y sus estilos de foco."
+  },
+  {
+    "id": "13-auditoria",
+    "title": "Auditoría y criterios de aceptación",
+    "chapter": "13",
+    "minutes": 65,
+    "task": "Encontrar barreras, documentar impacto y demostrar que una corrección permite completar una tarea.",
+    "barrier": "Una puntuación automática favorable puede ocultar un enlace ambiguo, instrucciones confusas o errores de interacción.",
+    "theory": [
+      "Las herramientas detectan clases de problemas, no toda la experiencia. Un resultado sin violaciones no demuestra conformidad. Hay que definir alcance, estados y tareas, probar teclado y utilizar tecnología de apoyo.",
+      "Una incidencia útil incluye pasos reproducibles, resultado actual, resultado esperado, impacto, evidencia y criterio aplicable. La severidad se decide por el efecto sobre la tarea y el alcance, no por si el criterio es A o AA.",
+      "La corrección se verifica repitiendo las mismas condiciones. La prevención lleva la prueba al proceso del equipo: criterios de aceptación, revisión y regresión. Esta práctica produce una evaluación didáctica de alcance limitado, no una auditoría completa de una organización."
+    ],
+    "criteria": ["1.1.1", "2.1.1", "2.4.4", "3.3.2", "4.1.2"],
+    "steps": [
+      "Define la tarea y recorre la página sin ratón antes de ejecutar herramientas.",
+      "Registra tres incidencias usando la plantilla.",
+      "Ejecuta axe y separa lo confirmado de lo que requiere juicio.",
+      "Corrige al menos dos barreras y vuelve a ejecutar la tarea.",
+      "Escribe dos criterios de aceptación que prevengan regresiones."
+    ],
+    "checks": [
+      "El informe permite reproducir cada hallazgo.",
+      "Cada asociación WCAG se justifica con condiciones concretas.",
+      "Se registran pruebas manuales aunque axe no encuentre fallos.",
+      "La revisión distingue fallo, mejora y resultado no evaluado."
+    ],
+    "hints": [
+      "Un alt presente puede seguir siendo inadecuado.",
+      "No copies una severidad automática sin explicar el impacto."
+    ],
+    "extension": "Aplícalo al reto final, asigna responsable y prioridad, y redacta un plan de revisión para el equipo.",
+    "solution": "La versión corregida usa nombres explícitos, etiquetas y alternativas funcionales. El informe sigue siendo necesario para demostrar el resultado y delimitar lo no evaluado."
+  },
+  {
+    "id": "14-multimedia",
+    "title": "Audio, vídeo y movimiento",
+    "chapter": "Anexo multimedia",
+    "minutes": 50,
+    "task": "Comprender una notificación sonora y controlar una animación sin depender de escuchar o tolerar movimiento.",
+    "barrier": "Un audio comunica el resultado sin texto equivalente y un indicador se mueve continuamente sin pausa.",
+    "theory": [
+      "Para audio pregrabado sin vídeo, 1.2.1 exige una alternativa con la información equivalente. En el ejercicio dos tonos tienen un significado indicado en la transcripción. La alternativa debe explicar qué comunican, además de describir que hay sonidos.",
+      "En vídeo sincronizado pregrabado, distingue subtítulos de información sonora, alternativa multimedia y audiodescripción. En AA, si información visual relevante no está ya en el audio, 1.2.5 requiere audiodescripción. Una transcripción sola no reemplaza ese requisito. El repositorio incluye un guion de decisión y una pista VTT como material de edición; no presenta esa pista suelta como vídeo validado.",
+      "Un movimiento automático que dura más de cinco segundos y aparece junto a otro contenido puede requerir pausa, parada u ocultación, salvo la excepción esencial. Respetar prefers-reduced-motion mejora la experiencia; no sustituye los demás requisitos. La animación del laboratorio no contiene flashes."
+    ],
+    "criteria": ["1.2.1", "2.2.2"],
+    "steps": [
+      "Escucha el audio si puedes y anota qué información se pierde sin escucharlo.",
+      "Añade una transcripción equivalente visible junto al reproductor.",
+      "Añade pausa y sincroniza el texto del botón.",
+      "Activa reducir movimiento y verifica una alternativa estática."
+    ],
+    "checks": [
+      "La transcripción explica que la solicitud está guardada.",
+      "El audio tiene controles nativos y no arranca automáticamente.",
+      "El botón permite pausar y reanudar.",
+      "Con movimiento reducido el indicador deja de desplazarse."
+    ],
+    "hints": [
+      "Para el audio del ejercicio basta texto equivalente; no se necesita una pista de subtítulos en audio.",
+      "No uses una animación que simule destellos para enseñar fotosensibilidad."
+    ],
+    "extension": "Usa el guion multimedia para clasificar un vídeo narrado, una demo visual sin narración y un directo. Justifica 1.2.2, 1.2.3, 1.2.4 y 1.2.5.",
+    "solution": "Se añaden transcripción, pausa y una consulta CSS para movimiento reducido. El archivo de audio es original y local."
+  },
+  {
+    "id": "15-bootstrap",
+    "title": "Bootstrap real y responsabilidad del autor",
+    "chapter": "Anexos Bootstrap",
+    "minutes": 45,
+    "task": "Abrir un modal de Bootstrap y recorrer un desplegable comprobando qué resuelve el framework.",
+    "barrier": "Los componentes visuales funcionan, pero faltan nombres y un título asociado.",
+    "theory": [
+      "El ejercicio usa Bootstrap instalado localmente con una versión fijada. Su plugin proporciona comportamiento de foco y teclado. La responsabilidad del autor incluye estructura, nombre, contexto y una composición que conserve esa interacción.",
+      "Los dropdowns incorporan navegación con flechas entre dropdown-item y cierre con Escape. Pueden contener enlaces y no tienen que representar un menú ARIA de aplicación. Inspecciona el comportamiento antes de añadir código duplicado.",
+      "En el modal se añade un título asociado y un cierre nombrado. El plugin incorpora semántica de diálogo al abrirlo. El foco inicial puede ajustarse en shown.bs.modal cuando la tarea lo requiera. No se añade una segunda trampa de foco."
+    ],
+    "criteria": ["2.1.1", "2.1.2", "2.4.3", "4.1.2"],
+    "steps": [
+      "Arranca el servidor y abre el modal inicial.",
+      "Asocia el título y nombra el cierre.",
+      "Inspecciona role y aria-modal con el modal abierto.",
+      "Prueba flechas y Escape en el desplegable.",
+      "Documenta qué aporta Bootstrap y qué has añadido tú."
+    ],
+    "checks": [
+      "El modal se anuncia con el nombre Inscripción Bootstrap.",
+      "Escape cierra y el foco vuelve al disparador.",
+      "El desplegable permite recorrer opciones con flechas.",
+      "No se han añadido listeners manuales que dupliquen la trampa de foco."
+    ],
+    "hints": [
+      "Revisa el DOM vivo después de abrir.",
+      "La documentación de la versión instalada es la referencia."
+    ],
+    "extension": "Añade un offcanvas con su título y comprueba su ciclo de foco, y compara la validación nativa con la validación visual del framework.",
+    "solution": "La solución completa los nombres y relaciones que necesita el caso de uso y utiliza la interacción del plugin instalado."
+  },
+  {
+    "id": "16-rutas",
+    "title": "Cambios de vista en aplicaciones",
+    "chapter": "Anexo SPAs y frameworks",
+    "minutes": 30,
+    "task": "Abrir la vista de ayuda y reconocer el nuevo contexto sin una recarga.",
+    "barrier": "Cambia el contenido, pero el título sigue igual y el foco permanece en el enlace anterior.",
+    "theory": [
+      "El navegador gestiona parte del contexto al cargar un documento nuevo. Al sustituir una vista con JavaScript, el equipo debe decidir cómo comunicar la navegación, actualizar title y ofrecer un punto de trabajo coherente.",
+      "Una estrategia sencilla para esta demo es actualizar título y enfocar el encabezado de la vista una vez insertado en el DOM. No se debe mover foco por cualquier actualización: un filtro y una navegación son tareas distintas.",
+      "React, Vue y Lit necesitan respetar el mismo contrato, coordinado con su ciclo de renderizado. La práctica usa JavaScript del navegador para que el concepto no dependa de conocer tres frameworks. El ejemplo es un cambio de vista didáctico, no un router de producción completo."
+    ],
+    "criteria": ["2.4.2", "2.4.3", "3.2.3", "3.2.6"],
+    "steps": [
+      "Cambia a Ayuda y observa título y foco.",
+      "Actualiza document.title según la vista.",
+      "Enfoca el h1 de la vista tras insertarlo usando tabindex=-1.",
+      "Mantén navegación y ayuda en un lugar consistente."
+    ],
+    "checks": [
+      "La vista Ayuda tiene su propio title y h1.",
+      "Después del cambio el foco está en el encabezado nuevo.",
+      "Los enlaces conservan href y solo se interceptan activaciones normales.",
+      "La ayuda sigue disponible en ambas vistas."
+    ],
+    "hints": [
+      "Inserta primero el contenido y enfoca después.",
+      "Conserva el comportamiento de abrir una pestaña con Ctrl/Cmd."
+    ],
+    "extension": "Aplica el contrato con useEffect/ref en React, nextTick/ref en Vue o updateComplete en Lit, y añade historial de navegación.",
+    "solution": "Tras el cambio de vista se actualizan título y encabezado y se mueve foco al h1. Se conserva el comportamiento nativo para activaciones modificadas."
+  }
+]

@@ -1,0 +1,15 @@
+.course {
+  width: 720px;
+  height: 190px;
+  overflow: hidden;
+}
+.muted {
+  color: #aaa;
+  background: #fff;
+}
+.dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: green;
+}

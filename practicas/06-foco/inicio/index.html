@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Diálogos y ciclo del foco | Accesibilidad práctica</title>
+    <link rel="stylesheet" href="../../../assets/base.css" />
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+  <body>
+    <header>
+      <a href="../../../index.html">Índice de prácticas</a>
+      <h1>Diálogos y ciclo del foco</h1>
+      <p class="notice">
+        Versión inicial con barreras intencionadas. Utilízala solo como ejercicio.
+      </p>
+    </header>
+    <main id="contenido">
+      <button id="abrir" type="button">Abrir inscripción</button
+      ><a href="#info">Información del curso</a>
+      <div id="modal" class="overlay" hidden>
+        <h2>Inscripción</h2>
+        <p>¿Quieres reservar una plaza?</p>
+        <button id="cerrar" type="button">Cancelar</button>
+      </div>
+      <p id="info">La inscripción se puede cancelar.</p>
+    </main>
+    <footer>
+      <p>Portal de formación ficticio · Ejercicio original de accesibilidad.</p>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>

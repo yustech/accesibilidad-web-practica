@@ -1,0 +1,4 @@
+{
+  "name": "Accesibilidad Web",
+  "settings": "{\n  \"editor.fontSize\": 16,\n  \"editor.wordWrap\": \"on\",\n  \"editor.tabSize\": 2,\n  \"editor.formatOnSave\": false,\n  \"files.encoding\": \"utf8\",\n  \"files.eol\": \"\\n\",\n  \"workbench.startupEditor\": \"readme\",\n  \"emmet.triggerExpansionOnTab\": true\n}"
+}

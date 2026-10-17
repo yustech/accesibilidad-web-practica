@@ -1,0 +1,11 @@
+.motion {
+  animation: move 3s linear infinite alternate;
+  max-width: 10rem;
+  background: #dbeafe;
+  padding: 1rem;
+}
+@keyframes move {
+  to {
+    transform: translateX(90px);
+  }
+}

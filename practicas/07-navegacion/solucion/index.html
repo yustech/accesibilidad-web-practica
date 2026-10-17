@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Navegación desplegable | Accesibilidad práctica</title>
+    <link rel="stylesheet" href="../../../assets/base.css" />
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+  <body>
+    <header>
+      <a href="../../../index.html">Índice de prácticas</a>
+      <h1>Navegación desplegable</h1>
+      <p class="notice">
+        Solución de referencia didáctica. Completa también las comprobaciones manuales de
+        la ficha.
+      </p>
+    </header>
+    <main id="contenido">
+      <nav aria-label="Secciones">
+        <button type="button" id="toggle" aria-expanded="false" aria-controls="enlaces">
+          Secciones del portal
+        </button>
+        <ul id="enlaces" hidden>
+          <li><a href="#inicio" aria-current="page">Inicio (actual)</a></li>
+          <li><a href="#ayuda">Ayuda</a></li>
+        </ul>
+      </nav>
+      <section id="inicio">
+        <h2>Inicio</h2>
+        <p>Catálogo de cursos.</p>
+      </section>
+      <section id="ayuda">
+        <h2>Ayuda</h2>
+        <p>Puedes contactar con el equipo docente.</p>
+      </section>
+    </main>
+    <footer>
+      <p>Portal de formación ficticio · Ejercicio original de accesibilidad.</p>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>

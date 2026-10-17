@@ -1,0 +1,23 @@
+{
+  "name": "accesibilidad-web-practica",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Curso práctico de accesibilidad web y WCAG 2.2",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node scripts/servidor.mjs",
+    "check": "node scripts/comprobar.mjs",
+    "test": "node --test --test-concurrency=1 tests/*.test.mjs"
+  },
+  "dependencies": {
+    "bootstrap": "5.3.8"
+  },
+  "devDependencies": {
+    "axe-core": "4.14.0",
+    "playwright": "1.64.1",
+    "prettier": "3.9.10"
+  }
+}

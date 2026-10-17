@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Auditoría y criterios de aceptación | Accesibilidad práctica</title>
+    <link rel="stylesheet" href="../../../assets/base.css" />
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+  <body>
+    <header>
+      <a href="../../../index.html">Índice de prácticas</a>
+      <h1>Auditoría y criterios de aceptación</h1>
+      <p class="notice">
+        Solución de referencia didáctica. Completa también las comprobaciones manuales de
+        la ficha.
+      </p>
+    </header>
+    <main id="contenido">
+      <h2>Ficha de curso</h2>
+      <img src="../../../assets/curso.svg" width="90" alt="" />
+      <p>Consulta el detalle y usa el formulario para solicitar información.</p>
+      <a href="#detalle">Consultar el detalle del curso de HTML</a>
+      <form id="form">
+        <label for="correo">Correo electrónico</label
+        ><input id="correo" type="email" autocomplete="email" required /><button>
+          Solicitar información
+        </button>
+      </form>
+      <section id="detalle">
+        <h2>Información</h2>
+        <p>Curso de HTML, 20 horas.</p>
+      </section>
+      <p id="estado" role="status"></p>
+    </main>
+    <footer>
+      <p>Portal de formación ficticio · Ejercicio original de accesibilidad.</p>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>

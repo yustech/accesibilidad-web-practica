@@ -1,0 +1,9 @@
+.overlay:not([hidden]) {
+  display: block;
+  position: fixed;
+  inset: 25% 15%;
+  padding: 2rem;
+  background: white;
+  border: 3px solid #172554;
+  box-shadow: 0 0 0 100vmax #0006;
+}

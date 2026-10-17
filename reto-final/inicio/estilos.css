@@ -1,0 +1,15 @@
+.overlay:not([hidden]) {
+  display: block;
+  position: fixed;
+  inset: 15% 10%;
+  background: white;
+  padding: 2rem;
+  border: 3px solid #172554;
+  overflow: auto;
+}
+input::placeholder {
+  color: #aaa;
+}
+main button:focus {
+  outline: none;
+}

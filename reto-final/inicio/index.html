@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reto final · Portal de formación | Accesibilidad práctica</title>
+    <link rel="stylesheet" href="../../assets/base.css" />
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+  <body>
+    <header>
+      <a href="../../index.html">Índice de prácticas</a>
+      <h1>Reto final · Portal de formación</h1>
+      <p class="notice">
+        Versión inicial con barreras intencionadas. Utilízala solo como ejercicio.
+      </p>
+    </header>
+    <main id="contenido">
+      <div><a href="#catalogo">Aquí</a> · <a href="#ayuda">Más</a></div>
+      <section id="catalogo">
+        <h2>Catálogo</h2>
+        <form id="filtros">
+          <select id="modalidad">
+            <option value="todos">Todos</option>
+            <option value="online">Online</option></select
+          ><button>Aplicar filtros</button>
+        </form>
+        <ul id="cursos">
+          <li data-modalidad="online">HTML accesible (online)</li>
+          <li data-modalidad="aula">CSS accesible (aula)</li>
+          <li data-modalidad="online">JavaScript accesible (online)</li>
+        </ul>
+      </section>
+      <section>
+        <div class="big">Curso seleccionado: HTML accesible</div>
+        <img src="../../assets/curso.svg" width="90" />
+        <div id="guardar" class="fake-button">Guardar curso</div>
+        <p id="estado">Curso sin guardar</p>
+        <button id="abrir" type="button">Abrir inscripción</button>
+      </section>
+      <div id="modal" class="overlay" hidden>
+        <p>Inscripción</p>
+        <button id="cerrar" type="button">X</button>
+        <h2>Solicitud de plaza</h2>
+        <form id="inscripcion" novalidate>
+          <input id="nombre" placeholder="Nombre" /><input
+            id="email"
+            placeholder="Correo electrónico"
+          />
+          <p id="error"></p>
+          <button>Enviar solicitud</button>
+        </form>
+      </div>
+      <section id="ayuda">
+        <h2>Ayuda</h2>
+        <p>Usa información ficticia.</p>
+      </section>
+    </main>
+    <footer>
+      <p>Portal de formación ficticio · Ejercicio original de accesibilidad.</p>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>

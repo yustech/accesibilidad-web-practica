@@ -1,0 +1,14 @@
+.course {
+  width: 100%;
+  max-width: 42rem;
+}
+.muted {
+  color: #475569;
+  background: #fff;
+}
+.dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: #126b40;
+}

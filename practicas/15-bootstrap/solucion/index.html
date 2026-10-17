@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap real y responsabilidad del autor | Accesibilidad práctica</title>
+    <link rel="stylesheet" href="../../../vendor/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../../assets/base.css" />
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+  <body>
+    <header>
+      <a href="../../../index.html">Índice de prácticas</a>
+      <h1>Bootstrap real y responsabilidad del autor</h1>
+      <p class="notice">
+        Solución de referencia didáctica. Completa también las comprobaciones manuales de
+        la ficha.
+      </p>
+    </header>
+    <main id="contenido">
+      <h2>Componentes Bootstrap</h2>
+      <button
+        id="abrir-bootstrap"
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#bootstrap-modal"
+      >
+        Abrir inscripción Bootstrap
+      </button>
+      <div
+        class="modal"
+        id="bootstrap-modal"
+        tabindex="-1"
+        aria-labelledby="bootstrap-titulo"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 id="bootstrap-titulo" class="modal-title fs-5">
+                Inscripción Bootstrap
+              </h2>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Cerrar inscripción"
+              ></button>
+            </div>
+            <div class="modal-body"><p>Revisa los datos antes de continuar.</p></div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dropdown mt-4">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Recursos del curso
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#guia">Guía de teclado</a></li>
+          <li><a class="dropdown-item" href="#criterios">Criterios WCAG</a></li>
+        </ul>
+      </div>
+      <section id="guia">
+        <h2>Guía de teclado</h2>
+        <p>Comprueba Tab, Shift+Tab, flechas y Escape.</p>
+      </section>
+      <section id="criterios">
+        <h2>Criterios WCAG</h2>
+        <p>Relaciona comportamiento y criterio.</p>
+      </section>
+    </main>
+    <footer>
+      <p>Portal de formación ficticio · Ejercicio original de accesibilidad.</p>
+    </footer>
+    <script src="../../../vendor/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

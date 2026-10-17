@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cambios de vista en aplicaciones | Accesibilidad práctica</title>
+    <link rel="stylesheet" href="../../../assets/base.css" />
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+  <body>
+    <header>
+      <a href="../../../index.html">Índice de prácticas</a>
+      <p class="big">Cambios de vista en aplicaciones</p>
+      <p class="notice">
+        Versión inicial con barreras intencionadas. Utilízala solo como ejercicio.
+      </p>
+    </header>
+    <main id="contenido">
+      <nav aria-label="Vistas">
+        <a data-vista="inicio" href="?vista=inicio">Inicio</a> ·
+        <a data-vista="ayuda" href="?vista=ayuda">Ayuda</a>
+      </nav>
+      <section id="vista">
+        <h2>Inicio</h2>
+        <p>Catálogo de cursos.</p>
+      </section>
+    </main>
+    <footer>
+      <p>Portal de formación ficticio · Ejercicio original de accesibilidad.</p>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>

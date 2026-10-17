@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reto final · Portal de formación | Accesibilidad práctica</title>
+    <link rel="stylesheet" href="../../assets/base.css" />
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+  <body>
+    <header>
+      <a href="../../index.html">Índice de prácticas</a>
+      <h1>Reto final · Portal de formación</h1>
+      <p class="notice">
+        Solución de referencia didáctica. Completa también las comprobaciones manuales de
+        la ficha.
+      </p>
+    </header>
+    <main id="contenido">
+      <nav aria-label="Portal">
+        <a href="#catalogo" aria-current="page">Catálogo (actual)</a> ·
+        <a href="#ayuda">Ayuda</a>
+      </nav>
+      <section id="catalogo">
+        <h2>Catálogo</h2>
+        <form id="filtros">
+          <label for="modalidad">Modalidad</label
+          ><select id="modalidad">
+            <option value="todos">Todos</option>
+            <option value="online">Online</option></select
+          ><button>Aplicar filtros</button>
+        </form>
+        <p id="recuento" role="status">3 cursos disponibles.</p>
+        <ul id="cursos">
+          <li data-modalidad="online">HTML accesible (online)</li>
+          <li data-modalidad="aula">CSS accesible (aula)</li>
+          <li data-modalidad="online">JavaScript accesible (online)</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Curso seleccionado: HTML accesible</h2>
+        <button id="guardar" type="button" aria-pressed="false">Guardar curso</button>
+        <p id="estado">Curso sin guardar</p>
+        <button id="abrir" type="button">Abrir inscripción</button>
+      </section>
+      <dialog id="modal" aria-labelledby="inscripcion-titulo">
+        <h2 id="inscripcion-titulo">Inscripción al curso de HTML accesible</h2>
+        <button id="cerrar" type="button">Cancelar inscripción</button>
+        <h2>Solicitud de plaza</h2>
+        <p>
+          Los dos campos son obligatorios. Los datos permanecen en este navegador y no se
+          envían.
+        </p>
+        <form id="inscripcion" novalidate>
+          <section id="resumen" tabindex="-1" aria-labelledby="titulo-errores" hidden>
+            <h3 id="titulo-errores">Revisa los datos</h3>
+            <ul id="lista-errores"></ul>
+          </section>
+          <div class="field">
+            <label for="nombre">Nombre completo (obligatorio)</label>
+            <p id="nombre-ayuda">Escribe el nombre con el que quieres inscribirte.</p>
+            <input
+              id="nombre"
+              name="nombre"
+              autocomplete="name"
+              required
+              aria-describedby="nombre-ayuda"
+            />
+            <p id="nombre-error" class="error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="email">Correo electrónico (obligatorio)</label>
+            <p id="email-ayuda">Por ejemplo, persona@example.com.</p>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+              aria-describedby="email-ayuda"
+            />
+            <p id="email-error" class="error" hidden></p>
+          </div>
+          <button>Enviar solicitud</button>
+        </form>
+        <p id="exito" role="status"></p>
+      </dialog>
+      <section id="ayuda">
+        <h2>Ayuda</h2>
+        <p>
+          Todos los datos de este ejercicio permanecen en la demostración. Usa información
+          ficticia.
+        </p>
+      </section>
+    </main>
+    <footer>
+      <p>Portal de formación ficticio · Ejercicio original de accesibilidad.</p>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>
