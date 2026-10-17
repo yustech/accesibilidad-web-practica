@@ -1,6 +1,6 @@
 # Enlaces y alternativas de imágenes
 
-Capítulo de referencia: 3. Tiempo orientativo: 35 minutos. Nivel básico-intermedio.
+Capítulo de referencia: 3. Tiempo orientativo: 30 minutos. Nivel básico-intermedio.
 
 ## Tarea y barrera
 

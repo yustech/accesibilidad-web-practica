@@ -1,6 +1,6 @@
 # Documento HTML e idioma
 
-Capítulo de referencia: 1. Tiempo orientativo: 30 minutos. Nivel básico-intermedio.
+Capítulo de referencia: 1. Tiempo orientativo: 25 minutos. Nivel básico-intermedio.
 
 ## Tarea y barrera
 

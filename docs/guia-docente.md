@@ -10,19 +10,18 @@ Inicio de cada tarea: una persona intenta completarla y otra observa. Explicar l
 
 ## Lunes 19
 
-| Horario     | Actividad                                    | Evidencia                                             |
-| ----------- | -------------------------------------------- | ----------------------------------------------------- |
-| 09:00–09:20 | Entorno, diagnóstico y primer Tab            | Todas las parejas abren un inicio.                    |
-| 09:20–09:45 | Personas, tareas y barreras                  | Una tarea que puede quedar bloqueada.                 |
-| 09:45–10:15 | WCAG, niveles y consulta del marco normativo | Un criterio interpretado con sus condiciones.         |
-| 10:15–10:45 | 01 Documento                                 | Metadatos corregidos.                                 |
-| 10:45–10:55 | Pausa                                        |                                                       |
-| 10:55–11:40 | 02 Estructura                                | Regiones y encabezados comprobados.                   |
-| 11:40–12:15 | 03 Enlaces                                   | Nombres y destinos comprensibles.                     |
-| 12:15–12:25 | Pausa                                        |                                                       |
-| 12:25–13:00 | 04 Acciones                                  | Botón nativo y estado.                                |
-| 13:00–13:40 | 13, introducción a herramientas y árbol      | Una incidencia automática y otra que requiere juicio. |
-| 13:40–14:00 | Puesta en común y recuperación               | Primera ficha de evidencia.                           |
+| Horario     | Actividad                                            | Evidencia                                           |
+| ----------- | ---------------------------------------------------- | --------------------------------------------------- |
+| 09:00–10:30 | Fundamentos de accesibilidad, WCAG y marco normativo | Cinco respuestas breves sobre fundamentos y método. |
+| 10:30–10:40 | Pausa                                                |                                                     |
+| 10:40–11:00 | Preparación del entorno y primer recorrido           | Cada pareja abre un inicio.                         |
+| 11:00–11:25 | P01 Documento                                        | Metadatos corregidos.                               |
+| 11:25–12:05 | P02 Estructura                                       | Regiones y encabezados comprobados.                 |
+| 12:05–12:15 | Pausa                                                |                                                     |
+| 12:15–12:45 | P03 Enlaces                                          | Nombres y destinos comprensibles.                   |
+| 12:45–13:20 | P04 Acciones                                         | Botón nativo y estado.                              |
+| 13:20–13:45 | Primera revisión con P13                             | Un hallazgo contrastado manualmente.                |
+| 13:45–14:00 | Recogida de evidencias y dudas                       | Primera ficha de evidencia.                         |
 
 ## Martes 20
 
@@ -79,6 +78,26 @@ El bloque 12 se sustituye por recuperación de formularios o foco si el grupo lo
 | 5 Multimedia          | 14 y guía de decisiones.                                              |
 | 6 Auditoría y testing | Introducción del lunes, pruebas de cada bloque y 13.                  |
 | 7 Implantación        | Plantillas, reto final y cierre del jueves.                           |
+
+## Cómo impartir los 90 minutos iniciales
+
+El bloque de 09:00 a 10:30 se dedica a teoría con ejemplos comentados y preguntas de comprensión. La instalación y la edición de código empiezan después. Abre [Fundamentos de accesibilidad](00-fundamentos.md); el alumnado puede leerlo sin preparar Node ni VS Code.
+
+| Horario     | Qué explicar y mostrar                                                                                                                                        | Cómo confirmar que se entiende                                                     |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| 09:00–09:15 | Presenta accesibilidad, usabilidad y diseño inclusivo con la tarea de inscribirse en un curso.                                                                | Pide una tarea y un posible impedimento.                                           |
+| 09:15–09:35 | Relaciona necesidades visuales, auditivas, motoras y cognitivas con teclado, lector, ampliación y alternativas. Comenta ejemplos desde tu pantalla preparada. | Pide relacionar tres barreras con la tarea afectada, sin simular discapacidades.   |
+| 09:35–10:00 | Explica los cuatro principios, pauta, criterio, técnica y niveles acumulativos. Abre 2.4.2 y compara dos títulos.                                             | Pide localizar nivel, condición y una prueba. Aclara alcance y procesos completos. |
+| 10:00–10:15 | Distingue WCAG, EN 301 549 y obligaciones legales. Consulta las fuentes de la teoría común para una web municipal y una tienda.                               | Pide los datos que faltan antes de decidir el ámbito y la versión aplicables.      |
+| 10:15–10:30 | Explica responsabilidades durante el proyecto y límites de herramientas. Presenta el ciclo tarea, barrera, criterio, corrección y prueba.                     | Reserva los últimos cinco minutos para las cinco preguntas del bloque.             |
+
+Haz la pausa de 10:30 a 10:40 y prepara el entorno con el grupo de 10:40 a 11:00. La instalación no se cuenta dentro de los 90 minutos de teoría. Recomienda descargar el material antes de clase para reducir incidencias.
+
+## Ritmo de las primeras prácticas
+
+P01 dispone de 25 minutos: 4 para observar, 4 para relacionar con WCAG, 10 para corregir y 7 para comprobar y explicar. P02 dispone de 40 y P03 de 30 minutos; P04 mantiene 35. Usa el último cuarto de cada bloque para verificar y registrar. Deja las ampliaciones para después del mínimo comprobado.
+
+La introducción a P13 dura 25 minutos: muestra un hallazgo, contrástalo manualmente y pide una incidencia breve. La auditoría completa se mantiene el jueves. Si persiste un problema de instalación a las 11:00, incorpora a esa persona a una pareja con el entorno operativo y resuelve el equipo después; conserva la teoría inicial y las comprobaciones.
 
 ## Ajuste de ritmo
 

@@ -3,7 +3,7 @@
     "id": "01-documento",
     "title": "Documento HTML e idioma",
     "chapter": "1",
-    "minutes": 30,
+    "minutes": 25,
     "task": "Consultar una ficha de curso e identificar su idioma y su título antes de inscribirse.",
     "barrier": "La ficha declara inglés, usa un título genérico y bloquea la ampliación en el viewport.",
     "theory": [
@@ -34,7 +34,7 @@
     "id": "02-estructura",
     "title": "Regiones, encabezados y orden",
     "chapter": "2",
-    "minutes": 45,
+    "minutes": 40,
     "task": "Encontrar requisitos y temario sin recorrer toda la página.",
     "barrier": "Todo parece un bloque de texto y los títulos solo cambian de tamaño visual.",
     "theory": [
@@ -65,7 +65,7 @@
     "id": "03-enlaces",
     "title": "Enlaces y alternativas de imágenes",
     "chapter": "3",
-    "minutes": 35,
+    "minutes": 30,
     "task": "Elegir entre dos cursos y saber qué ficha se va a abrir.",
     "barrier": "Dos enlaces dicen Ver más y una imagen usada como enlace carece de alternativa.",
     "theory": [

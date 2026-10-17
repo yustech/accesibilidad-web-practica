@@ -1,6 +1,6 @@
 # Regiones, encabezados y orden
 
-Capítulo de referencia: 2. Tiempo orientativo: 45 minutos. Nivel básico-intermedio.
+Capítulo de referencia: 2. Tiempo orientativo: 40 minutos. Nivel básico-intermedio.
 
 ## Tarea y barrera
 

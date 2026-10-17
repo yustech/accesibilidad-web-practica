@@ -2,6 +2,8 @@
 
 Curso de 20 horas en español para personas con HTML, CSS y JavaScript de nivel básico-intermedio. Se aprende reparando un portal de formación ficticio, explicando cada barrera y probando la corrección. Las WCAG forman parte de las decisiones de cada ejercicio.
 
+El lunes comienza con un bloque teórico de 90 minutos, de 09:00 a 10:30, sobre accesibilidad, personas y barreras, WCAG, marco normativo y evaluación. Consulta [Fundamentos de accesibilidad](docs/00-fundamentos.md). El entorno se prepara de 10:40 a 11:00 y la primera práctica comienza a las 11:00.
+
 ## Primer arranque
 
 Instala [Node.js LTS](https://nodejs.org/) y Git. Abre esta carpeta en VS Code y, en su terminal:
