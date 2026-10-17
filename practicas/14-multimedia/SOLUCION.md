@@ -14,3 +14,7 @@ Abre `inicio/index.html` y `solucion/index.html` y compara `index.html`, `app.js
 - Con movimiento reducido el indicador deja de desplazarse.
 
 Las pruebas automáticas del repositorio verifican una parte del comportamiento. La prueba con lector de pantalla y la revisión visual humana siguen siendo necesarias. Registra el resultado real en la plantilla y justifica cualquier diferencia con la referencia.
+
+## Vídeo reproducible
+
+La referencia incorpora la versión de 20 segundos con descripción sonora, subtítulos españoles y transcripción descriptiva. La comparación conserva la versión base de 12 segundos para identificar qué falta en su audio. Las pistas tienen tiempos distintos porque la versión descrita deja espacio para narrar los cambios. Comprueba controles y anuncios en el navegador y lector utilizados.

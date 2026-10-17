@@ -53,3 +53,7 @@ Entrega el código modificado y una [incidencia documentada](../../plantillas/in
 ## Ampliación
 
 Aplícalo al reto final, asigna responsable y prioridad, y redacta un plan de revisión para el equipo.
+
+## Comparación de las cuatro herramientas
+
+Sigue [axe, WAVE, Lighthouse y TAW paso a paso](../../docs/herramientas-evaluacion.md). Usa la demo compartida para comparar resultados y vuelve después a esta práctica para corregir y redactar incidencias. Completa el registro de herramientas; no marques como ejecutada una herramienta que solo has leído.

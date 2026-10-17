@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Selector de valor y carrusel | Accesibilidad práctica</title>
+    <link rel="stylesheet" href="../../../assets/base.css" />
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+  <body>
+    <header>
+      <a class="skip" href="#contenido">Saltar al contenido</a>
+      <p>Accesibilidad web práctica</p>
+      <a href="../../../index.html">Índice de prácticas</a>
+    </header>
+    <main id="contenido" tabindex="-1">
+      <h1>Selector de valor y carrusel</h1>
+      <p>Inicio con barreras intencionadas: prueba primero con teclado.</p>
+      <h2>Duración del curso</h2>
+      <p>Duración máxima del curso</p>
+      <div
+        id="duracion"
+        class="fake-range"
+        role="slider"
+        tabindex="0"
+        aria-label="Duración máxima"
+        aria-valuemin="5"
+        aria-valuemax="40"
+        aria-valuenow="20"
+      >
+        Pulsa aquí para cambiar la duración
+      </div>
+      <p id="valor">20 horas</p>
+      <section>
+        <h2>Cursos destacados</h2>
+        <div id="anterior" class="fake-button">Anterior</div>
+        <div id="siguiente" class="fake-button">Siguiente</div>
+        <article class="slide"><h3>HTML accesible</h3></article>
+        <article class="slide" hidden><h3>CSS adaptable</h3></article>
+        <article class="slide" hidden><h3>JavaScript accesible</h3></article>
+      </section>
+    </main>
+    <footer><p>Demostración local del curso. Utiliza datos ficticios.</p></footer>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

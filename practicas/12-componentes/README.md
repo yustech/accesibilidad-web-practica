@@ -2,6 +2,8 @@
 
 Capítulo de referencia: 12. Tiempo orientativo: 30 minutos. Nivel básico-intermedio con ampliación opcional.
 
+Material de consulta y ampliación posterior. Este laboratorio no ocupa un bloque obligatorio en el horario de las cuatro sesiones.
+
 ## Tarea y barrera
 
 Activar un componente reutilizable que conserva su nombre y estado.
@@ -16,7 +18,7 @@ Shadow DOM separa el árbol interno del componente del documento que lo contiene
 
 El componente usa un botón nativo interno con texto visible. Cada instancia tiene su propio estado. Encapsular estilos también exige proporcionar un foco perceptible dentro de la raíz, porque el CSS del documento no entra de la misma forma.
 
-Es una ampliación para el nivel del curso. No se enseña una API experimental como requisito universal. Las técnicas y su soporte cambian: comprobar el componente con el navegador y la tecnología de apoyo objetivo sigue siendo necesario.
+Esta práctica es una ampliación opcional. No necesitas utilizar una API experimental para resolver las prácticas principales. Las técnicas y su soporte cambian: comprobar el componente con el navegador y la tecnología de apoyo objetivo sigue siendo necesario.
 
 ## Relación con WCAG 2.2
 
@@ -49,4 +51,4 @@ Entrega el código modificado y una [incidencia documentada](../../plantillas/in
 
 ## Ampliación
 
-Documenta propiedades, eventos y responsabilidades del consumidor, y traslada el patrón a Lit si el grupo lo utiliza.
+Documenta propiedades, eventos y responsabilidades del consumidor, y traslada el patrón a Lit si utilizas esa biblioteca.

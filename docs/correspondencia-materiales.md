@@ -7,3 +7,7 @@ El anexo de multimedia se trabaja en 14 y en la guía multimedia. Los anexos de 
 Las recetas secundarias de cada capítulo se condensan en la teoría y las ampliaciones de su ficha. Esta versión no pretende reproducir cada ejemplo del libro ni todas las variantes de componentes. El horario prioriza las tareas que el grupo puede resolver y comprobar en 20 horas.
 
 Las presentaciones de fundamentos, técnicas y comprobación sirven como apoyo del formador. Las necesidades de usuarios y el trabajo en equipo forman parte de la apertura, las pruebas y el cierre. Para ampliar se consultan los libros originales que tenga disponibles cada participante; no se distribuyen desde este repositorio.
+
+## Ajuste al programa del cliente
+
+Las prácticas 17 y 18 añaden rango y carrusel y ejemplos reales de React, Vue y LitElement. Bootstrap y Shadow DOM permanecen como consulta. La matriz docs/recorrido-programa.md relaciona los 27 puntos con material y actividad; las cuatro sesiones conservan su duración.

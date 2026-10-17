@@ -14,13 +14,16 @@ Abre [inicio](inicio/index.html) desde el servidor del curso. Trabaja en esa car
 
 Para audio pregrabado sin vídeo, 1.2.1 exige una alternativa con la información equivalente. En el ejercicio dos tonos tienen un significado indicado en la transcripción. La alternativa debe explicar qué comunican, además de describir que hay sonidos.
 
-En vídeo sincronizado pregrabado, distingue subtítulos de información sonora, alternativa multimedia y audiodescripción. En AA, si información visual relevante no está ya en el audio, 1.2.5 requiere audiodescripción. Una transcripción sola no reemplaza ese requisito. El repositorio incluye un guion de decisión y una pista VTT como material de edición; no presenta esa pista suelta como vídeo validado.
+En vídeo sincronizado pregrabado, distingue subtítulos de información sonora, alternativa multimedia y audiodescripción. En AA, si información visual relevante no está ya en el audio, 1.2.5 requiere audiodescripción. Una transcripción sola no reemplaza ese requisito. El repositorio incluye dos vídeos reproducibles, pistas VTT, una versión con descripción sonora de los cambios visuales y una transcripción. Consulta la guía multimedia para compararlos.
 
 Un movimiento automático que dura más de cinco segundos y aparece junto a otro contenido puede requerir pausa, parada u ocultación, salvo la excepción esencial. Respetar prefers-reduced-motion mejora la experiencia; no sustituye los demás requisitos. La animación del laboratorio no contiene flashes.
 
 ## Relación con WCAG 2.2
 
 - [1.2.1 Audio o vídeo sin sincronización (A)](https://www.w3.org/WAI/WCAG22/Understanding/audio-only-and-video-only-prerecorded.html)
+- [1.2.2 Subtítulos pregrabados (A)](https://www.w3.org/WAI/WCAG22/Understanding/captions-prerecorded.html)
+- [1.2.3 Audiodescripción o alternativa (A)](https://www.w3.org/WAI/WCAG22/Understanding/audio-description-or-media-alternative-prerecorded.html)
+- [1.2.5 Audiodescripción pregrabada (AA)](https://www.w3.org/WAI/WCAG22/Understanding/audio-description-prerecorded.html)
 - [2.2.2 Pausar, detener u ocultar (A)](https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html)
 
 Los enlaces llevan a explicaciones de apoyo de W3C. [La guía común](../../docs/teoria-wcag.md) distingue requisitos normativos, técnicas, patrones y buenas prácticas. La presencia de un criterio aquí indica relación pedagógica; no prueba su satisfacción completa. Consulta el [mapa de cobertura](../../docs/cobertura-wcag.md).
@@ -31,6 +34,8 @@ Los enlaces llevan a explicaciones de apoyo de W3C. [La guía común](../../docs
 2. Añade una transcripción equivalente visible junto al reproductor.
 3. Añade pausa y sincroniza el texto del botón.
 4. Activa reducir movimiento y verifica una alternativa estática.
+5. Abre la comparación de vídeo, activa subtítulos y describe la información que falta en el audio base.
+6. Incorpora al inicio la versión descrita, su pista de subtítulos y una transcripción; prueba los controles.
 
 ## Comprobación y entrega
 
@@ -38,14 +43,22 @@ Los enlaces llevan a explicaciones de apoyo de W3C. [La guía común](../../docs
 - [ ] El audio tiene controles nativos y no arranca automáticamente.
 - [ ] El botón permite pausar y reanudar.
 - [ ] Con movimiento reducido el indicador deja de desplazarse.
+- [ ] Los subtítulos corresponden a la narración y los tonos.
+- [ ] La versión descrita comunica el error y la confirmación, y los controles se operan con teclado.
 
 Entrega el código modificado y una [incidencia documentada](../../plantillas/incidencia.md), con prueba anterior y posterior. Para el lector de pantalla registra sistema, navegador y versión; un test de navegador no confirma lo que anuncia NVDA o VoiceOver.
 
 ## Pistas
 
 - Para el audio del ejercicio basta texto equivalente; no se necesita una pista de subtítulos en audio.
-- No uses una animación que simule destellos para enseñar fotosensibilidad.
+- Evita generar destellos en este ejercicio.
+
+## Distribución de los 50 minutos
+
+15 para audio y alternativa, 15 para movimiento y pausa, 15 para vídeo y sus alternativas y 5 para comprobar y registrar.
 
 ## Ampliación
 
 Usa el guion multimedia para clasificar un vídeo narrado, una demo visual sin narración y un directo. Justifica 1.2.2, 1.2.3, 1.2.4 y 1.2.5.
+
+[Comparación de vídeos](../../multimedia/index.html) y [decisiones y pasos](../../docs/multimedia.md).

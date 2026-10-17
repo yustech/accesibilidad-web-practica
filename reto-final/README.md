@@ -31,3 +31,7 @@ Usa [la rúbrica](../plantillas/rubrica.md) y [la plantilla](../plantillas/incid
 - Los errores se asocian a campos y permiten corregir manteniendo los datos.
 - La presentación no pierde controles a 320 píxeles CSS.
 - Cada afirmación del informe indica cómo se ha comprobado o que queda pendiente.
+
+## Plan de accesibilidad
+
+Después del reto, utiliza los 25 minutos de implantación para completar [la plantilla de plan](../plantillas/plan-accesibilidad.md), apoyándote en [el ejemplo resuelto](../docs/plan-accesibilidad-ejemplo.md). Traslada tres incidencias a acciones con responsable, recursos, plazo y evidencia. Añade dos indicadores y una próxima revisión. El plan se entrega junto al código, las incidencias y los dos criterios de aceptación.

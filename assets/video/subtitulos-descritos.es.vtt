@@ -1,0 +1,15 @@
+WEBVTT
+
+00:00:00.100 --> 00:00:03.000
+Narración: Escribe tu correo y pulsa Enviar.
+
+00:00:04.100 --> 00:00:11.700
+Aparece un error junto al campo: escribe un correo válido.
+El formulario conserva el dato.
+
+00:00:12.000 --> 00:00:12.700
+[Dos tonos ascendentes de confirmación]
+
+00:00:12.800 --> 00:00:18.100
+El correo se corrige y aparece el mensaje:
+Solicitud guardada.

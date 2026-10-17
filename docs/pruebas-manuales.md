@@ -38,3 +38,7 @@ Prueba ampliación al 200 %, ancho de 320 píxeles CSS y espaciado de texto. Com
 Ejecuta axe sobre los estados relevantes, no solo al cargar. Revisa también resultados incompletos que requieren evaluación humana. Vuelve a la tarea tras corregir. Una diferencia entre herramientas debe investigarse y no resolverse eligiendo la puntuación más alta.
 
 La revisión de estas demos tiene alcance didáctico. Una evaluación de un producto real debe definir muestra, procesos, estados y tecnologías de apoyo relevantes. [Metodología WCAG-EM](https://www.w3.org/WAI/test-evaluate/conformance/wcag-em/).
+
+## Fichas de los tres lectores y recorrido móvil
+
+Consulta [NVDA, JAWS y VoiceOver paso a paso](lectores-pantalla.md), completa su registro y realiza el [recorrido móvil](recorrido-movil.md). La comparación de los tres lectores forma parte del contenido; la práctica real se realiza con los entornos disponibles y se registra su alcance.

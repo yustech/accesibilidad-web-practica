@@ -50,3 +50,9 @@ Entrega el código modificado y una [incidencia documentada](../../plantillas/in
 ## Ampliación
 
 Añade un título para el paso 2 de una inscripción y otro para una búsqueda con resultados.
+
+## HTML obsoleto y movimiento
+
+Evita `<marquee>` y `<blink>`: son recursos obsoletos o no estándar para presentar movimiento o parpadeo. Sustituye un anuncio móvil por texto estático que conserve el mensaje. Si el movimiento tiene una finalidad, implementa controles y respeta las preferencias; P14 lo comprueba. No generes destellos para demostrar el problema.
+
+Microcaso de dos minutos: transforma `<marquee>Inscripción abierta</marquee>` en `<p>Inscripción abierta</p>` y explica qué información se conserva. La validez del HTML por sí sola no certifica accesibilidad.

@@ -52,3 +52,11 @@ Entrega el código modificado y una [incidencia documentada](../../plantillas/in
 ## Ampliación
 
 Activa colores forzados y comprueba qué ocurre con iconos, contornos y estados.
+
+## Foco visible y estados de puntero
+
+En assets/base.css, `:focus-visible` dibuja un contorno cuando el navegador considera necesario indicarlo, por ejemplo al navegar con teclado. `:hover` describe el puntero sobre un elemento; no sustituye al foco ni sirve de único acceso a una acción.
+
+En tu copia añade un estilo de foco con outline y outline-offset, recorre los controles con Tab y comprueba que el contorno no queda recortado. Evita quitar outline sin una alternativa perceptible. Compara teclado y puntero con P07.
+
+[Selector focus-visible](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible).

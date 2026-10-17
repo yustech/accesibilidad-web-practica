@@ -49,7 +49,7 @@ async function axe(label) {
   );
 }
 
-test('soluciones: reglas automáticas en las 16 prácticas', async () => {
+test('soluciones: reglas automáticas en las 18 prácticas', async () => {
   for (const module of modules) {
     await open(module.id);
     await axe(module.id);

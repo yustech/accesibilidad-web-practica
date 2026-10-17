@@ -1,0 +1,9 @@
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-block: 1rem;
+}
+button {
+  margin-block: 1rem;
+}

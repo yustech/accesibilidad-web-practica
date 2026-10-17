@@ -1,0 +1,44 @@
+name: Publicar demo para herramientas
+on:
+  push:
+    branches: [main]
+    paths:
+      [
+        'demo-auditoria/**',
+        'assets/**',
+        'practicas/05-estilos/**',
+        'practicas/07-navegacion/**',
+        'practicas/17-interaccion/**',
+        '.github/workflows/demo-publica.yml',
+      ]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: demo-pages
+  cancel-in-progress: true
+jobs:
+  demo:
+    if: github.repository == 'yustech/accesibilidad-web-practica-alumnado'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/configure-pages@v5
+      - name: Preparar demo y recorrido móvil
+        run: |
+          mkdir -p "$RUNNER_TEMP/demo-site/practicas"
+          cp -R demo-auditoria/. "$RUNNER_TEMP/demo-site/"
+          cp -R assets "$RUNNER_TEMP/demo-site/assets"
+          cp -R practicas/05-estilos practicas/07-navegacion practicas/17-interaccion "$RUNNER_TEMP/demo-site/practicas/"
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: ${{ runner.temp }}/demo-site
+      - name: Publicar la demo ficticia
+        id: deployment
+        uses: actions/deploy-pages@v4

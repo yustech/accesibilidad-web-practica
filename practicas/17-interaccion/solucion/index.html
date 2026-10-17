@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Selector de valor y carrusel | Accesibilidad práctica</title>
+    <link rel="stylesheet" href="../../../assets/base.css" />
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+  <body>
+    <header>
+      <a class="skip" href="#contenido">Saltar al contenido</a>
+      <p>Accesibilidad web práctica</p>
+      <a href="../../../index.html">Índice de prácticas</a>
+    </header>
+    <main id="contenido" tabindex="-1">
+      <h1>Selector de valor y carrusel</h1>
+      <p>Solución de referencia: completa las pruebas manuales.</p>
+      <h2>Duración del curso</h2>
+      <label for="duracion">Duración máxima del curso</label>
+      <p id="ayuda">Entre 5 y 40 horas, en pasos de 5. Usa las flechas o los botones.</p>
+      <input
+        id="duracion"
+        type="range"
+        min="5"
+        max="40"
+        step="5"
+        value="20"
+        aria-describedby="ayuda"
+        aria-valuetext="20 horas"
+      />
+      <p>Duración elegida: <span id="valor">20 horas</span></p>
+      <div class="controls">
+        <button id="menos" type="button">Reducir 5 horas</button
+        ><button id="mas" type="button">Aumentar 5 horas</button>
+      </div>
+      <section aria-roledescription="carrusel" aria-label="Cursos destacados">
+        <h2>Cursos destacados</h2>
+        <p>Avance manual, sin reproducción automática.</p>
+        <div class="controls">
+          <button id="anterior" type="button">Curso anterior</button
+          ><button id="siguiente" type="button">Curso siguiente</button>
+        </div>
+        <article
+          class="slide"
+          role="group"
+          aria-roledescription="diapositiva"
+          aria-label="1 de 3"
+        >
+          <h3>HTML accesible</h3>
+          <p>Documento y estructura.</p>
+        </article>
+        <article
+          class="slide"
+          role="group"
+          aria-roledescription="diapositiva"
+          aria-label="2 de 3"
+          hidden
+        >
+          <h3>CSS adaptable</h3>
+          <p>Contraste y redistribución.</p>
+        </article>
+        <article
+          class="slide"
+          role="group"
+          aria-roledescription="diapositiva"
+          aria-label="3 de 3"
+          hidden
+        >
+          <h3>JavaScript accesible</h3>
+          <p>Interacción y foco.</p>
+        </article>
+        <p id="posicion" role="status">Curso 1 de 3: HTML accesible</p>
+      </section>
+    </main>
+    <footer><p>Demostración local del curso. Utiliza datos ficticios.</p></footer>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

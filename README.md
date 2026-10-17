@@ -1,6 +1,6 @@
 # Accesibilidad web práctica
 
-Curso de 20 horas en español para personas con HTML, CSS y JavaScript de nivel básico-intermedio. Se aprende reparando un portal de formación ficticio, explicando cada barrera y probando la corrección. Las WCAG forman parte de las decisiones de cada ejercicio.
+Curso de 20 horas en español para personas con HTML, CSS y JavaScript de nivel básico-intermedio. Incluye 18 prácticas. Se aprende reparando un portal de formación ficticio, explicando cada barrera y probando la corrección. Las WCAG forman parte de las decisiones de cada ejercicio.
 
 El lunes comienza con un bloque teórico de 90 minutos, de 09:00 a 10:30, sobre accesibilidad, personas y barreras, WCAG, marco normativo y evaluación. Consulta [Fundamentos de accesibilidad](docs/00-fundamentos.md). El entorno se prepara de 10:40 a 11:00 y la primera práctica comienza a las 11:00.
 
@@ -13,9 +13,11 @@ npm ci
 npm start
 ```
 
-Abre [el índice de prácticas](http://127.0.0.1:4173). `Ctrl+C` detiene el servidor. No hay compilación. Tras la instalación inicial, las prácticas, el audio y Bootstrap se sirven localmente. Los enlaces de documentación requieren conexión.
+Abre [el índice de prácticas](http://127.0.0.1:4173). `Ctrl+C` detiene el servidor. Los seis ejemplos de frameworks se preparan automáticamente al instalar y arrancar; el resto usa archivos directos. Tras la instalación inicial, las prácticas, el audio y Bootstrap se sirven localmente. Los enlaces de documentación requieren conexión.
 
 Si el puerto está ocupado, usa `npm start -- --port=4174` y abre ese puerto. Si no puedes instalar Node, las prácticas 01–14 y 16 se pueden abrir como archivos, aunque se recomienda servidor y la 15 requiere el entorno preparado.
+
+[Correspondencia con los 27 contenidos del programa](docs/recorrido-programa.md).
 
 ## Recorrido
 
@@ -37,6 +39,8 @@ Si el puerto está ocupado, usa `npm start -- --port=4174` y abre ese puerto. Si
 | [14-multimedia](practicas/14-multimedia/README.md)   | Audio, vídeo y movimiento                  | Anexo multimedia               |
 | [15-bootstrap](practicas/15-bootstrap/README.md)     | Bootstrap real y responsabilidad del autor | Anexos Bootstrap               |
 | [16-rutas](practicas/16-rutas/README.md)             | Cambios de vista en aplicaciones           | Anexo SPAs y frameworks        |
+| [17-interaccion](practicas/17-interaccion/README.md) | Selector de valor y carrusel               | Programa del cliente           |
+| [18-frameworks](practicas/18-frameworks/README.md)   | React, Vue y Lit con DOM dinámico          | Programa del cliente           |
 
 Cada carpeta contiene teoría, enunciado, criterios WCAG, pistas, pruebas manuales, inicio y solución comentada. Las ampliaciones no son una obligación para terminar las cuatro sesiones. El [horario](docs/guia-docente.md) indica qué se hace en clase.
 

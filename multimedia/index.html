@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vídeo y alternativas | Accesibilidad práctica</title>
+    <link rel="stylesheet" href="../assets/base.css" />
+  </head>
+  <body>
+    <header>
+      <a href="../index.html">Índice de prácticas</a>
+      <h1>Comparación de vídeo y alternativas</h1>
+    </header>
+    <main>
+      <h2>Versión con cambios visuales sin narrar</h2>
+      <p>
+        Esta versión permite identificar qué información falta en el audio. Los subtítulos
+        recogen la información sonora; no describen por sí solos los cambios visuales.
+      </p>
+      <video
+        id="video-base"
+        controls
+        preload="metadata"
+        width="960"
+        height="540"
+        poster="../assets/video/portada.png"
+      >
+        <source src="../assets/video/inscripcion.webm" type="video/webm" />
+        <track
+          kind="captions"
+          src="../assets/video/subtitulos.es.vtt"
+          srclang="es"
+          label="Español"
+          default
+        />
+      </video>
+      <p>
+        Audio: Escribe tu correo y pulsa Enviar. Al final suenan dos tonos. Visual:
+        primero aparece un error de correo; después se corrige y se muestra Solicitud
+        guardada.
+      </p>
+      <section aria-labelledby="video-titulo">
+        <h2 id="video-titulo">Vídeo con descripción de los cambios visuales</h2>
+        <p id="video-ayuda">
+          Demostración original con voz sintética española. Activa los subtítulos desde
+          los controles. La transcripción está debajo.
+        </p>
+        <video
+          id="video-descrito"
+          controls
+          preload="metadata"
+          width="960"
+          height="540"
+          poster="../assets/video/portada.png"
+          aria-describedby="video-ayuda"
+        >
+          <source src="../assets/video/inscripcion-descrita.webm" type="video/webm" />
+          <track
+            kind="captions"
+            src="../assets/video/subtitulos-descritos.es.vtt"
+            srclang="es"
+            label="Español"
+            default
+          />
+          Tu navegador no reproduce el vídeo.
+        </video>
+        <h3>Transcripción descriptiva</h3>
+        <p>
+          La narración indica: Escribe tu correo y pulsa Enviar. Se introduce ana@.
+          Aparece el error Escribe un correo válido y se conserva el dato. La descripción
+          comunica el error. Se corrige a ana@example.com. Dos tonos y el mensaje
+          Solicitud guardada confirman el resultado; la descripción lo comunica.
+        </p>
+        <p>
+          <a href="../multimedia/index.html"
+            >Comparar con la versión sin descripción visual</a
+          >
+        </p>
+      </section>
+    </main>
+    <footer>
+      <p>Clips originales del curso. Sin reproducción automática ni destellos.</p>
+    </footer>
+  </body>
+</html>

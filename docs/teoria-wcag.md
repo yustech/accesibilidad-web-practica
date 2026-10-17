@@ -53,7 +53,7 @@ El curso incluye microrretos para 2.4.11, 2.5.7, 2.5.8, 3.2.6, 3.3.7 y 3.3.8, qu
 
 Los ejercicios usan WCAG 2.2 AA como objetivo de aprendizaje. Para decidir obligaciones de un producto real hay que revisar su ámbito, el marco normativo aplicable y la versión de la norma citada. Aprobar una evaluación técnica de un componente no demuestra el cumplimiento de toda una ley.
 
-El [RD 1112/2018](https://www.boe.es/buscar/act.php?id=BOE-A-2018-12699) regula accesibilidad de sitios y aplicaciones del sector público dentro de su ámbito. La [Ley 11/2023, título I](https://www.boe.es/buscar/act.php?id=BOE-A-2023-11022) transpone requisitos para determinados productos y servicios; su aplicación contempla condiciones, excepciones y transiciones. No se debe enseñar como una obligación idéntica para cualquier sitio privado.
+El [RD 1112/2018](https://www.boe.es/buscar/act.php?id=BOE-A-2018-12699) regula accesibilidad de sitios y aplicaciones del sector público dentro de su ámbito. La [Ley 11/2023, título I](https://www.boe.es/buscar/act.php?id=BOE-A-2023-11022) transpone requisitos para determinados productos y servicios; su aplicación contempla condiciones, excepciones y transiciones. No interpretes estas normas como una obligación idéntica para cualquier sitio privado.
 
 Consulta técnica realizada el 17 de octubre de 2026: [ETSI publica EN 301 549 V4.1.1 (2026-09)](https://www.etsi.org/technical-groups/hf/). Publicación técnica, adopción UNE y referencia armonizada en el Diario Oficial de la UE deben comprobarse separadamente. Aquí no se afirma que V4.1.1 haya sustituido ya a una referencia armonizada para una obligación concreta.
 
@@ -62,3 +62,27 @@ Consulta técnica realizada el 17 de octubre de 2026: [ETSI publica EN 301 549 V
 ## Límites de la formación
 
 Se practica una selección de criterios en casos controlados. Las ampliaciones y lecturas cubren otros escenarios. El mapa de cobertura evita confundir una introducción con una comprobación completa. El trabajo profesional requiere ampliar la muestra, revisar procesos y estados, y probar combinaciones reales de navegador y tecnología de apoyo.
+
+## Comparar WCAG 2.1 y WCAG 2.2
+
+WCAG 2.1 y 2.2 comparten la estructura de principios, pautas y niveles. WCAG 2.2 añade nueve criterios y retira 4.1.1 Procesamiento; seis de los nuevos criterios pertenecen a A/AA y tres a AAA. Los niveles se mantienen acumulativos. Elegir 2.2 como objetivo del curso no sustituye identificar la versión exigida por el marco aplicable.
+
+Ejemplo: 2.4.7 Foco visible ya estaba en 2.1; 2.4.11 Foco no oculto (mínimo) se incorpora en 2.2. Un contorno perceptible no resuelve que una cabecera tape totalmente el elemento enfocado. [Cambios oficiales](https://www.w3.org/WAI/standards-guidelines/wcag/new-in-22/).
+
+## Acta Europea de Accesibilidad y UNE EN 301 549
+
+El Acta Europea de Accesibilidad corresponde a la [Directiva (UE) 2019/882](https://eur-lex.europa.eu/eli/dir/2019/882/oj/spa), de 2019. El 28 de junio de 2025 es la fecha de aplicación de las medidas prevista en su artículo 31; la norma tiene ámbitos y transiciones que deben revisarse. En España, el título I de la Ley 11/2023 transpone esa directiva y su entrada en vigor se fija en esa fecha, con la excepción de su disposición final decimoctava.
+
+La denominación UNE-EN 301549 identifica la adopción española de la norma europea sobre productos y servicios TIC. Comprueba edición, alcance y referencia legal aplicable. La publicación de una versión por ETSI, su adopción por UNE y su cita como referencia armonizada son hechos distintos. [Información de UNE](https://revista.une.org/44/requisitos-de-accesibilidad-para-productos-y-servicios-tic.html).
+
+Actividad del bloque normativo: para una web municipal y una tienda, registra entidad, servicio, ámbito, documento, versión y fecha. Señala qué dato falta antes de concluir. El objetivo es razonar sobre el ámbito, no declarar cumplimiento legal de la demo.
+
+## Recorrido por How to Meet Understanding y Failures
+
+1. Abre [How to Meet WCAG](https://www.w3.org/WAI/WCAG22/quickref/), selecciona versión y nivel y localiza 2.4.4.
+2. Abre su [Understanding](https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context.html) e identifica propósito, condiciones y contexto.
+3. Abre [F89](https://www.w3.org/WAI/WCAG22/Techniques/failures/F89), un fallo documentado para un enlace cuyo único contenido es una imagen sin nombre accesible.
+4. Compáralo con la imagen enlazada del inicio de P03. Describe qué dato falta, corrígelo y vuelve a evaluar el propósito real del enlace.
+5. Registra criterio, justificación y prueba. No confundas un fallo documentado con una lista exhaustiva de todos los fallos posibles.
+
+La referencia rápida ayuda a localizar; Understanding explica; técnicas y Failures ilustran implementaciones y fallos. La fuente normativa contiene el requisito y sus condiciones.

@@ -355,7 +355,7 @@
     "theory": [
       "Shadow DOM separa el árbol interno del componente del documento que lo contiene. Las referencias por ID de atributos como aria-labelledby no deben asumirse válidas entre raíces. Empieza por una relación estable dentro del mismo contexto.",
       "El componente usa un botón nativo interno con texto visible. Cada instancia tiene su propio estado. Encapsular estilos también exige proporcionar un foco perceptible dentro de la raíz, porque el CSS del documento no entra de la misma forma.",
-      "Es una ampliación para el nivel del curso. No se enseña una API experimental como requisito universal. Las técnicas y su soporte cambian: comprobar el componente con el navegador y la tecnología de apoyo objetivo sigue siendo necesario."
+      "Esta práctica es una ampliación opcional. No necesitas utilizar una API experimental para resolver las prácticas principales. Las técnicas y su soporte cambian: comprobar el componente con el navegador y la tecnología de apoyo objetivo sigue siendo necesario."
     ],
     "criteria": ["2.1.1", "2.4.7", "4.1.2"],
     "steps": [
@@ -374,7 +374,7 @@
       "Inspecciona el árbol de accesibilidad, no solo el HTML del host.",
       "No añadas aria-label al host esperando que nombre automáticamente el botón interno."
     ],
-    "extension": "Documenta propiedades, eventos y responsabilidades del consumidor, y traslada el patrón a Lit si el grupo lo utiliza.",
+    "extension": "Documenta propiedades, eventos y responsabilidades del consumidor, y traslada el patrón a Lit si utilizas esa biblioteca.",
     "solution": "El nombre y el control residen en la misma raíz. Cada componente gestiona su propio botón nativo y sus estilos de foco."
   },
   {
@@ -415,29 +415,31 @@
     "title": "Audio, vídeo y movimiento",
     "chapter": "Anexo multimedia",
     "minutes": 50,
-    "task": "Comprender una notificación sonora y controlar una animación sin depender de escuchar o tolerar movimiento.",
+    "task": "Comprender audio y vídeo con alternativas y controlar el movimiento.",
     "barrier": "Un audio comunica el resultado sin texto equivalente y un indicador se mueve continuamente sin pausa.",
     "theory": [
       "Para audio pregrabado sin vídeo, 1.2.1 exige una alternativa con la información equivalente. En el ejercicio dos tonos tienen un significado indicado en la transcripción. La alternativa debe explicar qué comunican, además de describir que hay sonidos.",
-      "En vídeo sincronizado pregrabado, distingue subtítulos de información sonora, alternativa multimedia y audiodescripción. En AA, si información visual relevante no está ya en el audio, 1.2.5 requiere audiodescripción. Una transcripción sola no reemplaza ese requisito. El repositorio incluye un guion de decisión y una pista VTT como material de edición; no presenta esa pista suelta como vídeo validado.",
+      "En vídeo sincronizado pregrabado, distingue subtítulos de información sonora, alternativa multimedia y audiodescripción. En AA, si información visual relevante no está ya en el audio, 1.2.5 requiere audiodescripción. Una transcripción sola no reemplaza ese requisito. El repositorio incluye dos vídeos originales reproducibles, pistas de subtítulos, una versión con descripción sonora de los cambios visuales y una transcripción.",
       "Un movimiento automático que dura más de cinco segundos y aparece junto a otro contenido puede requerir pausa, parada u ocultación, salvo la excepción esencial. Respetar prefers-reduced-motion mejora la experiencia; no sustituye los demás requisitos. La animación del laboratorio no contiene flashes."
     ],
-    "criteria": ["1.2.1", "2.2.2"],
+    "criteria": ["1.2.1", "1.2.2", "1.2.3", "1.2.5", "2.2.2"],
     "steps": [
       "Escucha el audio si puedes y anota qué información se pierde sin escucharlo.",
       "Añade una transcripción equivalente visible junto al reproductor.",
       "Añade pausa y sincroniza el texto del botón.",
-      "Activa reducir movimiento y verifica una alternativa estática."
+      "Activa reducir movimiento y verifica una alternativa estática.",
+      "Compara los dos vídeos y añade versión descrita, subtítulos y transcripción al inicio."
     ],
     "checks": [
       "La transcripción explica que la solicitud está guardada.",
       "El audio tiene controles nativos y no arranca automáticamente.",
       "El botón permite pausar y reanudar.",
-      "Con movimiento reducido el indicador deja de desplazarse."
+      "Con movimiento reducido el indicador deja de desplazarse.",
+      "El vídeo se reproduce, pausa y muestra subtítulos sincronizados; el audio descrito comunica error y confirmación."
     ],
     "hints": [
       "Para el audio del ejercicio basta texto equivalente; no se necesita una pista de subtítulos en audio.",
-      "No uses una animación que simule destellos para enseñar fotosensibilidad."
+      "Evita generar destellos en este ejercicio."
     ],
     "extension": "Usa el guion multimedia para clasificar un vídeo narrado, una demo visual sin narración y un directo. Justifica 1.2.2, 1.2.3, 1.2.4 y 1.2.5.",
     "solution": "Se añaden transcripción, pausa y una consulta CSS para movimiento reducido. El archivo de audio es original y local."
@@ -506,5 +508,73 @@
     ],
     "extension": "Aplica el contrato con useEffect/ref en React, nextTick/ref en Vue o updateComplete en Lit, y añade historial de navegación.",
     "solution": "Tras el cambio de vista se actualizan título y encabezado y se mueve foco al h1. Se conserva el comportamiento nativo para activaciones modificadas."
+  },
+  {
+    "id": "17-interaccion",
+    "title": "Selector de valor y carrusel",
+    "chapter": "Programa del cliente",
+    "minutes": 30,
+    "task": "Elegir una duración máxima y recorrer cursos destacados con teclado y toque.",
+    "barrier": "El selector solo responde al clic y los controles del carrusel no son botones.",
+    "theory": [
+      "Un slider de valor y un carrusel son patrones distintos. Para un valor numérico, input type=range aporta rol, límites y teclado nativos; label identifica su propósito. aria-valuetext expresa unidades cuando ayudan a comprender el valor.",
+      "Los botones Reducir y Aumentar permiten operar sin arrastrar. El área de toque y el recorrido se comprueban también en móvil. No se añade una región viva que duplique cada anuncio del valor.",
+      "El carrusel de referencia es manual. Sus botones conservan el foco; solo la diapositiva activa queda disponible y una región de estado comunica su posición. Un carrusel automático necesitaría además control de rotación y detenerse en las condiciones del patrón."
+    ],
+    "criteria": ["2.1.1", "2.4.7", "2.5.7", "2.5.8", "4.1.2", "4.1.3"],
+    "steps": [
+      "Prueba el inicio con Tab y flechas antes de usar el ratón.",
+      "Sustituye el selector por un rango nativo con etiqueta, límites y paso.",
+      "Añade botones de incremento y decremento y sincroniza el valor y sus unidades.",
+      "Comprueba flechas, Inicio, Fin y límites sin arrastrar.",
+      "Compara los controles del carrusel con la solución; verifica una sola diapositiva disponible y conservación del foco."
+    ],
+    "checks": [
+      "El rango se llama Duración máxima del curso y comienza en 20 horas.",
+      "Flecha derecha suma 5; Inicio llega a 5 y Fin a 40.",
+      "Los botones ofrecen una alternativa al arrastre y respetan los límites.",
+      "Curso siguiente actualiza posición y contenido sin mover el foco.",
+      "Con una ventana estrecha se conservan controles y lectura."
+    ],
+    "hints": [
+      "Empieza con input type=range, no con un div de rol slider.",
+      "hidden retira las diapositivas inactivas; no basta con volverlas transparentes."
+    ],
+    "extension": "Ensaya el rango y sus botones en un dispositivo táctil; registra por separado lo probado con tecnología de apoyo móvil.",
+    "solution": "El rango usa el contrato nativo, unidades accesibles y botones alternativos. El carrusel usa controles nativos, hidden y un status. No hay rotación automática."
+  },
+  {
+    "id": "18-frameworks",
+    "title": "React, Vue y Lit con DOM dinámico",
+    "chapter": "Programa del cliente",
+    "minutes": 45,
+    "task": "Cambiar de vista y filtrar cursos manteniendo contexto y anuncios en tres implementaciones reales.",
+    "barrier": "La vista cambia sin actualizar título ni foco y el filtro no tiene etiqueta ni región de estado.",
+    "theory": [
+      "React confirma el renderizado antes del efecto dependiente de la vista; una ref identifica el encabezado. Vue ofrece nextTick para esperar su actualización y LitElement ofrece updateComplete. Las tres demos utilizan las bibliotecas reales, empaquetadas localmente.",
+      "Una navegación cambia el contexto: actualiza el título y decide el punto de foco después de insertar la vista. Un filtro conserva el foco en Aplicar y comunica el recuento mediante role=status. Ese rol tiene aria-live=polite implícito.",
+      "La comparación introduce accesibilidad en frameworks. No exige construir tres aplicaciones ni sustituye una formación en cada tecnología. Se comparan las tres referencias y cada pareja corrige una implementación. La demo utiliza fragmentos y no es un router completo."
+    ],
+    "criteria": ["2.4.2", "2.4.3", "3.2.3", "3.3.2", "4.1.3"],
+    "steps": [
+      "Arranca el curso y abre los tres inicios desde el índice de esta práctica.",
+      "En cada uno visita Ayuda y observa título y foco; vuelve al Catálogo y aplica Online.",
+      "Compara useEffect/ref, nextTick/ref y updateComplete en las fuentes corregidas.",
+      "Elige una implementación y corrige etiqueta, región de estado y contexto tras la navegación.",
+      "Ejecuta npm run build:frameworks después de guardar; recarga el ejemplo.",
+      "Prueba navegación y filtro por separado y registra resultados."
+    ],
+    "checks": [
+      "Ayuda tiene título propio y su h1 recibe el foco tras la navegación.",
+      "El filtro se llama Modalidad y Online muestra dos cursos.",
+      "Aplicar conserva el foco y el recuento está en una región status.",
+      "Volver a Catálogo mantiene navegación y ayuda disponibles."
+    ],
+    "hints": [
+      "El foco debe moverse después del renderizado, no antes.",
+      "Un efecto dependiente del filtro movería el foco en una tarea que no es navegación."
+    ],
+    "extension": "Añade una prueba de regresión que abra Ayuda, vuelva al Catálogo y aplique Online. La suite incluida comprueba ese contrato en las tres referencias.",
+    "solution": "Cada biblioteca coordina sus actualizaciones con su ciclo real de renderizado. Se mantiene la semántica HTML y se distinguen navegación y anuncio de resultados."
   }
 ]

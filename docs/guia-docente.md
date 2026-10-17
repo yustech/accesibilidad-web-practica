@@ -4,7 +4,7 @@ Edición del 19 al 22 de octubre de 2026. De 9:00 a 14:00, zona Europe/Madrid. N
 
 ## Método y preparación
 
-Antes del lunes: probar `npm ci`, `npm start` y al menos las prácticas 01, 06, 09 y 15 en el equipo docente. Preparar un navegador, un lector de pantalla y su lista breve de comandos. Descargar las dependencias antes de clase evita depender de la red del aula. Las prácticas no necesitan cuentas individuales de terceros.
+Antes del lunes: probar `npm ci`, `npm start` y al menos las prácticas 01, 06, 09, 14, 17 y 18 en el equipo docente. Preparar un navegador, un lector de pantalla y su lista breve de comandos. Descargar las dependencias antes de clase evita depender de la red del aula. Las prácticas no necesitan cuentas individuales de terceros.
 
 Inicio de cada tarea: una persona intenta completarla y otra observa. Explicar la barrera y el criterio antes de corregir. Al terminar, repetir los mismos pasos y documentar el resultado. Rotar roles en cada bloque. Los minutos de cada laboratorio incluyen su teoría y la puesta en común.
 
@@ -53,19 +53,19 @@ Inicio de cada tarea: una persona intenta completarla y otra observa. Explicar l
 
 ## Jueves 22
 
-| Horario     | Actividad                          | Evidencia                                   |
-| ----------- | ---------------------------------- | ------------------------------------------- |
-| 09:00–09:45 | 15 Bootstrap real                  | Separar plugin y responsabilidad del autor. |
-| 09:45–10:15 | 16 Cambios de vista                | Título y foco.                              |
-| 10:15–10:25 | Pausa                              |                                             |
-| 10:25–10:55 | 12 Componentes, demo opcional      | Nombre interno de un componente.            |
-| 10:55–12:00 | 13 Auditoría e informe             | Hallazgos con criterio y prioridad.         |
-| 12:00–12:10 | Pausa                              |                                             |
-| 12:10–13:20 | Reto final                         | Tarea integrada y evidencias.               |
-| 13:20–13:45 | Implantación en equipo             | Dos historias y una Definition of Done.     |
-| 13:45–14:00 | Evaluación, próximos pasos y dudas | Rúbrica y plan de mejora.                   |
+| Horario     | Actividad                           | Evidencia                                                 |
+| ----------- | ----------------------------------- | --------------------------------------------------------- |
+| 09:00–09:45 | P18 React Vue y Lit                 | Comparación de tres implementaciones y corrección de una. |
+| 09:45–10:15 | P16 Cambios de vista                | Título, foco y contexto.                                  |
+| 10:15–10:25 | Pausa                               |                                                           |
+| 10:25–10:55 | P17 Selector de valor y carrusel    | Rango operable y comparación con carrusel.                |
+| 10:55–12:00 | P13 Auditoría y cuatro herramientas | Cuatro herramientas y hallazgos contrastados.             |
+| 12:00–12:10 | Pausa                               |                                                           |
+| 12:10–13:20 | Reto final                          | Código, incidencias y pruebas.                            |
+| 13:20–13:45 | Plan de accesibilidad               | Plan con acciones, recursos, plazos e indicadores.        |
+| 13:45–14:00 | Evaluación y cierre                 | Devolución y próxima mejora.                              |
 
-El bloque 12 se sustituye por recuperación de formularios o foco si el grupo lo necesita. El material permanece disponible como ampliación. React, Vue y Lit se explican mediante el contrato de renderizado de la práctica 16; implementar tres aplicaciones queda fuera del horario.
+P12 (Shadow DOM) y P15 (Bootstrap) quedan como consulta y ampliación. P18 compara las tres bibliotecas reales y cada pareja corrige una implementación; no se construyen tres aplicaciones completas. P17 dedica 20 minutos al rango y 10 a comparar el carrusel.
 
 ## Correspondencia con los siete módulos del temario
 
@@ -73,8 +73,8 @@ El bloque 12 se sustituye por recuperación de formularios o foco si el grupo lo
 | --------------------- | --------------------------------------------------------------------- |
 | 1 Fundamentos         | Apertura del lunes y tareas de cada práctica.                         |
 | 2 Normas y estándares | Guía WCAG, consulta normativa, criterios de cada ficha y microrretos. |
-| 3 UX/UI inclusiva     | 02, 03, 05, 07, 09 y pruebas manuales.                                |
-| 4 Implementación      | 01–12, 15 y 16.                                                       |
+| 3 UX/UI inclusiva     | 02, 03, 05, 07, 09, 17 y recorrido móvil.                                |
+| 4 Implementación      | Principales 01–11 y 16–18; consulta 12 y 15.                                                       |
 | 5 Multimedia          | 14 y guía de decisiones.                                              |
 | 6 Auditoría y testing | Introducción del lunes, pruebas de cada bloque y 13.                  |
 | 7 Implantación        | Plantillas, reto final y cierre del jueves.                           |
@@ -106,3 +106,11 @@ Si la instalación supera los 20 minutos, utiliza el navegador docente para el d
 ## Cierre de cada sesión
 
 Recoger una evidencia por pareja. Preguntar qué tarea se ha desbloqueado, qué criterio explica la corrección y qué falta por comprobar. No recoger únicamente capturas de puntuaciones.
+
+## Preparación de los contenidos incorporados
+
+Ensaya las tres referencias de P18 y su regeneración. En P17 verifica rango y carrusel. Reproduce los dos clips y activa subtítulos. Prepara [las cuatro herramientas](herramientas-evaluacion.md), comprueba la demo pública y consulta [las fichas de lectores](lectores-pantalla.md). Demuestra un lector realmente disponible y registra como pendientes las combinaciones no probadas. La ficha de un lector no equivale a una grabación de su salida.
+
+En la teoría inicial incorpora comparación universal/web y físico/digital, Diseño Universal y la tabla permanente/temporal/situacional. En WCAG muestra 2.1/2.2 y el recorrido How to Meet, Understanding y F89. El lunes P03 retoma el fallo para que la consulta tenga una aplicación.
+
+Durante P13 reserva 5 minutos a la tarea, 20 a comparar las cuatro herramientas, 25 al diagnóstico y corrección y 15 a verificar y redactar aceptación. El bloque de implantación del jueves sigue [el ejemplo del plan](plan-accesibilidad-ejemplo.md) y exige la plantilla cumplimentada.

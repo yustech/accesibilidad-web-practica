@@ -9,7 +9,7 @@ const errors = [];
 async function walk(dir) {
   const result = [];
   for (const entry of await readdir(dir, { withFileTypes: true })) {
-    if (['node_modules', '.git', 'test-results'].includes(entry.name)) continue;
+    if (['node_modules', '.git', 'test-results', 'dist'].includes(entry.name)) continue;
     const p = path.join(dir, entry.name);
     if (entry.isDirectory()) result.push(...(await walk(p)));
     else result.push(p);
@@ -36,7 +36,7 @@ for (const module of course) {
   if (!module.criteria.length || !module.steps.length || !module.checks.length)
     errors.push(`${module.id}: ficha incompleta`);
 }
-if (course.length !== 16) errors.push('Se esperaban 16 prácticas');
+if (course.length !== 18) errors.push('Se esperaban 18 prácticas');
 for (const file of await walk(root)) {
   if (/\.(?:js|mjs)$/.test(file)) {
     try {
@@ -66,4 +66,4 @@ for (const file of await walk(root)) {
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exitCode = 1;
-} else console.log('16 prácticas completas, referencias locales y sintaxis verificadas.');
+} else console.log('18 prácticas completas, referencias locales y sintaxis verificadas.');

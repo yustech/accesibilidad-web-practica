@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Referencia corregida | Aula de accesibilidad</title>
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+  <body>
+    <header>
+      <p class="notice">Ejercicio de accesibilidad. Contenido y datos ficticios.</p>
+      <nav aria-label="Ejercicio">
+        <a href="index.html">Presentación</a> · <a href="inicio.html">Caso inicial</a> ·
+        <a href="solucion.html">Referencia corregida</a>
+      </nav>
+    </header>
+    <main>
+      <h1>Solicitud de información</h1>
+      <p>Localiza el curso y guarda tu interés.</p>
+      <a href="inicio.html"
+        ><img
+          src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 fill=%22%23172554%22/%3E%3C/svg%3E"
+          alt="Volver al caso inicial"
+      /></a>
+      <p class="muted">El curso se imparte en línea.</p>
+      <label for="correo">Correo electrónico</label
+      ><input id="correo" type="email" autocomplete="email" aria-describedby="ayuda" />
+      <p id="ayuda">Usa un dato ficticio. No se envía información.</p>
+      <button id="guardar" type="button">Guardar interés</button>
+      <p id="estado" role="status"></p>
+      <script>
+        document.querySelector('#guardar').addEventListener('click', () => {
+          document.querySelector('#estado').textContent =
+            'Interés guardado en la demostración.';
+        });
+      </script>
+    </main>
+    <footer>
+      <p>Demostración para comparar herramientas. No es un servicio de matrícula.</p>
+    </footer>
+  </body>
+</html>

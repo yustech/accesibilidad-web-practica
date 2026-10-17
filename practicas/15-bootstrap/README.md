@@ -2,6 +2,8 @@
 
 Capítulo de referencia: Anexos Bootstrap. Tiempo orientativo: 45 minutos. Nivel básico-intermedio.
 
+Material de consulta y ampliación posterior. Este laboratorio no ocupa un bloque obligatorio en el horario de las cuatro sesiones.
+
 ## Tarea y barrera
 
 Abrir un modal de Bootstrap y recorrer un desplegable comprobando qué resuelve el framework.

@@ -28,6 +28,47 @@
       <p>La solicitud se ha guardado correctamente.</p>
       <div id="movimiento" class="motion" aria-hidden="true">✓</div>
       <button id="pausa" type="button">Pausar movimiento</button>
+      <section aria-labelledby="video-titulo">
+        <h2 id="video-titulo">Vídeo con descripción de los cambios visuales</h2>
+        <p id="video-ayuda">
+          Demostración original con voz sintética española. Activa los subtítulos desde
+          los controles. La transcripción está debajo.
+        </p>
+        <video
+          id="video-descrito"
+          controls
+          preload="metadata"
+          width="960"
+          height="540"
+          poster="../../../assets/video/portada.png"
+          aria-describedby="video-ayuda"
+        >
+          <source
+            src="../../../assets/video/inscripcion-descrita.webm"
+            type="video/webm"
+          />
+          <track
+            kind="captions"
+            src="../../../assets/video/subtitulos-descritos.es.vtt"
+            srclang="es"
+            label="Español"
+            default
+          />
+          Tu navegador no reproduce el vídeo.
+        </video>
+        <h3>Transcripción descriptiva</h3>
+        <p>
+          La narración indica: Escribe tu correo y pulsa Enviar. Se introduce ana@.
+          Aparece el error Escribe un correo válido y se conserva el dato. La descripción
+          comunica el error. Se corrige a ana@example.com. Dos tonos y el mensaje
+          Solicitud guardada confirman el resultado; la descripción lo comunica.
+        </p>
+        <p>
+          <a href="../../../multimedia/index.html"
+            >Comparar con la versión sin descripción visual</a
+          >
+        </p>
+      </section>
     </main>
     <footer>
       <p>Portal de formación ficticio · Ejercicio original de accesibilidad.</p>

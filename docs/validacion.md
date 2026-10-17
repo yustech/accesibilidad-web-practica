@@ -1,22 +1,13 @@
-# Alcance de la validación
+# Alcance de la validación del material
 
-## Comprobación inicial del 17 de octubre de 2026
+El curso contiene 18 prácticas. Las comprobaciones de navegador revisan las referencias y estados seleccionados; los inicios conservan barreras intencionadas. Ejecuta npm ci y npm run check para preparar y comprobar la copia, y npm test para la suite.
 
-Se han superado 14 pruebas funcionales en Chromium. axe se ha ejecutado sobre 23 estados,
-incluidas las 16 soluciones, diálogos abiertos, errores de formulario y el reto final,
-sin violaciones de las reglas WCAG seleccionadas. Se han comprobado referencias locales,
-sintaxis y ausencia de desbordamiento horizontal en las 16 soluciones a 320 píxeles CSS.
-Se han inspeccionado capturas del índice y del formulario integrado en escritorio y móvil.
+La suite incluye 23 pruebas funcionales y de reglas automáticas: las 18 referencias principales, tres implementaciones reales de frameworks con varios estados, selector de valor, carrusel, reproducción y pistas de vídeo, demo de auditoría y el reto integrado. Incluye un recorrido de puntero táctil emulado, que no sustituye la prueba real con lector móvil. Comprueba redistribución a 320 píxeles y registra violaciones y resultados incompletos de axe en test-results/axe.json.
 
-La prueba con lectores de pantalla reales queda pendiente de registro. No se ha declarado
-conformidad de las demos ni compatibilidad completa con NVDA, JAWS o VoiceOver.
+Las comprobaciones del vídeo verifican carga, duración, reproducción, pausa, pistas VTT y búsqueda de posiciones. No equivalen a una evaluación humana completa de la calidad de voz o de todos los controles nativos en cada navegador.
 
-## Qué comprueban las herramientas
+Las pruebas automáticas se ejecutan sobre las soluciones y casos previstos. No evalúan automáticamente todas las correcciones que hagas en inicio. Repite el protocolo manual sobre tu propia versión.
 
-`npm run check` verifica archivos requeridos, referencias locales, datos del curso y sintaxis de JavaScript. `npm test` abre Chromium, revisa las soluciones con axe y prueba interacciones representativas: botón, modal, navegación, ocultación, recuperación de errores, filtro, tabla, Shadow DOM, movimiento, Bootstrap, cambio de vista y reto final.
+Los anuncios reales de NVDA, JAWS y VoiceOver y el uso táctil con lector necesitan ejecución y registro en el entorno objetivo. Las fichas comparadas están preparadas; no se declara que se hayan probado todas esas combinaciones. Las herramientas WAVE, Lighthouse y TAW también tienen pasos y registro, y su resultado depende de la ejecución concreta.
 
-Los inicios se comprueban como casos con fallos intencionados. No se exige que pasen una regla de «cero violaciones». Las soluciones sí deben pasar las reglas automáticas seleccionadas y las pruebas funcionales del repositorio.
-
-Esto no confirma anuncios reales de NVDA/JAWS/VoiceOver, compatibilidad completa entre navegadores, accesibilidad de todos los controles nativos multimedia ni conformidad de una web completa. Las fichas incluyen comprobaciones manuales que el docente y el alumnado deben registrar. Los microcasos y ampliaciones no están implementados como una aplicación de producción.
-
-Para ejecutar sin conexión, descarga antes dependencias y el navegador de Playwright. Los resultados de cada ejecución se guardan localmente en `test-results/`; esa carpeta no se publica. No hay un sello de conformidad asociado a superar las pruebas.
+Superar las reglas automáticas no demuestra conformidad de una web completa. Distingue superado, fallo y no probado. Consulta [pruebas manuales](pruebas-manuales.md), [lectores](lectores-pantalla.md) y [herramientas](herramientas-evaluacion.md).

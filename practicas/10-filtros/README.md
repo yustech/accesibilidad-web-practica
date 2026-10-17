@@ -49,3 +49,9 @@ Entrega el código modificado y una [incidencia documentada](../../plantillas/in
 ## Ampliación
 
 Añade paginación con aria-current=page o un estado sin resultados con botón para restablecer filtros.
+
+## aria live y regiones de estado
+
+`aria-live="polite"` solicita anunciar una actualización cuando resulte oportuno; `assertive` expresa urgencia y puede interrumpir, por lo que se reserva para casos justificados. `role="status"` ya tiene aria-live polite implícito y es adecuado para el recuento no urgente de esta práctica. No necesitas duplicar el atributo.
+
+Mantén la región en el DOM antes de actualizar su texto. No muevas el foco al recuento y no conviertas todo el catálogo en una región viva. Prueba el anuncio real con el lector y registra el entorno. [Definición de status](https://www.w3.org/TR/wai-aria-1.2/#status).

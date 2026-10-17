@@ -14,6 +14,8 @@ const mime = {
   '.svg': 'image/svg+xml',
   '.wav': 'audio/wav',
   '.vtt': 'text/vtt; charset=utf-8',
+  '.webm': 'video/webm',
+  '.mp4': 'video/mp4',
 };
 const vendor = {
   '/vendor/bootstrap.min.css': 'node_modules/bootstrap/dist/css/bootstrap.min.css',
@@ -48,11 +50,44 @@ export function createCourseServer() {
       }
       if ((await stat(file)).isDirectory()) file = path.join(file, 'index.html');
       const data = await readFile(file);
-      response.writeHead(200, {
+      const headers = {
         'Content-Type': mime[path.extname(file)] || 'application/octet-stream',
         'Cache-Control': 'no-store',
-      });
-      response.end(request.method === 'HEAD' ? undefined : data);
+        'Accept-Ranges': 'bytes',
+        'Content-Length': data.length,
+      };
+      if (request.headers.range) {
+        const range = /^bytes=(\d*)-(\d*)$/.exec(request.headers.range);
+        let start, end;
+        if (range && (range[1] || range[2])) {
+          start = range[1]
+            ? Number(range[1])
+            : Math.max(0, data.length - Number(range[2]));
+          end =
+            range[1] && range[2]
+              ? Math.min(Number(range[2]), data.length - 1)
+              : data.length - 1;
+        }
+        if (
+          !Number.isSafeInteger(start) ||
+          !Number.isSafeInteger(end) ||
+          start > end ||
+          start >= data.length
+        ) {
+          response.writeHead(416, { 'Content-Range': `bytes */${data.length}` }).end();
+          return;
+        }
+        const part = data.subarray(start, end + 1);
+        response.writeHead(206, {
+          ...headers,
+          'Content-Length': part.length,
+          'Content-Range': `bytes ${start}-${end}/${data.length}`,
+        });
+        response.end(request.method === 'HEAD' ? undefined : part);
+      } else {
+        response.writeHead(200, headers);
+        response.end(request.method === 'HEAD' ? undefined : data);
+      }
     } catch (error) {
       response
         .writeHead(error.code === 'ENOENT' || error.code === 'ENOTDIR' ? 404 : 400, {

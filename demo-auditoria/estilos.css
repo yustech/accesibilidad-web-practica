@@ -1,0 +1,40 @@
+html {
+  font: 112.5%/1.6 system-ui;
+  color: #172554;
+  background: white;
+}
+body {
+  max-width: 48rem;
+  margin: auto;
+  padding: 1rem;
+}
+a {
+  color: #164ca2;
+  text-decoration: underline;
+}
+input,
+button {
+  font: inherit;
+  max-width: 100%;
+  padding: 0.7rem;
+  border: 2px solid #475569;
+}
+label {
+  display: block;
+  font-weight: bold;
+}
+:focus-visible {
+  outline: 3px solid #172554;
+  outline-offset: 3px;
+}
+.notice {
+  padding: 1rem;
+  background: #fff5d6;
+}
+.muted {
+  color: #475569;
+}
+img {
+  width: 64px;
+  height: 64px;
+}

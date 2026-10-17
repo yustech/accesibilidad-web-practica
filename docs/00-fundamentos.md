@@ -26,6 +26,37 @@ Caso conductor del curso: encontrar una formación, conocer sus condiciones y co
 
 [Introducción de W3C a la accesibilidad](https://www.w3.org/WAI/fundamentals/accessibility-intro/).
 
+## Accesibilidad universal y accesibilidad web
+
+La accesibilidad universal se refiere a condiciones de entornos, procesos, bienes, productos y servicios que permiten comprenderlos y utilizarlos con autonomía y seguridad. La accesibilidad web aplica esa finalidad a contenidos, interfaces y servicios de la Web. No se limita a la percepción visual de una pantalla.
+
+Compara un edificio de formación y su portal: una entrada accesible no basta si después una escalera impide llegar al aula; una portada web accesible no basta si el formulario de inscripción bloquea el teclado. En ambos casos hay que considerar el recorrido completo. La rampa no es una traducción literal de un atributo HTML: compara la función de eliminar la barrera, no una equivalencia técnica.
+
+El impacto social puede ser no poder matricularse, acceder a un servicio o trabajar con autonomía. [Definiciones de accesibilidad universal y diseño universal en la legislación española](https://www.boe.es/buscar/act.php?id=BOE-A-2013-12632#a2).
+
+## Diseño Universal aplicado a UX y UI
+
+El Diseño Universal busca que productos y entornos puedan ser utilizados por la mayor diversidad de personas posible sin requerir una adaptación específica. No excluye las tecnologías de apoyo cuando sean necesarias. En el curso lo concretamos en uso flexible, información perceptible, manejo comprensible y recuperación de errores.
+
+| Decisión de diseño                 | Aplicación en el portal                                       | Comprobación                                                |
+| ---------------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------- |
+| Ofrecer distintas formas de operar | Acciones disponibles mediante teclado y puntero               | Reservar plaza sin ratón.                                   |
+| Hacer perceptible la información   | Error con texto, relación con el campo y presentación visible | Identificar y corregir el dato sin depender solo del color. |
+| Permitir ajustes                   | Texto ampliable y distribución flexible                       | Leer y operar al ampliar y estrechar la ventana.            |
+| Facilitar recuperación             | Conservar datos válidos tras un error                         | Corregir el correo sin volver a escribir el nombre.         |
+
+Pregunta: elige una decisión y explica qué necesidad resuelve. Una aplicación práctica del principio requiere verificar el resultado con el producto y sus usuarios.
+
+## Necesidades permanentes, temporales y situacionales
+
+| Contexto    | Ejemplo                                               | Barrera posible                 | Alternativa que se comprueba                        |
+| ----------- | ----------------------------------------------------- | ------------------------------- | --------------------------------------------------- |
+| Permanente  | Una persona ciega utiliza lector de pantalla          | Campo sin nombre accesible      | Etiqueta asociada y lectura comprensible del campo. |
+| Temporal    | Una lesión impide manejar el ratón durante un periodo | Botón que solo responde al clic | Activación mediante teclado.                        |
+| Situacional | Un entorno impide escuchar un audio                   | Información solo sonora         | Alternativa textual con información equivalente.    |
+
+Las situaciones no describen la misma experiencia ni permiten deducir capacidades individuales. La barrera está en la interacción entre persona, entorno y producto. No es necesario simular una discapacidad para revisar la interfaz.
+
 ## Personas, barreras y formas de interacción
 
 Una persona puede utilizar teclado, lector de pantalla, ampliación, control por voz u otras herramientas, por separado o combinadas. Las necesidades no se deducen únicamente de un diagnóstico. Un lector de pantalla comunica mediante voz o braille la información que recibe del navegador; necesita estructura, nombres y estados que el código exponga correctamente.
