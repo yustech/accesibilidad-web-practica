@@ -171,6 +171,31 @@ test('filtros: recuento y conservación del foco', async () => {
   await apply.click();
   assert.equal(await page.locator('#cursos li:visible').count(), 3);
 });
+test('propuesta alternativa de filtros: estado vacío y restablecimiento', async () => {
+  await open('10-filtros', 'solucion/propuesta-alternativa');
+  await axe('10-propuesta-alternativa-inicial');
+
+  await page.getByLabel('Modalidad', { exact: true }).selectOption('aula');
+  await page.getByLabel('Nivel', { exact: true }).selectOption('avanzado');
+  const aplicar = page.getByRole('button', { name: 'Aplicar filtros' });
+  await aplicar.click();
+
+  assert.equal(await page.locator('#cursos li:visible').count(), 0);
+  assert.equal(await page.locator('#sin-resultados').isVisible(), true);
+  assert.match(await page.getByRole('status').innerText(), /0 cursos disponibles/);
+  assert.equal(await aplicar.evaluate((el) => el === document.activeElement), true);
+  await axe('10-propuesta-alternativa-sin-resultados');
+
+  await page.getByRole('button', { name: 'Restablecer filtros' }).click();
+  assert.equal(await page.locator('#cursos li:visible').count(), 3);
+  assert.equal(await page.locator('#sin-resultados').isVisible(), false);
+  assert.equal(await page.getByLabel('Modalidad').inputValue(), 'todos');
+  assert.equal(await page.getByLabel('Nivel').inputValue(), 'todos');
+  assert.equal(
+    await page.getByLabel('Modalidad').evaluate((el) => el === document.activeElement),
+    true,
+  );
+});
 test('tablas: orden, estado y foco', async () => {
   await open('11-tablas');
   const button = page.getByRole('button', { name: 'Ordenar por plazas' });
