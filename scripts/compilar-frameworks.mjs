@@ -14,6 +14,10 @@ for (const variant of ['inicio', 'solucion']) {
     );
   }
 }
+entryPoints['12-componentes-lit'] = path.join(
+  root,
+  'practicas/12-componentes/solucion/propuesta-lit.js',
+);
 const options = {
   entryPoints,
   outdir: path.join(root, 'dist/frameworks'),
@@ -32,5 +36,7 @@ if (process.argv.includes('--watch')) {
   );
 } else {
   await build(options);
-  console.log('Seis ejemplos locales preparados: inicio y solución de React, Vue y Lit.');
+  console.log(
+    'Ejemplos locales preparados: inicio y solución de React, Vue y Lit, más la propuesta Lit de componentes.',
+  );
 }

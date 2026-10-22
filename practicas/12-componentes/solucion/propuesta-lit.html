@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Propuesta Lit: componente de favoritos | Accesibilidad práctica</title>
+    <link rel="stylesheet" href="../../../assets/base.css" />
+  </head>
+  <body>
+    <header>
+      <a href="../../../index.html">Índice de prácticas</a>
+      <h1>Propuesta Lit: componente de favoritos</h1>
+      <p class="notice">
+        Variante de la solución de referencia. Incluye contrato público y ejemplo de uso.
+      </p>
+    </header>
+    <main id="contenido">
+      <h2>Ejemplo en funcionamiento</h2>
+      <p>Activa un botón con Enter, Espacio o un clic:</p>
+      <div id="favoritos">
+        <curso-favorito-lit etiqueta="Guardar HTML"></curso-favorito-lit>
+        <curso-favorito-lit etiqueta="Guardar CSS"></curso-favorito-lit>
+      </div>
+      <p id="estado" role="status">No se ha cambiado ningún favorito.</p>
+
+      <h2>Contrato del componente</h2>
+      <dl>
+        <dt><code>etiqueta</code> (propiedad String; atributo HTML del mismo nombre)</dt>
+        <dd>
+          Texto visible y nombre accesible de la acción. El consumidor proporciona una
+          descripción concreta, por ejemplo «Guardar HTML».
+        </dd>
+        <dt><code>pressed</code> (propiedad Boolean; atributo reflejado)</dt>
+        <dd>
+          Estado del botón de alternancia, inicialmente falso. El componente lo cambia al
+          activarse y lo expone como <code>aria-pressed</code> en el botón nativo.
+        </dd>
+        <dt><code>favorito-cambio</code> (evento CustomEvent)</dt>
+        <dd>
+          Se emite después de cada activación con <code>detail.pressed</code>. Burbujea y
+          cruza el límite de Shadow DOM (<code>bubbles</code> y <code>composed</code>).
+        </dd>
+      </dl>
+
+      <h2>Responsabilidades del consumidor</h2>
+      <ul>
+        <li>Dar a cada instancia una etiqueta útil que la distinga en su contexto.</li>
+        <li>
+          Escuchar el evento si debe guardar o sincronizar la selección fuera del
+          componente.
+        </li>
+        <li>
+          Gestionar persistencia y datos del catálogo; el estado de ejemplo vive solo en
+          la instancia y no se guarda en un servidor.
+        </li>
+        <li>
+          No añadir otro botón alrededor ni duplicar <code>aria-pressed</code> en el host.
+          El componente proporciona botón, nombre, estado y foco visible.
+        </li>
+      </ul>
+
+      <h2>Qué cambia respecto a las otras versiones</h2>
+      <p>
+        El inicio apunta a un ID fuera del Shadow DOM y deja el botón sin texto. La
+        solución de referencia pone la etiqueta en el botón interno y conserva un estado
+        por instancia con JavaScript nativo. Esta variante mantiene esas decisiones y las
+        implementa con Lit; además define la propiedad, el evento y el contrato del
+        consumidor.
+      </p>
+
+      <h2>WCAG 2.2 relacionada</h2>
+      <ul>
+        <li>
+          <a href="https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html"
+            >2.1.1 Teclado (A)</a
+          >: se conserva el botón nativo, operable por teclado.
+        </li>
+        <li>
+          <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html"
+            >2.4.7 Foco visible (AA)</a
+          >: el estilo de foco se define dentro del Shadow DOM.
+        </li>
+        <li>
+          <a href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
+            >4.1.2 Nombre, función y valor (A)</a
+          >: el botón tiene nombre visible, rol nativo y estado con
+          <code>aria-pressed</code>.
+        </li>
+        <li>
+          <a href="https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html"
+            >4.1.3 Mensajes de estado (AA)</a
+          >: el consumidor presenta el resultado del evento en una región
+          <code>role="status"</code> sin mover el foco.
+        </li>
+      </ul>
+      <p>
+        Estas relaciones describen decisiones de esta demostración; no constituyen una
+        declaración de conformidad. La prueba con tecnologías de apoyo sigue siendo
+        necesaria.
+      </p>
+    </main>
+    <footer>
+      <p>Portal de formación ficticio · Propuesta alternativa del ejercicio 12.</p>
+    </footer>
+    <script type="module" src="../../../dist/frameworks/12-componentes-lit.js"></script>
+  </body>
+</html>

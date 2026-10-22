@@ -216,6 +216,23 @@ test('Shadow DOM: nombre e independencia de instancias', async () => {
   assert.equal(await one.getAttribute('aria-pressed'), 'true');
   assert.equal(await two.getAttribute('aria-pressed'), 'false');
 });
+test('propuesta Lit de favoritos: nombre, estado y evento público', async () => {
+  await page.goto(`${base}/practicas/12-componentes/solucion/propuesta-lit.html`);
+  const one = page.getByRole('button', { name: 'Guardar HTML' });
+  const two = page.getByRole('button', { name: 'Guardar CSS' });
+  await one.waitFor();
+  await axe('12-propuesta-lit');
+
+  await one.focus();
+  await page.keyboard.press('Enter');
+  assert.equal(await one.getAttribute('aria-pressed'), 'true');
+  assert.equal(await two.getAttribute('aria-pressed'), 'false');
+  assert.match(await page.getByRole('status').innerText(), /añadido a favoritos/);
+
+  await one.press('Space');
+  assert.equal(await one.getAttribute('aria-pressed'), 'false');
+  assert.match(await page.getByRole('status').innerText(), /eliminado de favoritos/);
+});
 test('multimedia: pausa y preferencia de reducir movimiento', async () => {
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await open('14-multimedia');

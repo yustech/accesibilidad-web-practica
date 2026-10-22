@@ -14,3 +14,5 @@ Abre `inicio/index.html` y `solucion/index.html` y compara `index.html`, `app.js
 - El foco se ve dentro del componente.
 
 Las pruebas automáticas del repositorio verifican una parte del comportamiento. La prueba con lector de pantalla y la revisión visual humana siguen siendo necesarias. Registra el resultado real en la plantilla y justifica cualquier diferencia con la referencia.
+
+La [propuesta Lit](solucion/propuesta-lit.html) ofrece una variante ejecutable que conserva el patrón accesible y documenta las propiedades, el evento y las responsabilidades del consumidor.
