@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Curso de accesibilidad | Accesibilidad práctica</title>
+    <link rel="stylesheet" href="../../../assets/base.css" />
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+  <body>
+    <header>
+      <a href="../../../index.html">Índice de prácticas</a>
+      <h1>Curso de accesibilidad</h1>
+    </header>
+
+    <a class="skip" href="#contenido">Saltar al contenido</a>
+
+    <nav aria-label="Secciones del curso">
+      <ul>
+        <li><a href="#requisitos">Requisitos</a></li>
+        <li><a href="#temario">Temario</a></li>
+      </ul>
+    </nav>
+
+    <main id="contenido" tabindex="-1" aria-labelledby="titulo-curso">
+      <h2 id="titulo-curso">Información del curso</h2>
+
+      <section id="requisitos">
+        <h3>Requisitos</h3>
+        <ul>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript básico</li>
+        </ul>
+      </section>
+
+      <section id="temario">
+        <h3>Temario</h3>
+        <p>Semántica y teclado.</p>
+      </section>
+    </main>
+
+    <footer>
+      <p>Portal de formación ficticio · Ejercicio original de accesibilidad.</p>
+    </footer>
+  </body>
+</html>

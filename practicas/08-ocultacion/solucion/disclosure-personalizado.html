@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Disclosure personalizado | Accesibilidad práctica</title>
+    <link rel="stylesheet" href="../../../assets/base.css" />
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+  <body>
+    <header>
+      <a href="../../../index.html">Índice de prácticas</a>
+      <h1>Contenido oculto y ayudas (disclosure personalizado)</h1>
+      <p class="notice">
+        Ampliación: mismo resultado que <a href="index.html">la solución con details</a>,
+        construido con button, aria-expanded y hidden.
+      </p>
+    </header>
+    <main id="contenido">
+      <button
+        id="ayuda"
+        type="button"
+        aria-expanded="false"
+        aria-controls="panel"
+      >
+        Ayuda para inscribirse
+      </button>
+      <div id="panel" role="region" aria-labelledby="ayuda" hidden>
+        <p>Consulta las instrucciones.</p>
+        <a id="enlace-instrucciones" href="#instrucciones">Leer instrucciones</a>
+      </div>
+      <section id="instrucciones" tabindex="-1">
+        <h2>Instrucciones</h2>
+        <p>Elige el curso y completa el formulario.</p>
+      </section>
+    </main>
+    <footer>
+      <p>Portal de formación ficticio · Ejercicio original de accesibilidad.</p>
+    </footer>
+    <script src="disclosure.js"></script>
+  </body>
+</html>
