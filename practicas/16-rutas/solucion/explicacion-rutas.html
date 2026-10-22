@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Proceso de la propuesta de rutas del ejercicio 16 | Accesibilidad práctica
+    </title>
+    <link rel="stylesheet" href="../../../assets/base.css" />
+  </head>
+  <body>
+    <header>
+      <a href="../../../index.html">Índice de prácticas</a>
+      <h1>Ejercicio 16: proceso de la propuesta de rutas</h1>
+      <p class="notice">
+        Cada paso indica qué se hizo, por qué y qué criterio de WCAG 2.2 lo respalda.
+        <a href="propuesta-rutas.html">Abrir la solución</a>.
+      </p>
+    </header>
+    <main id="contenido">
+      <h2>Punto de partida y diferencias</h2>
+      <p>
+        En <code>inicio</code> cambia el contenido pero no el título, el foco se queda en
+        el enlace y la vista usa un <code>h2</code>. La
+        <a href="index.html">solución de referencia</a> lo resuelve con JavaScript sin
+        framework: actualiza <code>document.title</code>, convierte el encabezado en
+        <code>h1</code> con <code>tabindex="-1"</code> y lo enfoca tras insertarlo. No
+        añade historial: al volver atrás con el navegador, la vista no cambia. Esta
+        propuesta aplica el mismo contrato en React, Vue y Lit, añade historial y suma una
+        ampliación propia.
+      </p>
+
+      <h2>El contrato común</h2>
+      <ol>
+        <li>Se pinta primero la vista nueva.</li>
+        <li>Se actualiza el título del documento.</li>
+        <li>
+          Se enfoca el <code>h1</code> de la vista, solo si el cambio lo provocó una
+          navegación.
+        </li>
+        <li>La carga inicial no mueve el foco.</li>
+        <li>
+          Las activaciones modificadas (Ctrl, Cmd, Mayús, Alt, clic secundario) se dejan
+          al navegador.
+        </li>
+      </ol>
+      <p>
+        La lógica que no depende del framework vive en
+        <code>propuesta-rutas-nucleo.js</code>; cada framework solo decide
+        <em>cuándo</em> el DOM está listo.
+      </p>
+
+      <h2>Pasos realizados</h2>
+      <ol>
+        <li>
+          <h3>1. Analizar el ejercicio y el código existente</h3>
+          <p>
+            Se leyeron el README, la referencia y las demos de React, Vue y Lit de la
+            práctica 18. Allí cada framework resuelve el foco a su manera y usa
+            <code>replaceState</code>, por lo que no hay historial real ni se gestiona un
+            parámetro de vista no válido.
+          </p>
+        </li>
+        <li>
+          <h3>2. Núcleo compartido sin framework</h3>
+          <p>
+            Contiene las vistas, la lectura de la URL, el título, la comprobación de
+            activación normal y el historial (<code>pushState</code> y
+            <code>popstate</code>). Compartirlo garantiza que los tres frameworks cumplen
+            el mismo contrato y evita repetir lógica de accesibilidad.
+          </p>
+          <p>
+            Criterios:
+            <a href="https://www.w3.org/WAI/WCAG22/Understanding/page-titled.html"
+              >2.4.2 Título de página (A)</a
+            >
+            (título propio por vista) y
+            <a href="https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html"
+              >2.1.1 Teclado (A)</a
+            >
+            (los enlaces siguen siendo <code>&lt;a href&gt;</code> reales).
+          </p>
+        </li>
+        <li>
+          <h3>3. React: useEffect + ref</h3>
+          <p>
+            Un <code>useRef</code> apunta al <code>h1</code>. Un
+            <code>useEffect</code> dependiente de la vista se ejecuta después de que React
+            confirme el DOM, así que el encabezado nuevo ya existe cuando se enfoca. Un
+            segundo ref evita enfocar en el primer renderizado. Con esto se cumple el
+            orden «insertar y después enfocar» (<a
+              href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html"
+              >2.4.3 Orden del foco, A</a
+            >).
+          </p>
+        </li>
+        <li>
+          <h3>4. Vue: nextTick + ref</h3>
+          <p>
+            Tras cambiar la vista, <code>await nextTick()</code> espera a que Vue
+            actualice el DOM. Después se fija el título y se llama a
+            <code>focus()</code> en la ref del encabezado. Si se enfocara antes, la ref
+            todavía apuntaría al <code>h1</code> anterior.
+          </p>
+        </li>
+        <li>
+          <h3>5. Lit: updateComplete</h3>
+          <p>
+            <code>await this.updateComplete</code> se resuelve cuando Lit ha terminado de
+            renderizar. El componente usa el árbol ligero para compartir CSS y localizar
+            el <code>h1</code> sin cruzar un Shadow DOM, y limpia su escucha de
+            <code>popstate</code> en <code>disconnectedCallback</code>.
+          </p>
+        </li>
+        <li>
+          <h3>6. Ampliación del README: historial de navegación</h3>
+          <p>
+            Cada navegación hace <code>history.pushState</code> con una URL real
+            (<code>?vista=ayuda</code>), por lo que los botones Atrás y Adelante del
+            navegador funcionan. Al volver se escucha <code>popstate</code>, se pinta la
+            vista correspondiente y se aplica el mismo contrato: título y foco en el
+            <code>h1</code>. Así, quien navega con teclado o lector de pantalla recibe el
+            mismo aviso con los botones del navegador que con los enlaces. Una lista
+            ordenada «Historial de esta sesión» muestra las vistas visitadas; es contenido
+            estático, no una región viva, para no repetir anuncios.
+          </p>
+          <p>
+            Criterios:
+            <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html"
+              >2.4.3</a
+            >,
+            <a href="https://www.w3.org/WAI/WCAG22/Understanding/page-titled.html"
+              >2.4.2</a
+            >
+            y
+            <a
+              href="https://www.w3.org/WAI/WCAG22/Understanding/consistent-navigation.html"
+              >3.2.3 Navegación consistente (AA)</a
+            >
+            (el menú ocupa siempre el mismo lugar).
+          </p>
+        </li>
+        <li>
+          <h3>7. Conservar el comportamiento nativo de los enlaces</h3>
+          <p>
+            <code>esActivacionNormal</code> solo intercepta el clic principal sin
+            modificadores. Ctrl/Cmd+clic sigue abriendo una pestaña y los enlaces siguen
+            teniendo <code>href</code> real, por lo que son operables y copiables (<a
+              href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
+              >4.1.2 Nombre, función y valor, A</a
+            >). El enlace de la vista activa lleva <code>aria-current="page"</code>.
+          </p>
+        </li>
+        <li>
+          <h3>8. Ampliación propia: vista inexistente y navegación de apoyo</h3>
+          <p>
+            Una SPA mal diseñada falla en silencio cuando la URL no coincide con una
+            vista. Se añadió <code>noEncontrada</code>:
+            <code>?vista=inexistente</code> muestra «Vista no encontrada» con su propio
+            título y <code>h1</code>, mantiene el menú con Ayuda disponible y explica cómo
+            recuperarse. Además:
+          </p>
+          <ul>
+            <li>
+              <strong>Enlace «Saltar al contenido»</strong> antes del menú (<a
+                href="https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks.html"
+                >2.4.1 Evitar bloques, A</a
+              >).
+            </li>
+            <li>
+              <strong>Ayuda en el mismo lugar</strong> en todas las vistas, incluida la de
+              error (<a
+                href="https://www.w3.org/WAI/WCAG22/Understanding/consistent-help.html"
+                >3.2.6 Ayuda consistente, A</a
+              >).
+            </li>
+            <li>
+              <strong>scroll-margin</strong> en el encabezado y en el contenido para que
+              el foco programático no quede tapado al desplazarse (<a
+                href="https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html"
+                >2.4.11 Foco no oculto (mínimo), AA</a
+              >).
+            </li>
+            <li>
+              <strong>Objetivos de al menos 44 × 44 px</strong> en el menú (<a
+                href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html"
+                >2.5.8 Tamaño del objetivo (mínimo), AA</a
+              >; el mínimo exigido es 24 × 24 px).
+            </li>
+          </ul>
+        </li>
+        <li>
+          <h3>9. Selector de framework y carga controlada</h3>
+          <p>
+            La página usa <code>?fw=react|vue|lit</code>. El cargador solo acepta esos
+            tres valores, así que un parámetro manipulado no inserta scripts arbitrarios.
+            Los enlaces del selector marcan el framework activo con
+            <code>aria-current</code>.
+          </p>
+        </li>
+        <li>
+          <h3>10. Comprobaciones y límites</h3>
+          <p>
+            Una prueba de navegador recorre los tres frameworks: confirma que la carga
+            inicial no roba el foco, que Ayuda cambia título, URL y foco, que Atrás y
+            Adelante repiten el contrato, que Ctrl+clic no se intercepta, que la vista
+            inexistente se anuncia y que axe no detecta violaciones. No sustituye a la
+            prueba con NVDA o VoiceOver: hay que registrar lector, sistema, navegador y
+            versión. Los criterios citados describen decisiones concretas; no declaran que
+            toda la aplicación cumpla WCAG 2.2.
+          </p>
+        </li>
+      </ol>
+    </main>
+    <footer>
+      <p>
+        Portal de formación ficticio · Documentación de la propuesta del ejercicio 16.
+      </p>
+    </footer>
+  </body>
+</html>

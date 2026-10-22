@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Propuesta de rutas con React, Vue y Lit | Accesibilidad práctica</title>
+    <link rel="stylesheet" href="../../../assets/base.css" />
+    <link rel="stylesheet" href="propuesta-rutas.css" />
+  </head>
+  <body>
+    <header>
+      <a class="skip" href="#contenido">Saltar al contenido</a>
+      <a href="../../../index.html">Índice de prácticas</a>
+      <p class="big">Cambios de vista en aplicaciones</p>
+      <p class="notice">
+        Propuesta alternativa con el contrato aplicado en el ciclo de cada framework e
+        historial de navegación.
+        <a href="explicacion-rutas.html">Ver el proceso paso a paso</a>.
+      </p>
+      <nav aria-label="Framework de la demostración">
+        <a data-fw="react" href="?fw=react">React</a> ·
+        <a data-fw="vue" href="?fw=vue">Vue</a> ·
+        <a data-fw="lit" href="?fw=lit">Lit</a>
+      </nav>
+    </header>
+    <main id="contenido" tabindex="-1">
+      <p>Demostración con: <strong id="fw-actual"></strong>.</p>
+      <div id="app"></div>
+      <noscript>Esta demostración necesita JavaScript.</noscript>
+    </main>
+    <footer>
+      <p>Portal de formación ficticio · Propuesta alternativa del ejercicio 16.</p>
+    </footer>
+    <script src="propuesta-rutas-cargador.js"></script>
+  </body>
+</html>

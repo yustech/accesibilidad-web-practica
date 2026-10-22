@@ -378,6 +378,64 @@ test('vistas: título y foco tras navegación', async () => {
     true,
   );
 });
+for (const fw of ['react', 'vue', 'lit']) {
+  test(`propuesta de rutas (${fw}): título, foco tras renderizar e historial`, async () => {
+    const pagina = `${base}/practicas/16-rutas/solucion/propuesta-rutas.html`;
+    const enfocado = (nombre) =>
+      page
+        .getByRole('heading', { name: nombre, level: 1, exact: true })
+        .evaluate((el) => el === document.activeElement);
+    await page.goto(`${pagina}?fw=${fw}`);
+    await page.getByRole('heading', { name: 'Catálogo de cursos', level: 1 }).waitFor();
+    assert.equal(
+      await page.evaluate(() => document.activeElement === document.body),
+      true,
+    );
+    await axe(`16-${fw}-inicial`);
+
+    await page.getByRole('link', { name: 'Ayuda', exact: true }).click();
+    assert.match(await page.title(), /Ayuda para la inscripción/);
+    assert.equal(await enfocado('Ayuda para la inscripción'), true);
+    assert.match(page.url(), /vista=ayuda/);
+    assert.equal(await page.locator('ol li').count(), 2);
+    assert.equal(
+      await page
+        .getByRole('link', { name: 'Ayuda', exact: true })
+        .getAttribute('aria-current'),
+      'page',
+    );
+
+    await page.goBack();
+    assert.match(await page.title(), /Catálogo de cursos/);
+    assert.equal(await enfocado('Catálogo de cursos'), true);
+    assert.equal(await page.locator('ol li').count(), 3);
+    await page.goForward();
+    assert.equal(await enfocado('Ayuda para la inscripción'), true);
+
+    const prevenido = await page
+      .getByRole('link', { name: 'Inicio', exact: true })
+      .evaluate((el) => {
+        const evento = new MouseEvent('click', {
+          bubbles: true,
+          cancelable: true,
+          ctrlKey: true,
+        });
+        el.dispatchEvent(evento);
+        return evento.defaultPrevented;
+      });
+    assert.equal(prevenido, false);
+    await axe(`16-${fw}-ayuda`);
+
+    await page.goto(`${pagina}?fw=${fw}&vista=inexistente`);
+    await page.getByRole('heading', { name: 'Vista no encontrada', level: 1 }).waitFor();
+    assert.match(await page.title(), /Vista no encontrada/);
+    await axe(`16-${fw}-no-encontrada`);
+  });
+}
+test('propuesta de rutas: explicación sin violaciones', async () => {
+  await page.goto(`${base}/practicas/16-rutas/solucion/explicacion-rutas.html`);
+  await axe('16-explicacion');
+});
 test('soluciones a 320 px no desbordan la página', async () => {
   await page.setViewportSize({ width: 320, height: 700 });
   for (const module of modules) {

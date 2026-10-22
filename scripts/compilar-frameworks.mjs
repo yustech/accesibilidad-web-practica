@@ -18,6 +18,12 @@ entryPoints['12-componentes-lit'] = path.join(
   root,
   'practicas/12-componentes/solucion/propuesta-lit.js',
 );
+for (const framework of ['react', 'vue', 'lit']) {
+  entryPoints[`16-rutas-${framework}`] = path.join(
+    root,
+    `practicas/16-rutas/solucion/propuesta-rutas-${framework}.js`,
+  );
+}
 const options = {
   entryPoints,
   outdir: path.join(root, 'dist/frameworks'),

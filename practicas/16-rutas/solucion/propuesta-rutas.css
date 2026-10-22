@@ -1,0 +1,14 @@
+/* Evita que el encabezado enfocado quede tapado al desplazarse hasta él (2.4.11). */
+h1,
+main {
+  scroll-margin-top: 1.5rem;
+}
+nav a[aria-current] {
+  font-weight: 700;
+}
+nav a {
+  display: inline-block;
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  padding: 0.6rem 0.5rem;
+}
