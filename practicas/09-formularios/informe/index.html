@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Informe de accesibilidad: solución de la práctica 09 | Accesibilidad práctica</title>
+    <style>
+      :root {
+        --texto: #1e293b;
+        --fondo: #ffffff;
+        --acento: #172554;
+        --suave: #eff6ff;
+        --ok: #14532d;
+        --aviso: #7c2d12;
+      }
+      body {
+        font-family: system-ui, sans-serif;
+        line-height: 1.6;
+        color: var(--texto);
+        background: var(--fondo);
+        max-width: 60rem;
+        margin: 0 auto;
+        padding: 1rem;
+      }
+      h1,
+      h2,
+      h3 {
+        color: var(--acento);
+        line-height: 1.25;
+      }
+      h2 {
+        margin-top: 2.5rem;
+        border-bottom: 2px solid var(--acento);
+        padding-bottom: 0.25rem;
+      }
+      a {
+        color: #1d4ed8;
+      }
+      :focus-visible {
+        outline: 3px solid var(--acento);
+        outline-offset: 3px;
+      }
+      .skip {
+        position: absolute;
+        left: -999px;
+      }
+      .skip:focus {
+        left: 1rem;
+        top: 1rem;
+        background: #fff;
+        padding: 0.5rem 1rem;
+        z-index: 1;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-block: 1rem;
+      }
+      caption {
+        text-align: left;
+        font-weight: 700;
+        padding-bottom: 0.5rem;
+      }
+      th,
+      td {
+        border: 1px solid #94a3b8;
+        padding: 0.5rem;
+        text-align: left;
+        vertical-align: top;
+      }
+      thead th {
+        background: var(--suave);
+      }
+      pre {
+        background: #0f172a;
+        color: #f8fafc;
+        padding: 1rem;
+        overflow-x: auto;
+        border-radius: 0.25rem;
+      }
+      code {
+        font-family: ui-monospace, Consolas, monospace;
+      }
+      .nota {
+        background: #fff5d6;
+        border-left: 4px solid #8b5b00;
+        color: #422e00;
+        padding: 0.75rem 1rem;
+      }
+      .resultado {
+        background: #f0fdf4;
+        border-left: 4px solid var(--ok);
+        color: var(--ok);
+        padding: 0.75rem 1rem;
+      }
+      figure {
+        margin: 1rem 0;
+      }
+      figure img {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid #94a3b8;
+      }
+      figcaption {
+        font-size: 0.95rem;
+      }
+      th,
+      td {
+        overflow-wrap: anywhere;
+      }
+      @media (max-width: 40rem) {
+        table {
+          table-layout: fixed;
+        }
+        th,
+        td {
+          font-size: 0.85rem;
+          padding: 0.25rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#contenido">Saltar al contenido</a>
+    <header>
+      <h1>Informe de accesibilidad: solución de la práctica 09</h1>
+      <p>
+        Archivo evaluado:
+        <a href="../solucion/index.html"><code>practicas/09-formularios/solucion/index.html</code></a>
+        (formulario de inscripción con recuperación de errores). Criterios: WCAG 2.2,
+        niveles A y AA. Pruebas: Playwright con Chromium y axe-core del repositorio.
+      </p>
+      <nav aria-label="Contenido del informe">
+        <ul>
+          <li><a href="#resumen">Resumen</a></li>
+          <li><a href="#metodo">Método</a></li>
+          <li><a href="#hallazgos">Lo que he averiguado</a></li>
+          <li><a href="#limites">Lo que la prueba no demuestra</a></li>
+          <li><a href="#mejoras">Propuestas de mejora</a></li>
+          <li><a href="#siguientes">Siguientes pasos</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="contenido">
+      <section aria-labelledby="resumen">
+        <h2 id="resumen">Resumen</h2>
+        <p class="resultado">
+          La solución no presenta fallos detectables en las pruebas automáticas ni en las
+          manuales que he podido automatizar. Hay <strong>6 mejoras</strong> que la
+          harían más robusta y fácil de usar; ninguna es un fallo de nivel A o AA.
+        </p>
+        <ul>
+          <li>axe-core (reglas WCAG 2.x y buenas prácticas): <strong>0 violaciones</strong> y 0 resultados incompletos, tanto en el estado inicial como con errores.</li>
+          <li>Teclado: el orden de Tab es lógico y no hay trampas de foco.</li>
+          <li>Errores: el foco va al resumen, los enlaces llevan al campo y los datos se conservan.</li>
+          <li>Reflow a 320 px, espaciado de texto y texto al 200 %: sin pérdida de contenido.</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="metodo">
+        <h2 id="metodo">Método</h2>
+        <ol>
+          <li>Abrí la página con Playwright en Chromium (1000×760 px) y tomé una captura del estado inicial.</li>
+          <li>Pasé axe-core completo (no solo las etiquetas WCAG) para incluir buenas prácticas.</li>
+          <li>Extraje el árbol de accesibilidad para ver cómo lo interpreta un lector de pantalla.</li>
+          <li>Recorrí la página con Tab y medí etiquetas, atributos, tamaños y contrastes.</li>
+          <li>Envié el formulario vacío, con el correo mal formado, con un correo de sintaxis dudosa y con datos correctos.</li>
+          <li>Probé reflow a 320 px, espaciado de texto aumentado, texto al 200 % y modo de colores forzados.</li>
+        </ol>
+        <figure>
+          <img src="1-inicial.png" alt="Formulario en su estado inicial: título, aviso, dos campos con etiqueta y ayuda, y el botón Enviar solicitud." />
+          <figcaption>Figura 1. Estado inicial.</figcaption>
+        </figure>
+        <figure>
+          <img src="2-errores.png" alt="Formulario tras enviarlo vacío: un resumen «Revisa los datos» con dos enlaces y un mensaje de error bajo cada campo." />
+          <figcaption>Figura 2. Envío vacío: resumen de errores y mensajes por campo.</figcaption>
+        </figure>
+        <figure>
+          <img src="3-exito.png" alt="Formulario tras un envío correcto, con el mensaje «Solicitud guardada en la demostración. No se han enviado datos.»" />
+          <figcaption>Figura 3. Envío correcto.</figcaption>
+        </figure>
+      </section>
+
+      <section aria-labelledby="hallazgos">
+        <h2 id="hallazgos">Lo que he averiguado</h2>
+        <table>
+          <caption>Resultados de las pruebas y criterio WCAG 2.2 relacionado</caption>
+          <thead>
+            <tr>
+              <th scope="col">Comprobación</th>
+              <th scope="col">Resultado medido</th>
+              <th scope="col">Criterio</th>
+              <th scope="col">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Etiquetas</th>
+              <td>Ambos campos tienen <code>label</code> asociado: «Nombre completo (obligatorio)» y «Correo electrónico (obligatorio)». El nombre accesible coincide con el texto visible.</td>
+              <td>1.3.1, 3.3.2, 2.5.3, 4.1.2</td>
+              <td>Cumple</td>
+            </tr>
+            <tr>
+              <th scope="row">Propósito de los campos</th>
+              <td><code>autocomplete="name"</code> y <code>autocomplete="email"</code>; el correo usa <code>type="email"</code>.</td>
+              <td>1.3.5 (AA)</td>
+              <td>Cumple</td>
+            </tr>
+            <tr>
+              <th scope="row">Instrucciones y ayudas</th>
+              <td>Texto previo («los dos campos son obligatorios, los datos no se envían») y una ayuda por campo enlazada con <code>aria-describedby</code>.</td>
+              <td>3.3.2</td>
+              <td>Cumple</td>
+            </tr>
+            <tr>
+              <th scope="row">Identificación de errores</th>
+              <td>Envío vacío: 2 campos con <code>aria-invalid</code>; <code>aria-describedby</code> pasa a «nombre-ayuda nombre-error» (se conserva la ayuda). Los textos son específicos.</td>
+              <td>3.3.1, 3.3.3 (AA)</td>
+              <td>Cumple</td>
+            </tr>
+            <tr>
+              <th scope="row">Gestión del foco en errores</th>
+              <td>Tras un envío con errores el foco va a <code>#resumen</code>; al pulsar un enlace del resumen el foco pasa al campo.</td>
+              <td>2.4.3, 3.3.1</td>
+              <td>Cumple</td>
+            </tr>
+            <tr>
+              <th scope="row">Mensajes de estado</th>
+              <td>El éxito se escribe en un <code>role="status"</code> que ya existe en el DOM desde la carga; el foco permanece en el botón.</td>
+              <td>4.1.3 (AA)</td>
+              <td>Cumple</td>
+            </tr>
+            <tr>
+              <th scope="row">Conservación de datos</th>
+              <td>Con el correo inválido, el nombre «Ana Pérez» se mantuvo y solo quedó un error en el resumen.</td>
+              <td>3.3.7</td>
+              <td>Cumple</td>
+            </tr>
+            <tr>
+              <th scope="row">Orden de teclado</th>
+              <td>Tab recorre: enlace «Índice de prácticas» → nombre → correo → botón, y sale del documento. Enter dentro de un campo envía el formulario.</td>
+              <td>2.1.1, 2.1.2, 2.4.3</td>
+              <td>Cumple</td>
+            </tr>
+            <tr>
+              <th scope="row">Contraste</th>
+              <td>Etiquetas y ayudas: 14,69:1. Mensajes de error (#9b1c1c): 8,15:1. Contorno de foco de 3 px (#172554) sobre blanco.</td>
+              <td>1.4.3, 1.4.11, 2.4.7</td>
+              <td>Cumple</td>
+            </tr>
+            <tr>
+              <th scope="row">Tamaño de los objetivos</th>
+              <td>Campos de 206×50 px y botón de 131×50 px, por encima de 24×24 px.</td>
+              <td>2.5.8 (AA)</td>
+              <td>Cumple</td>
+            </tr>
+            <tr>
+              <th scope="row">Reflow, texto y espaciado</th>
+              <td>A 320 px: ancho de scroll 320, igual al del cliente. Texto al 200 %: sin desbordamiento. Espaciado 1.4.12: 0 elementos recortados.</td>
+              <td>1.4.4, 1.4.10, 1.4.12</td>
+              <td>Cumple</td>
+            </tr>
+            <tr>
+              <th scope="row">Colores forzados</th>
+              <td>Con <code>forced-colors: active</code> el resumen de errores sigue visible.</td>
+              <td>1.4.11, 1.4.1</td>
+              <td>Cumple (revisión visual pendiente)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Árbol de accesibilidad tras el envío vacío</h3>
+        <pre><code>- region "Revisa los datos":
+    - heading "Revisa los datos" [level=3]
+    - list: link "Escribe tu nombre completo." / link "Escribe tu correo electrónico."
+- textbox "Nombre completo (obligatorio)" [invalid]
+- paragraph: Escribe tu nombre completo.
+- textbox "Correo electrónico (obligatorio)" [invalid]
+- paragraph: Escribe tu correo electrónico.
+- button "Enviar solicitud"
+- status</code></pre>
+        <p>
+          El resumen se expone como región con nombre, los campos aparecen como inválidos y el
+          mensaje de estado existe aunque esté vacío, que es lo que permite anunciarlo después.
+        </p>
+
+        <h3>Puntos débiles detectados (no son fallos A/AA)</h3>
+        <ul>
+          <li>El campo inválido <strong>conserva el mismo borde</strong> (2 px, rgb(71, 85, 105)) que el válido. El error solo se distingue por el texto, que se ve y se lee bien, pero no hay pista visual en el propio campo.</li>
+          <li>El correo <code>a@b</code> se <strong>acepta como válido</strong> porque la validación nativa del tipo <code>email</code> admite dominios sin punto.</li>
+          <li>Los enlaces del resumen repiten el mensaje, pero <strong>no nombran el campo</strong> («Escribe tu nombre completo.»).</li>
+          <li>El <strong>título de la página no cambia</strong> cuando hay errores.</li>
+          <li>El <code>&lt;form&gt;</code> no tiene <strong>nombre accesible</strong> y el botón no declara <code>type="submit"</code>.</li>
+          <li>No hay <strong>enlace para saltar al contenido</strong>. En una página tan corta no incumple 2.4.1 porque existe el landmark <code>main</code>, pero es útil si crece.</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="limites">
+        <h2 id="limites">Lo que la prueba no demuestra</h2>
+        <p class="nota">
+          Un resultado limpio de axe no equivale a que el formulario sea accesible. Ya vimos en
+          la versión inicial de esta práctica que axe daba 0 violaciones con barreras reales.
+        </p>
+        <ul>
+          <li>No se ha probado con <strong>NVDA, JAWS ni VoiceOver</strong>. No puedo afirmar cómo se anuncia el resumen, el error ni el estado.</li>
+          <li>No se ha probado con <strong>voz</strong> (Dragon) ni con <strong>zoom del sistema</strong> en dispositivos reales.</li>
+          <li>La revisión visual de colores forzados se ha comprobado por código, no con una persona.</li>
+          <li>Esto no es una declaración de conformidad con WCAG 2.2.</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="mejoras">
+        <h2 id="mejoras">Propuestas de mejora</h2>
+        <p>
+          Ordenadas por beneficio y esfuerzo. Son propuestas: no he modificado la solución de
+          referencia.
+        </p>
+
+        <h3>1. Marcar visualmente el campo con error</h3>
+        <p><strong>Criterios:</strong> 1.4.1 Uso del color, 1.4.11 Contraste no textual, 3.3.1. <strong>Prioridad:</strong> alta.</p>
+        <p>
+          Hoy el borde del campo no cambia. Se propone usar el propio atributo
+          <code>aria-invalid</code> como gancho de estilo y no depender solo del color, con un
+          borde más grueso y un prefijo textual.
+        </p>
+        <pre><code>input[aria-invalid='true'] {
+  border-color: #9b1c1c;
+  border-width: 3px;
+}
+.error::before {
+  content: 'Error: ';
+  font-weight: 700;
+}</code></pre>
+        <p>
+          Con el prefijo, el lector que lea el mensaje por separado también oirá que es un
+          error. El texto generado por CSS no siempre se anuncia de forma fiable, así que la
+          alternativa más robusta es escribir «Error:» directamente en el texto del mensaje.
+        </p>
+
+        <h3>2. Nombrar el campo en los enlaces del resumen</h3>
+        <p><strong>Criterios:</strong> 2.4.4 Propósito de los enlaces, 3.3.1. <strong>Prioridad:</strong> alta.</p>
+        <p>
+          Quien navega por la lista de enlaces oye «Escribe tu nombre completo.» sin saber a
+          qué campo lleva. Se propone un texto que empiece por el nombre del campo.
+        </p>
+        <pre><code>link.textContent = `${labelOf(id)}: ${message}`;
+// «Nombre completo: Escribe tu nombre completo.»</code></pre>
+
+        <h3>3. Cambiar el título de la página cuando hay errores</h3>
+        <p><strong>Criterios:</strong> 2.4.2 Titulado de páginas, 3.3.1. <strong>Prioridad:</strong> media.</p>
+        <pre><code>document.title = issues.length
+  ? `(${issues.length} errores) ${baseTitle}`
+  : baseTitle;</code></pre>
+        <p>Es útil para quien vuelve a la pestaña o navega con lector. Debe restaurarse al corregir.</p>
+
+        <h3>4. Endurecer la validación del correo</h3>
+        <p><strong>Criterios:</strong> 3.3.1, 3.3.3 Sugerencias para corregir. <strong>Prioridad:</strong> media.</p>
+        <p>
+          <code>a@b</code> se acepta. Si el dominio debe tener punto, se puede comprobar con un
+          patrón sencillo y mantener el mensaje específico. No conviene una expresión regular
+          demasiado estricta, porque rechazaría direcciones válidas.
+        </p>
+        <pre><code>const dominioConPunto = /@[^@\s]+\.[^@\s]+$/;
+if (!dominioConPunto.test(input.value)) message = messages.email.format;</code></pre>
+
+        <h3>5. Dar nombre al formulario y declarar el tipo del botón</h3>
+        <p><strong>Criterios:</strong> 1.3.1, 4.1.2. <strong>Prioridad:</strong> baja.</p>
+        <pre><code>&lt;h2 id="titulo-form"&gt;Solicitud de plaza&lt;/h2&gt;
+&lt;form id="inscripcion" aria-labelledby="titulo-form" novalidate&gt;
+  ...
+  &lt;button type="submit"&gt;Enviar solicitud&lt;/button&gt;</code></pre>
+        <p>
+          Con nombre, el formulario pasa a ser un landmark en lectores de pantalla y se puede
+          saltar a él directamente.
+        </p>
+
+        <h3>6. Añadir un enlace «Saltar al contenido»</h3>
+        <p><strong>Criterios:</strong> 2.4.1 Evitar bloques. <strong>Prioridad:</strong> baja.</p>
+        <p>
+          <code>base.css</code> ya define la clase <code>.skip</code>. Basta con añadirlo como
+          primer elemento del <code>body</code>, apuntando a <code>#contenido</code>, que ya
+          existe en <code>main</code>.
+        </p>
+        <pre><code>&lt;a class="skip" href="#contenido"&gt;Saltar al contenido&lt;/a&gt;</code></pre>
+
+        <h3>Mejora adicional a valorar</h3>
+        <ul>
+          <li><strong>Mantener el foco tras el éxito:</strong> hoy permanece en el botón, que es correcto. Si el diseño evolucionara a un segundo paso, habría que mover el foco al título del nuevo paso y reutilizar el correo ya introducido (3.3.7).</li>
+          <li><strong>Autenticación:</strong> si más adelante se añade acceso con contraseña, hay que permitir pegar y usar gestores de contraseñas (3.3.8).</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="siguientes">
+        <h2 id="siguientes">Siguientes pasos</h2>
+        <ol>
+          <li>Probar el flujo completo con NVDA y Firefox, y con VoiceOver y Safari; anotar qué se anuncia al enviar vacío y al corregir.</li>
+          <li>Decidir qué mejoras aplicar (recomiendo las 1 y 2) y reflejarlas en una copia de la solución, nunca en la referencia del curso.</li>
+          <li>Repetir esta misma batería de pruebas tras los cambios y comparar con este informe.</li>
+          <li>Registrar el resultado en la <a href="../../../plantillas/incidencia.md">plantilla de incidencia</a> del curso.</li>
+        </ol>
+      </section>
+    </main>
+
+    <footer>
+      <p>Informe generado con Playwright y axe-core sobre el repositorio local. No es una declaración de conformidad.</p>
+    </footer>
+  </body>
+</html>

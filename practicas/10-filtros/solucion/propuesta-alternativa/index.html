@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Propuesta alternativa: filtros con estado vacío | Accesibilidad práctica</title>
+    <link rel="stylesheet" href="../../../../assets/base.css" />
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+  <body>
+    <header>
+      <a href="../../../../index.html">Índice de prácticas</a>
+      <h1>Filtros y anuncios de resultados</h1>
+      <p class="notice">
+        Propuesta alternativa a la solución de referencia. Incluye la ampliación de estado
+        sin resultados y restablecimiento de filtros.
+      </p>
+    </header>
+    <main id="contenido">
+      <h2>Catálogo</h2>
+      <form id="filtros">
+        <fieldset>
+          <legend>Filtros del catálogo</legend>
+          <div class="field">
+            <label for="modalidad">Modalidad</label>
+            <select id="modalidad" name="modalidad">
+              <option value="todos">Todas las modalidades</option>
+              <option value="online">Online</option>
+              <option value="aula">Aula</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="nivel">Nivel</label>
+            <select id="nivel" name="nivel">
+              <option value="todos">Todos los niveles</option>
+              <option value="inicial">Inicial</option>
+              <option value="avanzado">Avanzado</option>
+            </select>
+          </div>
+          <button type="submit">Aplicar filtros</button>
+        </fieldset>
+      </form>
+
+      <p id="recuento" role="status">3 cursos disponibles.</p>
+      <section id="sin-resultados" aria-labelledby="titulo-sin-resultados" hidden>
+        <h3 id="titulo-sin-resultados">No hay cursos que coincidan</h3>
+        <p>
+          Prueba otra combinación de modalidad y nivel, o restablece los filtros para ver
+          todo el catálogo.
+        </p>
+        <button id="restablecer" type="button">Restablecer filtros</button>
+      </section>
+      <ul id="cursos" aria-label="Cursos disponibles">
+        <li data-modalidad="online" data-nivel="inicial">
+          HTML accesible (online, nivel inicial)
+        </li>
+        <li data-modalidad="aula" data-nivel="inicial">
+          CSS accesible (aula, nivel inicial)
+        </li>
+        <li data-modalidad="online" data-nivel="avanzado">
+          JavaScript accesible (online, nivel avanzado)
+        </li>
+      </ul>
+    </main>
+    <footer>
+      <p>Portal de formación ficticio · Propuesta alternativa del ejercicio 10.</p>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>

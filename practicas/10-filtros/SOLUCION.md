@@ -13,3 +13,7 @@ Abre `inicio/index.html` y `solucion/index.html` y compara `index.html`, `app.js
 - Aplicar conserva el foco y no recarga la página.
 
 Las pruebas automáticas del repositorio verifican una parte del comportamiento. La prueba con lector de pantalla y la revisión visual humana siguen siendo necesarias. Registra el resultado real en la plantilla y justifica cualquier diferencia con la referencia.
+
+## Propuesta alternativa: estado sin resultados
+
+En [propuesta alternativa](solucion/propuesta-alternativa/README.md) hay una implementación independiente que conserva el filtrado por envío y añade un segundo criterio para que se pueda comprobar el estado sin coincidencias. Incluye su propia página ejecutable y resuelve la ampliación con una explicación y un botón para restablecer filtros. No sustituye ni modifica esta solución de referencia.
