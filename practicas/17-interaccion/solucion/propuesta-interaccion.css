@@ -1,0 +1,36 @@
+.rango {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 36rem;
+}
+.rango input[type='range'] {
+  flex: 1;
+  min-width: 0;
+  min-height: 3rem;
+  padding: 0;
+  touch-action: pan-y;
+}
+.rango button,
+.controls button {
+  min-width: 3rem;
+  min-height: 3rem;
+  touch-action: manipulation;
+}
+.rango button[disabled] {
+  cursor: not-allowed;
+}
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-block: 1rem;
+}
+.slide {
+  border: 2px solid #475569;
+  padding: 1rem;
+  scroll-margin-top: 4rem;
+}
+#entrada {
+  font-size: 0.9rem;
+}

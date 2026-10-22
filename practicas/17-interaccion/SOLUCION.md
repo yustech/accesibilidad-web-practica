@@ -11,3 +11,10 @@ El rango usa el contrato nativo, unidades accesibles y botones alternativos. El 
 - Con una ventana estrecha se conservan controles y lectura.
 
 Las pruebas de navegador verifican comportamiento y reglas automáticas. Los anuncios reales requieren el recorrido con lector y registro de entorno.
+
+## Propuesta alternativa
+
+- [Solución alternativa](solucion/propuesta-interaccion.html)
+- [Explicación paso a paso con WCAG 2.2](solucion/explicacion-interaccion.html)
+
+Incluye la ampliación táctil (registro de pruebas con pendientes) y una rotación automática controlable del carrusel.

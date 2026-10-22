@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Propuesta alternativa: selector de valor y carrusel | Accesibilidad práctica
+    </title>
+    <link rel="stylesheet" href="../../../assets/base.css" />
+    <link rel="stylesheet" href="propuesta-interaccion.css" />
+  </head>
+  <body>
+    <header>
+      <a class="skip" href="#contenido">Saltar al contenido</a>
+      <p>Accesibilidad web práctica</p>
+      <a href="../../../index.html">Índice de prácticas</a>
+    </header>
+    <main id="contenido" tabindex="-1">
+      <h1>Selector de valor y carrusel</h1>
+      <p class="notice">
+        Propuesta alternativa, distinta de la solución de referencia.
+        <a href="explicacion-interaccion.html">Ver la explicación paso a paso</a>.
+      </p>
+
+      <section aria-labelledby="t-duracion">
+        <h2 id="t-duracion">Duración del curso</h2>
+        <label for="duracion">Duración máxima del curso</label>
+        <p id="ayuda">
+          Entre 5 y 40 horas, en pasos de 5. Usa flechas, Inicio, Fin, toque o los
+          botones.
+        </p>
+        <div class="rango">
+          <button
+            id="menos"
+            type="button"
+            aria-label="Reducir 5 horas"
+            aria-controls="duracion"
+          >
+            <span aria-hidden="true">−</span>
+          </button>
+          <input
+            id="duracion"
+            type="range"
+            min="5"
+            max="40"
+            step="5"
+            value="20"
+            list="marcas"
+            aria-describedby="ayuda"
+          />
+          <button
+            id="mas"
+            type="button"
+            aria-label="Aumentar 5 horas"
+            aria-controls="duracion"
+          >
+            <span aria-hidden="true">+</span>
+          </button>
+          <datalist id="marcas">
+            <option value="5"></option>
+            <option value="10"></option>
+            <option value="15"></option>
+            <option value="20"></option>
+            <option value="25"></option>
+            <option value="30"></option>
+            <option value="35"></option>
+            <option value="40"></option>
+          </datalist>
+        </div>
+        <p>Duración elegida: <output id="valor" for="duracion">20 horas</output></p>
+        <p id="entrada">Última entrada detectada: ninguna todavía.</p>
+      </section>
+
+      <section aria-roledescription="carrusel" aria-label="Cursos destacados">
+        <h2>Cursos destacados</h2>
+        <p id="modo">Avance manual. La rotación automática está desactivada.</p>
+        <div class="controls">
+          <button id="anterior" type="button">Curso anterior</button>
+          <button id="siguiente" type="button">Curso siguiente</button>
+          <button id="rotacion" type="button" aria-pressed="false">
+            Iniciar rotación automática
+          </button>
+        </div>
+        <div id="diapositivas">
+          <article
+            class="slide"
+            role="group"
+            aria-roledescription="diapositiva"
+            aria-label="1 de 3"
+          >
+            <h3>HTML accesible</h3>
+            <p>Documento y estructura.</p>
+          </article>
+          <article
+            class="slide"
+            role="group"
+            aria-roledescription="diapositiva"
+            aria-label="2 de 3"
+            hidden
+          >
+            <h3>CSS adaptable</h3>
+            <p>Contraste y redistribución.</p>
+          </article>
+          <article
+            class="slide"
+            role="group"
+            aria-roledescription="diapositiva"
+            aria-label="3 de 3"
+            hidden
+          >
+            <h3>JavaScript accesible</h3>
+            <p>Interacción y foco.</p>
+          </article>
+        </div>
+        <p id="posicion" aria-live="polite" aria-atomic="true">
+          Curso 1 de 3: HTML accesible
+        </p>
+      </section>
+    </main>
+    <footer><p>Demostración local del curso. Utiliza datos ficticios.</p></footer>
+    <script type="module" src="propuesta-interaccion.js"></script>
+  </body>
+</html>

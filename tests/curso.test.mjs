@@ -436,6 +436,74 @@ test('propuesta de rutas: explicación sin violaciones', async () => {
   await page.goto(`${base}/practicas/16-rutas/solucion/explicacion-rutas.html`);
   await axe('16-explicacion');
 });
+test('propuesta de interacción: rango, táctil y rotación controlable', async () => {
+  const url = `${base}/practicas/17-interaccion/solucion/propuesta-interaccion.html`;
+  await page.goto(url);
+  const rango = page.getByRole('slider', { name: 'Duración máxima del curso' });
+  assert.equal(await rango.inputValue(), '20');
+  await rango.focus();
+  await page.keyboard.press('ArrowRight');
+  assert.equal(await rango.getAttribute('aria-valuetext'), '25 horas');
+  await page.keyboard.press('Home');
+  assert.equal(await rango.inputValue(), '5');
+  assert.equal(
+    await page.getByRole('button', { name: 'Reducir 5 horas' }).isDisabled(),
+    true,
+  );
+  await page.keyboard.press('End');
+  assert.equal(await rango.inputValue(), '40');
+  assert.equal(
+    await page.getByRole('button', { name: 'Aumentar 5 horas' }).isDisabled(),
+    true,
+  );
+  await axe('17-propuesta-inicial');
+
+  await page.getByRole('button', { name: 'Curso siguiente' }).focus();
+  await page.keyboard.press('Enter');
+  assert.equal(
+    await page.evaluate(() => document.activeElement.textContent.trim()),
+    'Curso siguiente',
+  );
+  assert.match(await page.locator('#posicion').innerText(), /Curso 2 de 3/);
+
+  const rot = page.getByRole('button', { name: /rotación automática/ });
+  await rot.click();
+  assert.equal(await rot.getAttribute('aria-pressed'), 'true');
+  assert.equal(await page.locator('#posicion').getAttribute('aria-live'), 'off');
+  await rot.click();
+  assert.equal(await page.locator('#posicion').getAttribute('aria-live'), 'polite');
+
+  const tactil = await browser.newContext({
+    hasTouch: true,
+    viewport: { width: 390, height: 800 },
+  });
+  const movil = await tactil.newPage();
+  await movil.goto(url);
+  await movil.getByRole('button', { name: 'Aumentar 5 horas' }).tap();
+  await movil.getByRole('button', { name: 'Aumentar 5 horas' }).tap();
+  assert.equal(await movil.locator('#valor').innerText(), '30 horas');
+  assert.match(await movil.locator('#entrada').innerText(), /táctil/);
+  const caja = await movil.getByRole('button', { name: 'Reducir 5 horas' }).boundingBox();
+  assert.ok(caja.width >= 44 && caja.height >= 44);
+  await tactil.close();
+
+  const reducido = await browser.newContext({ reducedMotion: 'reduce' });
+  const p = await reducido.newPage();
+  await p.goto(url);
+  await p.getByRole('button', { name: /rotación automática/ }).click();
+  assert.equal(
+    await p
+      .getByRole('button', { name: /rotación automática/ })
+      .getAttribute('aria-pressed'),
+    'false',
+  );
+  await reducido.close();
+
+  await page.goto(
+    `${base}/practicas/17-interaccion/solucion/explicacion-interaccion.html`,
+  );
+  await axe('17-explicacion');
+});
 test('soluciones a 320 px no desbordan la página', async () => {
   await page.setViewportSize({ width: 320, height: 700 });
   for (const module of modules) {
