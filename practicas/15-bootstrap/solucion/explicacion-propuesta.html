@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Proceso de la propuesta Bootstrap del ejercicio 15 | Accesibilidad práctica
+    </title>
+    <link rel="stylesheet" href="../../../assets/base.css" />
+  </head>
+  <body>
+    <header>
+      <a href="../../../index.html">Índice de prácticas</a>
+      <h1>Ejercicio 15: proceso de la propuesta Bootstrap</h1>
+      <p class="notice">
+        Cada paso indica qué se hizo, por qué y qué criterio de WCAG 2.2 lo respalda.
+        <a href="propuesta-bootstrap.html">Abrir la solución</a>.
+      </p>
+    </header>
+    <main id="contenido">
+      <h2>Punto de partida y diferencias</h2>
+      <p>
+        El <code>inicio</code> tiene un modal con título pero sin asociarlo al diálogo y
+        un botón de cierre sin nombre. La
+        <a href="index.html">solución de referencia</a> corrige eso (modal nombrado y
+        cierre con <code>aria-label</code>) y mantiene el desplegable. Esta propuesta
+        parte de esa base y añade tres cosas: un offcanvas con título, una comparación
+        entre validación nativa y validación visual de Bootstrap (ampliación del README)
+        y, como ampliación elegida por criterio propio, mensajes de error accesibles en el
+        formulario de Bootstrap.
+      </p>
+
+      <h2>Pasos realizados</h2>
+      <ol>
+        <li>
+          <h3>1. Leer el material y confirmar qué aporta Bootstrap</h3>
+          <p>
+            Se revisó el README, la solución de referencia y el DOM del plugin. Bootstrap
+            5.3 aporta la trampa de foco, el cierre con Escape y el retorno del foco al
+            disparador, y añade <code>role="dialog"</code> y <code>aria-modal</code> al
+            abrir. El autor es responsable del nombre, el título asociado y el contenido.
+            Por eso no se escribió ningún listener que duplique la gestión del foco (<a
+              href="https://www.w3.org/WAI/WCAG22/Understanding/no-keyboard-trap.html"
+              >2.1.2 Ausencia de trampas de teclado, A</a
+            >).
+          </p>
+        </li>
+        <li>
+          <h3>2. Modal con nombre y cierre nombrado</h3>
+          <p>
+            El contenedor lleva <code>aria-labelledby="modal-titulo"</code>, apuntando al
+            <code>h2</code> del propio modal, y el botón de cierre tiene
+            <code>aria-label="Cerrar inscripción"</code>. Con ello el diálogo se anuncia
+            como «Inscripción Bootstrap» y el cierre tiene nombre (<a
+              href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
+              >4.1.2 Nombre, función y valor, A</a
+            >). Un script ajusta el foco inicial al botón de cierre en
+            <code>shown.bs.modal</code> porque este modal no contiene campos (<a
+              href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html"
+              >2.4.3 Orden del foco, A</a
+            >).
+          </p>
+        </li>
+        <li>
+          <h3>3. Desplegable: se deja la interacción del plugin</h3>
+          <p>
+            El desplegable usa enlaces <code>dropdown-item</code>. Bootstrap ya ofrece
+            flechas y Escape, así que no se añadió código ni roles de menú ARIA. Se
+            conserva <code>aria-expanded</code> en el botón y se trabaja la operabilidad
+            con teclado (<a
+              href="https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html"
+              >2.1.1 Teclado, A</a
+            >).
+          </p>
+        </li>
+        <li>
+          <h3>4. Ampliación del README: offcanvas con título y ciclo de foco</h3>
+          <p>
+            Se añadió un offcanvas lateral con
+            <code>aria-labelledby="panel-titulo"</code> que apunta a su <code>h2</code>,
+            un botón de cierre con <code>aria-label</code>, enlaces internos y un botón
+            «Entendido». El disparador lleva <code>aria-controls</code>. Se comprobó, en
+            navegador y de forma automática, que:
+          </p>
+          <ul>
+            <li>
+              Al abrir, el panel se expone como <code>dialog</code> con
+              <code>aria-modal="true"</code>.
+            </li>
+            <li>
+              Con Tab y Mayús+Tab el foco da la vuelta dentro del panel y no llega al
+              resto de la página; la trampa es la del plugin, no una propia, y se sale con
+              Escape o con los botones de cierre (<a
+                href="https://www.w3.org/WAI/WCAG22/Understanding/no-keyboard-trap.html"
+                >2.1.2</a
+              >).
+            </li>
+            <li>
+              Al cerrar con Escape el foco vuelve al botón «Abrir panel de ayuda» (<a
+                href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html"
+                >2.4.3</a
+              >).
+            </li>
+          </ul>
+          <p>
+            El título y el cierre nombrado se apoyan en 4.1.2. Es habitual olvidar el
+            título en un offcanvas porque su cabecera parece un simple adorno visual.
+          </p>
+        </li>
+        <li>
+          <h3>
+            5. Ampliación del README: validación nativa frente a validación de Bootstrap
+          </h3>
+          <p>
+            Se construyeron dos formularios con el mismo campo de correo y se midió qué
+            comunica cada uno:
+          </p>
+          <div class="table-scroll">
+            <table>
+              <caption>
+                Comparación observada entre las dos validaciones
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Aspecto</th>
+                  <th scope="col">A. Nativa del navegador</th>
+                  <th scope="col">B. Visual de Bootstrap (solo clases)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Quién genera el mensaje</th>
+                  <td>El navegador, con su idioma y texto.</td>
+                  <td>
+                    Nadie: las clases <code>is-invalid</code> e
+                    <code>invalid-feedback</code> solo dan estilo; el autor escribe el
+                    texto.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Estado para tecnologías de apoyo</th>
+                  <td>
+                    Usa <code>validity</code> y el navegador expone el campo como
+                    inválido.
+                  </td>
+                  <td>
+                    No se expone nada por sí sola: hay que añadir
+                    <code>aria-invalid</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Mensaje y campo</th>
+                  <td>
+                    El mensaje emergente se asocia al campo en el momento del envío.
+                  </td>
+                  <td>
+                    No hay asociación: hay que enlazar el mensaje con
+                    <code>aria-describedby</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Foco</th>
+                  <td>El navegador enfoca el primer campo inválido.</td>
+                  <td>El foco no se mueve: lo gestiona el autor.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Dependencia del color</th>
+                  <td>Mensaje textual del navegador.</td>
+                  <td>
+                    Borde rojo y, si se activa <code>was-validated</code>, verde: solo
+                    color, insuficiente por sí mismo.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Apariencia y control</th>
+                  <td>Poco personalizable; difiere entre navegadores.</td>
+                  <td>Totalmente personalizable.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Conclusión: la validación nativa es una buena base, pero la «validación
+            visual» de Bootstrap es solo apariencia. Si se usa, el autor debe completar
+            texto, estado, relación con el campo y foco. Criterios relacionados:
+            <a
+              href="https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html"
+              >3.3.1 Identificación de errores (A)</a
+            >,
+            <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html"
+              >1.4.1 Uso del color (A)</a
+            >
+            y
+            <a href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
+              >4.1.2</a
+            >.
+          </p>
+        </li>
+        <li>
+          <h3>
+            6. Ampliación propia: mensajes de error accesibles en el formulario de
+            Bootstrap
+          </h3>
+          <p>
+            Decidí ampliar este punto porque es el fallo más frecuente cuando se usa
+            Bootstrap: confiar en el color rojo. El formulario B completa lo que el
+            framework no hace:
+          </p>
+          <ul>
+            <li>
+              <strong>Texto de error específico</strong> («Error: escribe un correo
+              válido, como persona@example.com») que explica qué corregir (<a
+                href="https://www.w3.org/WAI/WCAG22/Understanding/error-suggestion.html"
+                >3.3.3 Sugerencias ante errores, AA</a
+              >
+              y 3.3.1).
+            </li>
+            <li>
+              <strong>No depender solo del color:</strong> el mensaje empieza por «Error:»
+              y se muestra como texto visible junto al campo (1.4.1).
+            </li>
+            <li>
+              <strong>aria-invalid y aria-describedby</strong> que se añaden al fallar y
+              se retiran al corregir, conservando la ayuda previa (4.1.2 y
+              <a
+                href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html"
+                >1.3.1 Información y relaciones, A</a
+              >).
+            </li>
+            <li>
+              <strong>Resumen enfocable</strong> con el número de errores, al que se mueve
+              el foco tras un envío fallido, y que se oculta al corregir; se reutiliza el
+              patrón del ejercicio 9.
+            </li>
+            <li>
+              <strong>Etiqueta visible y autocomplete="email"</strong>
+              (<a
+                href="https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html"
+                >3.3.2</a
+              >
+              y
+              <a
+                href="https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose.html"
+                >1.3.5 Propósito de los campos, AA</a
+              >).
+            </li>
+            <li>
+              <strong>Mensajes de estado</strong> «Formulario enviado» en un
+              <code>role="status"</code> presente desde la carga (<a
+                href="https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html"
+                >4.1.3 Mensajes de estado, AA</a
+              >).
+            </li>
+          </ul>
+        </li>
+        <li>
+          <h3>7. Comprobaciones y límites</h3>
+          <p>
+            Una prueba de navegador abre y cierra modal y offcanvas, recorre el foco con
+            Tab y Mayús+Tab, verifica el retorno del foco, compara los dos formularios y
+            ejecuta axe sobre cada estado. Esa prueba no sustituye al uso con NVDA o
+            VoiceOver: debe registrarse el lector, sistema, navegador y versión en la
+            incidencia. Los criterios citados describen decisiones concretas; no declaran
+            que toda la página cumpla WCAG 2.2.
+          </p>
+        </li>
+      </ol>
+    </main>
+    <footer>
+      <p>
+        Portal de formación ficticio · Documentación de la propuesta del ejercicio 15.
+      </p>
+    </footer>
+  </body>
+</html>

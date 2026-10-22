@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Propuesta Bootstrap: modal, offcanvas y validación | Accesibilidad práctica
+    </title>
+    <link rel="stylesheet" href="../../../vendor/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../../assets/base.css" />
+    <link rel="stylesheet" href="propuesta-bootstrap.css" />
+  </head>
+  <body>
+    <header>
+      <a href="../../../index.html">Índice de prácticas</a>
+      <h1>Bootstrap real y responsabilidad del autor</h1>
+      <p class="notice">
+        Propuesta alternativa a la solución de referencia, con offcanvas, comparación de
+        validaciones y mensajes de error accesibles.
+        <a href="explicacion-propuesta.html">Ver el proceso paso a paso</a>.
+      </p>
+    </header>
+    <main id="contenido">
+      <section aria-labelledby="t-comp">
+        <h2 id="t-comp">Componentes Bootstrap</h2>
+        <div class="d-flex flex-wrap gap-3 align-items-start">
+          <button
+            id="abrir-modal"
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#modal-inscripcion"
+          >
+            Abrir inscripción Bootstrap
+          </button>
+          <button
+            id="abrir-offcanvas"
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#panel-ayuda"
+            aria-controls="panel-ayuda"
+          >
+            Abrir panel de ayuda
+          </button>
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Recursos del curso
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#guia">Guía de teclado</a></li>
+              <li><a class="dropdown-item" href="#criterios">Criterios WCAG</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <div
+        class="modal"
+        id="modal-inscripcion"
+        tabindex="-1"
+        aria-labelledby="modal-titulo"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 id="modal-titulo" class="modal-title fs-5">Inscripción Bootstrap</h2>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Cerrar inscripción"
+              ></button>
+            </div>
+            <div class="modal-body"><p>Revisa los datos antes de continuar.</p></div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="offcanvas offcanvas-end"
+        id="panel-ayuda"
+        tabindex="-1"
+        aria-labelledby="panel-titulo"
+      >
+        <div class="offcanvas-header">
+          <h2 id="panel-titulo" class="offcanvas-title fs-5">Panel de ayuda</h2>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Cerrar panel de ayuda"
+          ></button>
+        </div>
+        <div class="offcanvas-body">
+          <p>Pulsa Tab y Mayús+Tab: el foco no sale del panel mientras está abierto.</p>
+          <ul>
+            <li>
+              <a href="#guia" data-bs-dismiss="offcanvas">Ir a la guía de teclado</a>
+            </li>
+            <li>
+              <a href="#criterios" data-bs-dismiss="offcanvas">Ir a los criterios WCAG</a>
+            </li>
+          </ul>
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            data-bs-dismiss="offcanvas"
+          >
+            Entendido
+          </button>
+        </div>
+      </div>
+
+      <section id="guia">
+        <h2>Guía de teclado</h2>
+        <p>Comprueba Tab, Mayús+Tab, flechas y Escape.</p>
+      </section>
+      <section id="criterios">
+        <h2>Criterios WCAG</h2>
+        <p>Relaciona comportamiento y criterio.</p>
+      </section>
+
+      <section aria-labelledby="t-val">
+        <h2 id="t-val">Validación nativa frente a validación visual de Bootstrap</h2>
+        <p>
+          Los dos formularios piden el mismo correo. Prueba a enviarlos vacíos o con un
+          valor no válido, como <code>ana@</code>.
+        </p>
+
+        <form id="form-nativo" class="mb-5" aria-labelledby="t-nativo">
+          <h3 id="t-nativo" class="fs-5">A. Validación nativa del navegador</h3>
+          <label for="correo-nativo" class="form-label"
+            >Correo electrónico (obligatorio)</label
+          >
+          <input
+            id="correo-nativo"
+            name="correo"
+            type="email"
+            class="form-control"
+            autocomplete="email"
+            required
+          />
+          <button type="submit" class="btn btn-primary mt-3">Enviar formulario A</button>
+          <p id="resultado-nativo" role="status" class="mt-2"></p>
+        </form>
+
+        <form id="form-bootstrap" novalidate aria-labelledby="t-bs">
+          <h3 id="t-bs" class="fs-5">
+            B. Validación visual de Bootstrap con mensajes accesibles
+          </h3>
+          <div id="resumen-errores" class="alert alert-danger" tabindex="-1" hidden>
+            <h4 id="resumen-titulo" class="fs-6">Revisa el formulario</h4>
+            <p id="resumen-texto" class="mb-0"></p>
+          </div>
+          <label for="correo-bs" class="form-label"
+            >Correo electrónico (obligatorio)</label
+          >
+          <input
+            id="correo-bs"
+            name="correo"
+            type="email"
+            class="form-control"
+            autocomplete="email"
+            required
+            aria-describedby="correo-bs-ayuda"
+          />
+          <div id="correo-bs-ayuda" class="form-text">
+            Por ejemplo, persona@example.com.
+          </div>
+          <div id="correo-bs-error" class="invalid-feedback"></div>
+          <button type="submit" class="btn btn-primary mt-3">Enviar formulario B</button>
+          <p id="resultado-bs" role="status" class="mt-2"></p>
+        </form>
+      </section>
+    </main>
+    <footer>
+      <p>Portal de formación ficticio · Propuesta alternativa del ejercicio 15.</p>
+    </footer>
+    <script src="../../../vendor/bootstrap.bundle.min.js"></script>
+    <script src="propuesta-bootstrap.js"></script>
+  </body>
+</html>

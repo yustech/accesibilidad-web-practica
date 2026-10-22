@@ -282,6 +282,69 @@ test('propuesta alternativa de multimedia: pausa, estado y movimiento reducido',
   await page.goto(`${url}/explicacion.html`);
   await axe('14-propuesta-explicacion');
 });
+test('propuesta Bootstrap: offcanvas, ciclo de foco y comparación de validaciones', async () => {
+  await page.goto(`${base}/practicas/15-bootstrap/solucion/propuesta-bootstrap.html`);
+  await axe('15-propuesta-inicial');
+
+  const opener = page.getByRole('button', { name: 'Abrir panel de ayuda' });
+  await opener.click();
+  const panel = page.getByRole('dialog', { name: 'Panel de ayuda', exact: true });
+  await panel.waitFor();
+  assert.equal(await panel.getAttribute('aria-modal'), 'true');
+  await axe('15-propuesta-offcanvas');
+  const inside = () =>
+    page.evaluate(() =>
+      document.querySelector('#panel-ayuda').contains(document.activeElement),
+    );
+  for (let i = 0; i < 6; i++) {
+    await page.keyboard.press('Tab');
+    assert.equal(await inside(), true);
+  }
+  for (let i = 0; i < 6; i++) {
+    await page.keyboard.press('Shift+Tab');
+    assert.equal(await inside(), true);
+  }
+  await page.keyboard.press('Escape');
+  await panel.waitFor({ state: 'hidden' });
+  assert.equal(await opener.evaluate((el) => el === document.activeElement), true);
+
+  const modalOpener = page.getByRole('button', { name: 'Abrir inscripción Bootstrap' });
+  await modalOpener.click();
+  const modal = page.getByRole('dialog', { name: 'Inscripción Bootstrap', exact: true });
+  await modal.waitFor();
+  await page.keyboard.press('Escape');
+  await modal.waitFor({ state: 'hidden' });
+  assert.equal(await modalOpener.evaluate((el) => el === document.activeElement), true);
+
+  const nativo = page.locator('#correo-nativo');
+  await page.getByRole('button', { name: 'Enviar formulario A' }).click();
+  assert.equal(await nativo.evaluate((el) => el.validity.valueMissing), true);
+  assert.equal(await nativo.evaluate((el) => el === document.activeElement), true);
+  assert.equal(await nativo.evaluate((el) => el.classList.contains('is-invalid')), false);
+  assert.equal(await nativo.getAttribute('aria-invalid'), null);
+
+  const bs = page.locator('#correo-bs');
+  await page.getByRole('button', { name: 'Enviar formulario B' }).click();
+  assert.equal(await bs.getAttribute('aria-invalid'), 'true');
+  assert.match(await bs.getAttribute('aria-describedby'), /correo-bs-error/);
+  assert.match(
+    await page.locator('#correo-bs-error').innerText(),
+    /Error: escribe tu correo/,
+  );
+  assert.equal(
+    await page
+      .locator('#resumen-errores')
+      .evaluate((el) => el === document.activeElement),
+    true,
+  );
+  await axe('15-propuesta-error-bootstrap');
+  await bs.fill('ana@example.com');
+  await page.getByRole('button', { name: 'Enviar formulario B' }).click();
+  assert.equal(await bs.getAttribute('aria-invalid'), null);
+  assert.match(await page.locator('#resultado-bs').innerText(), /enviado/);
+  await page.goto(`${base}/practicas/15-bootstrap/solucion/explicacion-propuesta.html`);
+  await axe('15-propuesta-explicacion');
+});
 test('Bootstrap: plugin real, título, foco y flechas', async () => {
   await open('15-bootstrap');
   const opener = page.getByRole('button', { name: 'Abrir inscripción Bootstrap' });
