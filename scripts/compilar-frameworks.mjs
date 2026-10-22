@@ -24,6 +24,12 @@ for (const framework of ['react', 'vue', 'lit']) {
     `practicas/16-rutas/solucion/propuesta-rutas-${framework}.js`,
   );
 }
+for (const framework of ['react', 'vue', 'lit']) {
+  entryPoints[`18-frameworks-${framework}`] = path.join(
+    root,
+    `practicas/18-frameworks/solucion/propuesta-frameworks-${framework}.js`,
+  );
+}
 const options = {
   entryPoints,
   outdir: path.join(root, 'dist/frameworks'),

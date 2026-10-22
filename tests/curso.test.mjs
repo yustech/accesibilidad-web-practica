@@ -504,6 +504,64 @@ test('propuesta de interacción: rango, táctil y rotación controlable', async 
   );
   await axe('17-explicacion');
 });
+for (const fw of ['react', 'vue', 'lit']) {
+  test(`propuesta frameworks (${fw}): regresión Ayuda → Catálogo → Online, URL e historial`, async () => {
+    const pagina = `${base}/practicas/18-frameworks/solucion/propuesta-frameworks.html`;
+    const enfocadoH1 = (nombre) =>
+      page
+        .getByRole('heading', { name: nombre, level: 1, exact: true })
+        .evaluate((el) => el === document.activeElement);
+    await page.goto(`${pagina}?fw=${fw}`);
+    await page.getByRole('heading', { name: 'Catálogo', level: 1 }).waitFor();
+    await axe(`18-${fw}-inicial`);
+
+    await page.getByRole('link', { name: 'Ayuda', exact: true }).click();
+    assert.match(await page.title(), /^Ayuda/);
+    assert.equal(await enfocadoH1('Ayuda'), true);
+    await page.getByRole('link', { name: 'Catálogo', exact: true }).click();
+    assert.match(await page.title(), /^Catálogo/);
+    assert.equal(await enfocadoH1('Catálogo'), true);
+
+    await page.getByLabel('Modalidad').selectOption('online');
+    await page.getByRole('button', { name: 'Aplicar' }).click();
+    assert.equal(
+      await page.getByRole('status').innerText(),
+      'Modalidad Online: 2 cursos disponibles',
+    );
+    assert.equal(
+      await page.evaluate(() => document.activeElement.textContent),
+      'Aplicar',
+    );
+    assert.match(page.url(), /modalidad=online/);
+    assert.match(page.url(), new RegExp(`fw=${fw}`));
+
+    await page.getByLabel('Modalidad').selectOption('presencial');
+    await page.getByRole('button', { name: 'Aplicar' }).click();
+    assert.equal(
+      await page.getByRole('status').innerText(),
+      'Modalidad Presencial: 1 curso disponible',
+    );
+    await axe(`18-${fw}-filtrado`);
+
+    await page.goBack();
+    assert.equal(await enfocadoH1('Ayuda'), true);
+    await page.goForward();
+    assert.equal(await enfocadoH1('Catálogo'), true);
+    assert.equal(await page.getByLabel('Modalidad').inputValue(), 'presencial');
+
+    await page.goto(`${pagina}?fw=${fw}&modalidad=online&vista=ayuda`);
+    await page.getByRole('heading', { name: 'Ayuda', level: 1 }).waitFor();
+    await page.getByRole('link', { name: 'Catálogo', exact: true }).click();
+    assert.equal(
+      await page.getByRole('status').innerText(),
+      'Modalidad Online: 2 cursos disponibles',
+    );
+  });
+}
+test('propuesta frameworks: explicación sin violaciones', async () => {
+  await page.goto(`${base}/practicas/18-frameworks/solucion/explicacion-frameworks.html`);
+  await axe('18-explicacion');
+});
 test('soluciones a 320 px no desbordan la página', async () => {
   await page.setViewportSize({ width: 320, height: 700 });
   for (const module of modules) {

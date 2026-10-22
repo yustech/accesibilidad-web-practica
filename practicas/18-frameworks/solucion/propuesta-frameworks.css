@@ -1,0 +1,16 @@
+nav a,
+form button,
+form select {
+  min-height: 2.75rem;
+}
+nav a {
+  display: inline-flex;
+  align-items: center;
+  padding-inline: 0.5rem;
+}
+[role='status'] {
+  font-weight: 600;
+}
+h1 {
+  scroll-margin-top: 4rem;
+}
