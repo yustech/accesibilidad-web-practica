@@ -252,6 +252,36 @@ test('multimedia: pausa y preferencia de reducir movimiento', async () => {
   );
   await page.emulateMedia({ reducedMotion: 'no-preference' });
 });
+test('propuesta alternativa de multimedia: pausa, estado y movimiento reducido', async () => {
+  const url = `${base}/practicas/14-multimedia/solucion/propuesta-alternativa`;
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto(`${url}/index.html`);
+  assert.match(await page.locator('main').innerText(), /Significan que la solicitud/);
+  await axe('14-propuesta-alternativa');
+  const button = page.getByRole('button', { name: 'Pausar movimiento' });
+  await button.focus();
+  await page.keyboard.press('Enter');
+  assert.equal(
+    await page
+      .locator('#movimiento')
+      .evaluate((el) => getComputedStyle(el).animationPlayState),
+    'paused',
+  );
+  assert.match(await page.getByRole('status').innerText(), /en pausa/);
+  await page.getByRole('button', { name: 'Reanudar movimiento' }).waitFor();
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.locator('#pausa').waitFor({ state: 'hidden' });
+  assert.equal(await page.locator('#pausa').isHidden(), true);
+  assert.equal(
+    await page
+      .locator('#movimiento')
+      .evaluate((el) => getComputedStyle(el).animationName),
+    'none',
+  );
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto(`${url}/explicacion.html`);
+  await axe('14-propuesta-explicacion');
+});
 test('Bootstrap: plugin real, título, foco y flechas', async () => {
   await open('15-bootstrap');
   const opener = page.getByRole('button', { name: 'Abrir inscripción Bootstrap' });

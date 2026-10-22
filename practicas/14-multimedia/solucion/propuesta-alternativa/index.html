@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Propuesta alternativa: audio, vídeo y movimiento | Accesibilidad práctica
+    </title>
+    <link rel="stylesheet" href="../../../../assets/base.css" />
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+  <body>
+    <header>
+      <a href="../../../../index.html">Índice de prácticas</a>
+      <h1>Audio, vídeo y movimiento</h1>
+      <p class="notice">
+        Propuesta alternativa a la solución de referencia, con la ampliación de
+        clasificación de medios.
+        <a href="explicacion.html">Ver el proceso paso a paso</a>.
+      </p>
+    </header>
+    <main id="contenido">
+      <section aria-labelledby="t-audio">
+        <h2 id="t-audio">Notificación de solicitud</h2>
+        <audio controls preload="none" src="../../../../assets/aviso.wav">
+          Tu navegador no reproduce este audio.
+        </audio>
+        <p>
+          <strong>Transcripción:</strong> suenan dos tonos breves ascendentes. Significan
+          que la solicitud se ha guardado correctamente.
+        </p>
+        <p id="resultado-texto">Solicitud guardada.</p>
+      </section>
+
+      <section aria-labelledby="t-mov">
+        <h2 id="t-mov">Indicador de estado</h2>
+        <div id="movimiento" class="motion" aria-hidden="true">✓</div>
+        <button id="pausa" type="button">Pausar movimiento</button>
+        <p id="estado-mov" role="status"></p>
+      </section>
+
+      <section aria-labelledby="t-video">
+        <h2 id="t-video">Vídeo con descripción de los cambios visuales</h2>
+        <p id="video-ayuda">
+          Demostración original con voz sintética española. Activa los subtítulos desde
+          los controles; la transcripción con tiempos está debajo.
+        </p>
+        <video
+          id="video-descrito"
+          controls
+          preload="metadata"
+          width="960"
+          height="540"
+          poster="../../../../assets/video/portada.png"
+          aria-describedby="video-ayuda"
+        >
+          <source
+            src="../../../../assets/video/inscripcion-descrita.webm"
+            type="video/webm"
+          />
+          <track
+            kind="captions"
+            src="../../../../assets/video/subtitulos-descritos.es.vtt"
+            srclang="es"
+            label="Español"
+            default
+          />
+          Tu navegador no reproduce el vídeo.
+        </video>
+        <h3>Transcripción descriptiva con tiempos</h3>
+        <ol class="transcripcion">
+          <li><strong>0:00</strong> Narración: «Escribe tu correo y pulsa Enviar».</li>
+          <li>
+            <strong>0:04</strong> Se introduce <code>ana@</code>. Aparece el error junto
+            al campo: «Escribe un correo válido». El formulario conserva el dato.
+          </li>
+          <li><strong>0:12</strong> Suenan dos tonos ascendentes de confirmación.</li>
+          <li>
+            <strong>0:13</strong> El correo se corrige a <code>ana@example.com</code> y
+            aparece «Solicitud guardada».
+          </li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="t-amp">
+        <h2 id="t-amp">Ampliación: qué exige cada tipo de medio</h2>
+        <div class="table-scroll">
+          <table>
+            <caption>
+              Clasificación de tres medios y criterios WCAG 2.2 aplicables
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Medio</th>
+                <th scope="col">1.2.2 Subtítulos (A)</th>
+                <th scope="col">1.2.3 Descripción o alternativa (A)</th>
+                <th scope="col">1.2.4 Subtítulos en directo (AA)</th>
+                <th scope="col">1.2.5 Audiodescripción (AA)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Vídeo narrado pregrabado</th>
+                <td>Sí: subtítulos de narración y sonidos relevantes.</td>
+                <td>
+                  Sí, si hay información visual que el audio no cubre: descripción o
+                  alternativa para medios.
+                </td>
+                <td>No aplica: no es directo.</td>
+                <td>
+                  Sí, para lo visual que no está en el audio (aquí, el error y la
+                  confirmación).
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Demo visual sin narración</th>
+                <td>
+                  No hay audio sincronizado que subtitular. Si hubiera sonidos relevantes,
+                  también se subtitulan.
+                </td>
+                <td>
+                  Sí: al ser vídeo sin audio se ofrece alternativa textual o pista de
+                  audio (1.2.1).
+                </td>
+                <td>No aplica.</td>
+                <td>
+                  Se cubre con la pista de audio o descripción de la demo; sin audio no
+                  hay narración que reutilizar.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Directo con audio</th>
+                <td>No aplica: es contenido en vivo, no pregrabado.</td>
+                <td>No aplica: es contenido en vivo.</td>
+                <td>Sí: subtitulado en directo, p. ej. por un subtitulador humano.</td>
+                <td>No aplica a directo en este criterio.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          La clasificación depende del medio real y de sus excepciones; revisa el
+          contenido antes de decidir. Una transcripción por sí sola no sustituye 1.2.5.
+        </p>
+      </section>
+    </main>
+    <footer>
+      <p>Portal de formación ficticio · Propuesta alternativa del ejercicio 14.</p>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>

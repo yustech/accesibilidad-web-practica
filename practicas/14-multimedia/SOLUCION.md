@@ -18,3 +18,7 @@ Las pruebas automáticas del repositorio verifican una parte del comportamiento.
 ## Vídeo reproducible
 
 La referencia incorpora la versión de 20 segundos con descripción sonora, subtítulos españoles y transcripción descriptiva. La comparación conserva la versión base de 12 segundos para identificar qué falta en su audio. Las pistas tienen tiempos distintos porque la versión descrita deja espacio para narrar los cambios. Comprueba controles y anuncios en el navegador y lector utilizados.
+
+## Propuesta alternativa
+
+La [propuesta alternativa](solucion/propuesta-alternativa/index.html) añade estado anunciado en la pausa y resuelve la ampliación de clasificación de medios. El [proceso paso a paso](solucion/propuesta-alternativa/explicacion.html) la documenta con referencias a WCAG 2.2.

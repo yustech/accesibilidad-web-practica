@@ -1,0 +1,30 @@
+.motion {
+  animation: move 3s linear infinite alternate;
+  max-width: 10rem;
+  background: #dbeafe;
+  padding: 1rem;
+}
+.motion.detenido {
+  animation-play-state: paused;
+}
+@keyframes move {
+  to {
+    transform: translateX(60px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion {
+    animation: none;
+    transform: none;
+  }
+}
+.transcripcion li {
+  margin-block: 0.5rem;
+}
+table {
+  width: 100%;
+}
+th,
+td {
+  vertical-align: top;
+}

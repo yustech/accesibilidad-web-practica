@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Proceso de la propuesta alternativa del ejercicio 14 | Accesibilidad práctica
+    </title>
+    <link rel="stylesheet" href="../../../../assets/base.css" />
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+  <body>
+    <header>
+      <a href="../../../../index.html">Índice de prácticas</a>
+      <h1>Ejercicio 14: proceso de la propuesta alternativa</h1>
+      <p class="notice">
+        Explicación de cada paso con su criterio WCAG 2.2.
+        <a href="index.html">Abrir la solución</a>.
+      </p>
+    </header>
+    <main id="contenido">
+      <h2>Punto de partida</h2>
+      <p>
+        El <code>inicio</code> contiene un audio sin texto equivalente, un indicador que
+        se mueve sin pausa y un vídeo sin subtítulos ni descripción. La
+        <a href="../index.html">solución de referencia</a> añade transcripción, pausa,
+        reducción de movimiento y el vídeo descrito. Esta propuesta mantiene esas
+        garantías, cambia la forma de comunicar los estados y resuelve además la
+        ampliación del README.
+      </p>
+
+      <h2>Pasos realizados</h2>
+      <ol class="pasos">
+        <li>
+          <h3>1. Analizar el material</h3>
+          <p>
+            Se leyeron el README, la solución de referencia, la guía de multimedia y la
+            página de comparación de vídeos. Se confirmó qué información está solo en lo
+            visual: el error de correo y la confirmación. Sin ese diagnóstico no se sabe
+            qué debe contar la alternativa.
+          </p>
+        </li>
+        <li>
+          <h3>2. Audio con transcripción equivalente (1.2.1, A)</h3>
+          <p>
+            El audio conserva controles nativos y se pone <code>preload="none"</code>; no
+            arranca solo. Junto a él se escribe una transcripción que no se limita a decir
+            «suenan tonos»: explica su significado, «la solicitud se ha guardado
+            correctamente». Así la información llega a quien no puede oír el audio.
+          </p>
+        </li>
+        <li>
+          <h3>3. Pausar el movimiento (2.2.2, A)</h3>
+          <p>
+            La animación dura más de cinco segundos, es automática y convive con otro
+            contenido, por lo que se añade un botón nativo de pausa. Se pausa con la clase
+            <code>detenido</code> (<code>animation-play-state</code>) en lugar de estilos
+            en línea, y el texto cambia entre «Pausar movimiento» y «Reanudar movimiento».
+            El botón se puede operar con teclado, que cubre 2.1.1.
+          </p>
+        </li>
+        <li>
+          <h3>4. Anunciar el cambio de estado (4.1.3, AA)</h3>
+          <p>
+            Se añade un <code>&lt;p role="status"&gt;</code> que existe desde la carga y
+            se rellena con «Movimiento en pausa» o «Movimiento reanudado». Informa a
+            tecnologías de apoyo sin mover el foco. Es una mejora respecto a la
+            referencia, donde solo cambia el texto del botón.
+          </p>
+        </li>
+        <li>
+          <h3>5. Respetar «reducir movimiento»</h3>
+          <p>
+            Una consulta CSS <code>prefers-reduced-motion: reduce</code> elimina la
+            animación y el script oculta el botón, que ya no tiene utilidad, e informa del
+            motivo en la región de estado. El indicador sigue siendo un ✓ estático, de
+            modo que el significado no se pierde. Esta preferencia mejora la experiencia
+            pero no sustituye a 2.2.2 para quien no la tiene activada.
+          </p>
+        </li>
+        <li>
+          <h3>6. Vídeo descrito con subtítulos (1.2.2 A, 1.2.3 A, 1.2.5 AA)</h3>
+          <p>
+            Se incorpora la versión con descripción sonora: la narración comunica el error
+            y la confirmación. Se enlaza la pista <code>kind="captions"</code> en español
+            con la narración y los tonos, y el vídeo se asocia con
+            <code>aria-describedby</code> a su texto de ayuda. No arranca automáticamente.
+            La versión sin descripción queda solo en la comparación del curso porque su
+            audio no incluye el error visual.
+          </p>
+        </li>
+        <li>
+          <h3>7. Transcripción descriptiva con tiempos</h3>
+          <p>
+            La transcripción se escribe como lista ordenada con marcas de tiempo
+            coherentes con la pista VTT (0:00, 0:04, 0:12 y 0:13). Combina diálogo,
+            sonidos y cambios visuales. Es una alternativa textual útil a la vez para
+            personas sordociegas y para quien prefiere leer, pero no sustituye a los
+            subtítulos ni a la audiodescripción exigida por 1.2.5.
+          </p>
+        </li>
+        <li>
+          <h3>8. Ampliación: clasificar tres medios (1.2.2, 1.2.3, 1.2.4, 1.2.5)</h3>
+          <p>
+            La solución incluye una tabla con título, cabeceras de columna y de fila que
+            clasifica un vídeo narrado, una demo visual sin narración y un directo. Para
+            cada uno se justifica qué criterio aplica o no y por qué. En el vídeo narrado
+            se pide subtitular y describir lo visual no narrado; en la demo sin narración
+            no hay audio que subtitular y se necesita alternativa o pista de audio; el
+            directo requiere subtitulado en vivo (1.2.4) y queda fuera de los criterios
+            pregrabados. La tabla advierte que la decisión depende del medio real.
+          </p>
+        </li>
+        <li>
+          <h3>9. Comprobaciones</h3>
+          <p>
+            Se añadió una prueba automatizada de navegador. Comprueba la transcripción,
+            que la pausa y el estado cambien, que el indicador deje de animarse con
+            movimiento reducido y que axe no detecte violaciones. Una prueba automática no
+            sustituye a la revisión humana ni a probar el audio y el vídeo con NVDA o
+            VoiceOver, que deben registrarse con sistema, navegador y versión.
+          </p>
+        </li>
+      </ol>
+
+      <h2>Resumen de criterios</h2>
+      <div class="table-scroll">
+        <table>
+          <caption>
+            Decisiones y criterios relacionados
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Decisión</th>
+              <th scope="col">Criterio WCAG 2.2</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Transcripción del significado de los tonos</td>
+              <td>
+                <a
+                  href="https://www.w3.org/WAI/WCAG22/Understanding/audio-only-and-video-only-prerecorded.html"
+                  >1.2.1 (A)</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>Subtítulos de narración y tonos</td>
+              <td>
+                <a
+                  href="https://www.w3.org/WAI/WCAG22/Understanding/captions-prerecorded.html"
+                  >1.2.2 (A)</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>Descripción y transcripción del vídeo</td>
+              <td>
+                <a
+                  href="https://www.w3.org/WAI/WCAG22/Understanding/audio-description-or-media-alternative-prerecorded.html"
+                  >1.2.3 (A)</a
+                >
+                y
+                <a
+                  href="https://www.w3.org/WAI/WCAG22/Understanding/audio-description-prerecorded.html"
+                  >1.2.5 (AA)</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>Subtitulado de un directo (solo clasificación)</td>
+              <td>
+                <a href="https://www.w3.org/WAI/WCAG22/Understanding/captions-live.html"
+                  >1.2.4 (AA)</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>Botón de pausa y movimiento reducido</td>
+              <td>
+                <a href="https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html"
+                  >2.2.2 (A)</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>Región de estado de la pausa</td>
+              <td>
+                <a href="https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html"
+                  >4.1.3 (AA)</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Los enlaces son explicaciones de apoyo de W3C. Citarlos indica la relación de cada
+        decisión con el criterio, no una declaración de conformidad completa.
+      </p>
+    </main>
+    <footer>
+      <p>
+        Portal de formación ficticio · Documentación de la propuesta del ejercicio 14.
+      </p>
+    </footer>
+  </body>
+</html>
